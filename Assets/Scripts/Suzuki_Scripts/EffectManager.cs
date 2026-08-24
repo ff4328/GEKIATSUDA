@@ -11,30 +11,28 @@ public class EffectManager : MonoBehaviour
      */
 
     bool SmallDamage;
-    
 
 
-    void PlayEffect()
+
+
+
+    void TakeDamege()
     {
 
 
+
+        if (SmallDamage)
+        {
+
+
+        }
+        else
+        {
+
+
+        }
+
+
     }
-
-    //void TakeDamege()
-    //{
-
-    //    if (SmallDamage)
-    //    {
-
-
-    //    }
-    //    else
-    //    {
-
-
-    //    }
-
-
-    //}
 
 }
