@@ -18,6 +18,7 @@ public class CharacterBase : MonoBehaviour
     private bool _isAttack;
     [SerializeField]
     private GameObject _attackArea;
+    private bool _isGuard;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +31,7 @@ public class CharacterBase : MonoBehaviour
         _actions[(int)PlayerAction.Move] = InputSystem.actions.FindAction("Move");
         _actions[(int)PlayerAction.Jump] = InputSystem.actions.FindAction("Jump");
         _actions[(int)PlayerAction.Attack] = InputSystem.actions.FindAction("Attack");
+        _actions[(int)PlayerAction.Guard] = InputSystem.actions.FindAction("Guard");
 
         _dir = (int)Direction.Right;
         _isTouchGround = GetComponentInChildren(typeof(TouchGround)) as TouchGround;
@@ -42,11 +44,13 @@ public class CharacterBase : MonoBehaviour
         _moveValue = _actions[(int)PlayerAction.Move].ReadValue<Vector2>();
         _isJump = _actions[(int)PlayerAction.Jump].WasPressedThisFrame();
         _isAttack = _actions[(int)PlayerAction.Attack].WasPressedThisFrame();
+        _isGuard = _actions[(int)PlayerAction.Guard].IsPressed();
        
         IsTouchGround();
 
         Attack();
         Jump();
+        Guard();
         Debug.Log(_isGround + " : _isGround");
     }
 
@@ -70,12 +74,12 @@ public class CharacterBase : MonoBehaviour
         if(moveValue.x >= 0.0f)
         {
             _dir = (int)Direction.Right;
-            this.gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
+            this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
             _dir = (int)Direction.Left;
-            this.gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
+            this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
     }
 
@@ -113,8 +117,17 @@ public class CharacterBase : MonoBehaviour
         if (_isAttack)
         {
             GameObject aa = Instantiate(_attackArea, (this.transform.position + new Vector3((1f*_dir),0.0f,0.0f)), Quaternion.identity);
-
+            aa.transform.parent = this.transform;
             Destroy(aa, 0.25f);
+        }
+    }
+
+    private void Guard()
+    {
+        if (_isGuard)
+        {
+            _moveValue = Vector2.zero;
+            Debug.Log(_isGuard);
         }
     }
 }
