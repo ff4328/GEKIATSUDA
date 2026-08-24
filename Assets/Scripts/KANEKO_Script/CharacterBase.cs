@@ -57,11 +57,16 @@ public class CharacterBase : MonoBehaviour
 
     private void Move(Vector2 moveValue)
     {
+        if (!_actions[(int)PlayerAction.Move].IsPressed())
+        {
+            this.gameObject.transform.position = transform.position;
+            return;
+        }
+
         Debug.Log(moveValue);
         float x = moveValue.x * MOVE_SPEED;
         this.gameObject.transform.position += new Vector3(x, 0f, 0f);
 
-        if (!_actions[(int)PlayerAction.Move].IsPressed()) return;
         if(moveValue.x >= 0.0f)
         {
             _dir = (int)Direction.Right;
@@ -120,6 +125,7 @@ enum PlayerAction
     Move,
     Jump,
     Attack,
+    Guard,
     Max
 }
 
