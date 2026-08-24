@@ -9,6 +9,7 @@ public class CharacterBase : MonoBehaviour
 
     private InputAction[] _actions = new InputAction[(int)PlayerAction.Max];
     private Rigidbody _rb = null;
+    public CharaDataBase _characterData { get; protected set; } = null;
     private Vector2 _moveValue;
     private short _dir;    // true = 右、false = 左
     private bool _isJump;
@@ -23,6 +24,8 @@ public class CharacterBase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _characterData = new CharaDataBase();
+
         _rb = GetComponent<Rigidbody>();
         if(_rb == null)
         {
@@ -130,6 +133,8 @@ public class CharacterBase : MonoBehaviour
             Debug.Log(_isGuard);
         }
     }
+
+    
 }
 
 enum PlayerAction
