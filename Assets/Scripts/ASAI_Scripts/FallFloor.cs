@@ -12,11 +12,10 @@ public class FallFloor : StageGimmickBase
     //落下の最大速度
     private const float _MAX_FALL_SPEED = 20.0f;
     //落下速度
-    [SerializeField]
     private float _fallSpeed = 0;
     //落下中か判定
-    [SerializeField]
     private bool _isFalling = false;
+
 
     private void Update()
     {
@@ -37,10 +36,11 @@ public class FallFloor : StageGimmickBase
         transform.position += _MOVE_DIRECTION * Time.deltaTime * _fallSpeed;
     }
 
-    public override void HitToCharacter()
+    public override void HitToCharacter(CharacterBase hitCharacter)
     {
         //落下開始
         _isFalling = true;
+
     }
 
 }
