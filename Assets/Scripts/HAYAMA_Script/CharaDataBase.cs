@@ -1,52 +1,58 @@
 public class CharaDataBase
 {
-    protected float Percentage;
-    protected int Attack;
-    protected int Speed;
-    protected int Size;
-    protected int JumpPower;
-    protected float LaunchRate;
+    public float Percentage { get; private set; }
+    public int Attack { get; private set; }
+    public int Speed { get; private set; }
+    public int Size { get; private set; }
+    public int JumpPower { get; private set; }
+    public float LaunchRate { get; private set; }
 
     public void SetPercentage(float percentage)
     {
         Percentage = percentage;
-        UpdateLaunchRate();   // 自動更新
+        UpdateLaunchRate();
     }
-
     public void SetAttack(int attack)
     {
         Attack = attack + DataConst.ATTACK;
     }
-
     public void SetSpeed(int speed)
     {
         Speed = speed + DataConst.SPEED;
     }
-
     public void SetSize(int size)
     {
         Size = size + DataConst.SIZE;
-        UpdateJumpPower();    // 自動更新
-        UpdateLaunchRate();   // 自動更新
+        UpdateJumpPower();
+        UpdateLaunchRate();
     }
-
     public void SetJumpPower(int jumpPower)
     {
         JumpPower = (jumpPower + DataConst.JUMPPOWER) / Size;
     }
-
     private void UpdateJumpPower()
     {
         JumpPower = (DataConst.JUMPPOWER) / Size;
     }
-
     private void UpdateLaunchRate()
     {
         LaunchRate = (Percentage * DataConst.LAUNCHRATE) / Size;
     }
+    
+    public float GetPercentage() => Percentage;
+    public int GetAttack() => Attack;
+    public int GetSpeed() => Speed;
+    public int GetSize() => Size;
+    public int GetJumpPower() => JumpPower;
+    public float GetLaunchRate() => LaunchRate;
 
-    public int GetAttack()
+    public void TakeDamage(int attackPower)
     {
-        return Attack;
+        // 攻撃力分だけパーセンテージを増やす
+        Percentage += attackPower;
+
+        // 吹っ飛び率を再計算
+        UpdateLaunchRate();
     }
+
 }
