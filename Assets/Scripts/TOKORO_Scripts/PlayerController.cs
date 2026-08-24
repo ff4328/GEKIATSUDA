@@ -8,9 +8,25 @@ public class PlayerController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            float x=Input.GetAxis("Horizontal");
-            float z=Input.GetAxis("Vertical");
-            CmdMoveSphere(x,z);
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+            CmdMoveSphere(x, z);
+        }
+
+        if (isClient)
+        {
+            if (Input.GetKey(KeyCode.D))
+            {
+                CmdMoveSphere(1, 0);
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                CmdMoveSphere(-1, 0);
+            }
+            else
+            {
+                CmdMoveSphere(0, 0);
+            }
         }
     }
 
