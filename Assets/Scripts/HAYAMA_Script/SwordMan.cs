@@ -3,11 +3,8 @@ using UnityEngine;
 public class SwordMan : MonoBehaviour
 {
     public CharaDataBase data;
+    public AttackHitBox attackHitBox;
 
-    // 攻撃判定用コライダー（手や体に付ける）
-    [SerializeField] private Collider attackHitBox;
-
-    // 攻撃中だけ判定を有効化
     private bool isAttacking = false;
 
     void Start()
@@ -15,8 +12,10 @@ public class SwordMan : MonoBehaviour
         data = new CharaDataBase();
         SetUp();
 
-        // 最初は攻撃判定を無効化
-        attackHitBox.enabled = false;
+        attackHitBox.owner = this;
+        attackHitBox.SetActiveHitBox(false);
+
+        Debug.Log("SwordMan 初期化完了");
     }
 
     void SetUp()
@@ -26,51 +25,40 @@ public class SwordMan : MonoBehaviour
         data.SetSpeed(1);
         data.SetSize(1);
         data.SetJumpPower(2);
+
+        Debug.Log("ステータス設定完了");
     }
 
     void Update()
     {
-        // 攻撃ボタン（例：スペースキー）
-        if (Input.GetKeyDown(KeyCode.Space))
+        // 左クリックで攻撃判定を出す
+        if (Input.GetMouseButtonDown(0))
         {
             StartAttack();
         }
     }
 
-    // 攻撃開始
     void StartAttack()
     {
+        Debug.Log("攻撃開始");
         isAttacking = true;
-        attackHitBox.enabled = true;
+        attackHitBox.SetActiveHitBox(true);
 
-        // 攻撃判定は0.2秒だけ有効にする（アニメの攻撃フレーム想定）
+        // 0.2秒後に消す
         Invoke(nameof(EndAttack), 0.2f);
     }
 
-    // 攻撃終了
     void EndAttack()
     {
+        Debug.Log("攻撃終了");
         isAttacking = false;
-        attackHitBox.enabled = false;
+        attackHitBox.SetActiveHitBox(false);
     }
 
-    // 攻撃判定が相手に当たった時
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!isAttacking) return;
-
-        SwordMan enemy = other.GetComponent<SwordMan>();
-        if (enemy != null)
-        {
-            enemy.OnHit(data.GetAttack());
-        }
-    }
-
-    // ダメージ処理
     public void OnHit(int enemyAttack)
     {
+        Debug.Log("ダメージ受けた: " + enemyAttack);
         data.TakeDamage(enemyAttack);
-
-        Debug.Log($"{name} が攻撃を受けた！ 現在のPercentage: {data.Percentage}");
+        Debug.Log("現在のPercentage: " + data.Percentage);
     }
 }
