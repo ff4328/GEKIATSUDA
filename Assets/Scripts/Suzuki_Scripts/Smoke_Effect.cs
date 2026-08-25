@@ -7,13 +7,10 @@ public class Smoke_Effect : MonoBehaviour
     private void Awake()
     {
         effect = FindFirstObjectByType<EffectManager>();
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (effect == null)
         {
-            Smoke();
+            Debug.LogError("EffectManagerが見つかりません");
         }
     }
 
@@ -39,6 +36,5 @@ public class Smoke_Effect : MonoBehaviour
 
         smoke.Play();
 
-        Destroy(smoke.gameObject, smoke.main.duration + 1f);
     }
 }
