@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
   _moveFlagforDebug: 0
+  moveSpeed: 0.1
 --- !u!114 &2217182854139090242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01766200d7d936a438928d60bc714c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordMan
+  rank: {fileID: 11400000, guid: efdb008f8316e164cb2146ac6d0a69ad, type: 2}
+  baseAttack: 3
+  baseSpeed: 1
+  baseSize: 1
+  characterMove: {fileID: 3584263750959732939}
+  finalAttackPower: 0
   attackHitBox: {fileID: 2820455016931473472}
   characterMove: {fileID: 3584263750959732939}
   isStunned: 0
@@ -443,6 +450,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463e167dd9e56d14680d6c75eedb0682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDummy
+  rank: {fileID: 11400000, guid: efdb008f8316e164cb2146ac6d0a69ad, type: 2}
+  baseAttack: 3
+  baseSpeed: 1
+  baseSize: 1
+  characterMove: {fileID: 0}
+  finalAttackPower: 0
 --- !u!114 &1962270899094462582
 MonoBehaviour:
   m_ObjectHideFlags: 0
