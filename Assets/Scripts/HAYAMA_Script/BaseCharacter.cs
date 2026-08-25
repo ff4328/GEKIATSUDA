@@ -30,4 +30,9 @@ public class BaseCharacter : MonoBehaviour
     public virtual void OnHit(int enemyAttack, Vector3 attackerPos)
     {
     }
+    public virtual void OnEnvironmentDamage(int damage)
+    {
+        data.TakeDamage(damage);
+    }
+
 }
