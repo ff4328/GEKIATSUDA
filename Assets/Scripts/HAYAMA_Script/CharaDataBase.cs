@@ -38,13 +38,6 @@ public class CharaDataBase
     {
         LaunchRate = (Percentage * DataConst.LAUNCHRATE) / Size;
     }
-    
-    public float GetPercentage() => Percentage;
-    public int GetAttack() => Attack;
-    public int GetSpeed() => Speed;
-    public int GetSize() => Size;
-    public int GetJumpPower() => JumpPower;
-    public float GetLaunchRate() => LaunchRate;
 
     public void TakeDamage(int attackPower)
     {

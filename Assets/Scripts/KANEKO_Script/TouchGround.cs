@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class TouchGround : MonoBehaviour
 {
+    /// <summary>
+    /// 接地しているか
+    /// </summary>
     public bool isGround;
+
+    /// <summary>
+    /// ダブルジャンプできるか
+    /// </summary>
     public bool isDoubleJump;
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    // 接地判定
-    //    if (collision.gameObject.tag == "Ground")
-    //    {
-    //        isGround = true;
-    //        isDoubleJump = true;
-    //    }
-    //}
-
+    /// <summary>
+    /// 接地判定
+    /// otherに入ったColliderのTagがGroundの時処理を行う
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         // 接地判定
@@ -25,16 +27,17 @@ public class TouchGround : MonoBehaviour
         }
     }
 
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    // 接地判定
-    //    if (collision.gameObject.tag == "Ground") isGround = false;
-    //}
-
+    /// <summary>
+    /// 離陸判定
+    /// Groundから離れたとき処理を行う
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
         // 接地判定
         if (other.gameObject.tag == "Ground") isGround = false;
     }
 
+    public Collider GetFootStepCollider() => this.gameObject.GetComponent<Collider>();
+    
 }

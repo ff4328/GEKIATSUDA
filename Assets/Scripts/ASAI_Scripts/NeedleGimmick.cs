@@ -6,11 +6,19 @@ using UnityEngine;
 public class NeedleGimmick : DamageGimmickBase
 {
 
-
-
-    public override void HitToCharacter(CharacterBase hitCharacter)
+    private void Start()
     {
+        damage = 10;
+    }
+
+    public override void HitToCharacter(CharacterMove hitCharacter)
+    {
+
+        //ダメージを呼ぶ
+        //hitCharacter.OnHit(damage);
+
         throw new System.NotImplementedException();
+
     }
 
 }
