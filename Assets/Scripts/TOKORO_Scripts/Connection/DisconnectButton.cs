@@ -9,6 +9,7 @@ public class DisconnectButton : MonoBehaviour
     [SerializeField] private GameObject client;
     [SerializeField] private GameObject host;
     [SerializeField] private GameObject cutting;
+    [SerializeField] private GameObject input;
 
     public void Disconnect()
     {
@@ -22,6 +23,7 @@ public class DisconnectButton : MonoBehaviour
 
             host.SetActive(true);
             client.SetActive(true);
+            input.SetActive(true);
             cutting.SetActive(false);
         }
         else if (relay.mode == Mirror.NetworkManagerMode.ClientOnly)
@@ -31,6 +33,7 @@ public class DisconnectButton : MonoBehaviour
 
             host.SetActive(true);
             client.SetActive(true);
+            input.SetActive(true);
             cutting.SetActive(false);
         }
     }
