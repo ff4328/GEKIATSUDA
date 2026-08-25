@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class Barrel : MonoBehaviour{
-
+public class Bomb : MonoBehaviour
+{
     public bool isAttackArea;
 
     private void OnTriggerEnter(Collider other)
