@@ -9,30 +9,11 @@ public class EffectManager : MonoBehaviour
     エフェクトを流す関数を渡す
 
      */
-
-    bool SmallDamage;
-
+    [SerializeField] public ParticleSystem Smokeparticle;
 
 
+   
 
 
-    void TakeDamege()
-    {
-
-
-
-        if (SmallDamage)
-        {
-
-
-        }
-        else
-        {
-
-
-        }
-
-
-    }
 
 }
