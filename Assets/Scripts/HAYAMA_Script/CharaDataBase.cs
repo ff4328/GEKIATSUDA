@@ -55,4 +55,10 @@ public class CharaDataBase
         Percentage = 0;
     }
 
+    public void Heal(int heal)
+    {
+        Percentage -= heal;
+        UpdateLaunchRate();
+    }
+
 }
