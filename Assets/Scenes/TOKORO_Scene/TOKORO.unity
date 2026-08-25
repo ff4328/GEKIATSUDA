@@ -199,7 +199,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6622993513475544445, guid: 8e52e0b288b8933448f9c1c4cc40857f, type: 3}
   m_PrefabInstance: {fileID: 7691757086281082864}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1311452873}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
@@ -853,6 +853,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &1311452873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8750325168362932281, guid: 8e52e0b288b8933448f9c1c4cc40857f, type: 3}
+  m_PrefabInstance: {fileID: 7691757086281082864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1522303730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2097526966}
   - component: {fileID: 2097526965}
+  - component: {fileID: 2097526967}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -1116,6 +1122,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2097526967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097526964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca7e0046d57bfa40a74973141dd0d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControllerLongPress
+  longPressTime: 2
+  disconnect: {fileID: 1894728758}
+  _coolTimeImage: {fileID: 120792407}
 --- !u!1001 &3479995433366692374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1128,6 +1149,10 @@ PrefabInstance:
       propertyPath: host
       value: 
       objectReference: {fileID: 687692914}
+    - target: {fileID: 305064039141660894, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 1311452873}
     - target: {fileID: 305064039141660894, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
       propertyPath: relay
       value: 
@@ -1193,6 +1218,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 687692914}
     - target: {fileID: 4025158737281779886, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 1311452873}
+    - target: {fileID: 4025158737281779886, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
       propertyPath: relay
       value: 
       objectReference: {fileID: 464039970}
@@ -1212,6 +1241,10 @@ PrefabInstance:
       propertyPath: host
       value: 
       objectReference: {fileID: 687692914}
+    - target: {fileID: 4622547991527300794, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 1311452873}
     - target: {fileID: 4622547991527300794, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
       propertyPath: relay
       value: 

@@ -62,15 +62,15 @@ public class CanPassFloor : StageGimmickBase
 
     }
 
-    public override void HitToCharacter(CharacterMove hitCharacter)
+    public override void HitToCharacter(BaseCharacter hitCharacter)
     {
         if (hitCharacter == null || collider == null) return;
         //もし移動方向が下ならコリジョンを無効にする
         //デバック用
-        if (!Input.GetKey(KeyCode.L)) return;
+        if (hitCharacter.characterMove.GetMoveValue().y <= 0) return;
 
         //無効にするコリジョンを取得
-        Collider[] ignoreCollisionList = hitCharacter.GetColliders();
+        Collider[] ignoreCollisionList = hitCharacter.characterMove.GetColliders();
         for (int i = 0; i < ignoreCollisionList.Length; i++)
         {
             Collider ignoreCollider = ignoreCollisionList[i];

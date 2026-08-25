@@ -65,7 +65,7 @@ public class FallFloor : StageGimmickBase
         transform.position += _MOVE_DIRECTION * Time.deltaTime * _fallSpeed;
     }
 
-    public override void HitToCharacter(CharacterMove hitCharacter)
+    public override void HitToCharacter(BaseCharacter hitCharacter)
     {
         //落下してたら処理しない
         if (_isFalling) return;
