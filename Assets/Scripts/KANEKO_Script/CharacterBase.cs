@@ -158,6 +158,11 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
+    private void MoveRotation()
+    {
+
+    }
+
     /// <summary>
     /// 接地判定
     /// </summary>
@@ -204,10 +209,17 @@ public class CharacterBase : MonoBehaviour
         
         if (_isAttackInput && !IsValidGuard())
         {
-            GameObject aa = Instantiate(_attackArea, (this.transform.position + new Vector3((1f*_dir),0.0f,0.0f)), Quaternion.identity);
-            aa.transform.parent = this.transform;
-            Destroy(aa, 0.25f);
+            //GameObject aa = Instantiate(_attackArea, (this.transform.position + new Vector3((1f*_dir),0.0f,0.0f)), Quaternion.identity);
+            //aa.transform.parent = this.transform;
+            //Destroy(aa, 0.25f);
         }
+    }
+
+    protected bool IsValidAttack()
+    {
+        bool flag;
+        flag = _isAttackInput && !IsValidGuard();
+        return flag;
     }
 
     /// <summary>
@@ -233,6 +245,15 @@ public class CharacterBase : MonoBehaviour
         Debug.Log(flag + " : IsValidGuard");
         return flag;
     }
+
+    public Collider[] GetColliders()
+    {
+        Collider[] colliders = new Collider[(int)MyCollider.Max];
+        colliders[(int)MyCollider.MySelf] = this.gameObject.GetComponent<Collider>();
+        colliders[(int)MyCollider.FootStep] = _isTouchGround.GetFootStepCollider();
+
+        return colliders;
+    }
 }
 
 /// <summary>
@@ -255,4 +276,11 @@ enum Direction
 {
     Left = -1,
     Right = 1
+}
+
+enum MyCollider
+{
+    MySelf,
+    FootStep,
+    Max
 }

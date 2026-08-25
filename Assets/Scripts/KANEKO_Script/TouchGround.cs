@@ -38,4 +38,6 @@ public class TouchGround : MonoBehaviour
         if (other.gameObject.tag == "Ground") isGround = false;
     }
 
+    public Collider GetFootStepCollider() => this.gameObject.GetComponent<Collider>();
+    
 }
