@@ -11,6 +11,8 @@ namespace Utp
 	{
         private UtpTransport utpTransport;
 
+		private bool isJoinCode=false;
+
 		/// <summary>
 		/// Server's join code if using Relay.
 		/// </summary>
@@ -102,6 +104,8 @@ namespace Utp
 
 				StartHost();
 
+                isJoinCode=true;
+
                 Debug.Log(relayJoinCode);
             },
 			() =>
@@ -136,6 +140,6 @@ namespace Utp
 			});
 		}
 
-		public string GetRoomID() => relayJoinCode;
+		public bool GetRoomID() => isJoinCode;
     }
 }

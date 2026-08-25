@@ -14,6 +14,7 @@ public class HostStarter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        roomID.text = $"Room ID: {relay.GetRoomID()}";
+        if (relay.GetRoomID())
+            roomID.text = $"Room ID: {relay.relayJoinCode}";
     }
 }
