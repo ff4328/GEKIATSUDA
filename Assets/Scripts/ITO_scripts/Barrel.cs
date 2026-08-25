@@ -6,7 +6,7 @@ public class Barrel : MonoBehaviour{
 
     private void OnTriggerEnter(Collider other)
     {
-        // 接地判定
+        // 攻撃判定
         if (other.gameObject.tag == "AttackArea")
         {
             isAttackArea = true;
@@ -15,11 +15,4 @@ public class Barrel : MonoBehaviour{
             Destroy(gameObject);
         }
     }
-    
-    /*
-    // 攻撃を受けたとき
-    public void TakeDamage(){
-        
-    }
-    */
 }

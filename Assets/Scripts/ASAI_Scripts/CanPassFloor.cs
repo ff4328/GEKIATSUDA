@@ -25,6 +25,11 @@ public class CanPassFloor : StageGimmickBase
         Collider collider;
         //無効にしている時間
         public float ignoreTimeSec;
+
+    }
+
+    public override void HitToCharacter(CharacterMove hitCharacter)
+    {
     }
     //無効なコリジョンのデータリスト
     private List<IgnoreCollisionData> _ignoreCollisionList;

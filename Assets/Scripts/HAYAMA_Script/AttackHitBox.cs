@@ -23,17 +23,10 @@ public class AttackHitBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger 入った: " + other.name);
-
-        SwordMan enemy = other.GetComponent<SwordMan>();
+        EnemyDummy enemy = other.GetComponent<EnemyDummy>();
         if (enemy != null)
         {
-            Debug.Log("当たった！攻撃力: " + owner.data.GetAttack());
-            enemy.OnHit(owner.data.GetAttack());
-        }
-        else
-        {
-            Debug.Log("SwordMan が見つからない → 敵に SwordMan.cs が付いてない可能性");
+            enemy.OnHit(owner.data.Attack, owner.transform.position);
         }
     }
 }

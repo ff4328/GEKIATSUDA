@@ -8,6 +8,6 @@ public abstract class DamageGimmickBase : StageGimmickBase
 
     protected float damage = 0.0f;
 
-    public abstract override void HitToCharacter(CharacterBase hitCharacter);
+    public abstract override void HitToCharacter(CharacterMove hitCharacter);
 
 }

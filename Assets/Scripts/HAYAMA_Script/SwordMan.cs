@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SwordMan : MonoBehaviour
+public class SwordMan : CharacterMove
 {
     public CharaDataBase data;
     public AttackHitBox attackHitBox;
@@ -31,8 +31,7 @@ public class SwordMan : MonoBehaviour
 
     void Update()
     {
-        // 左クリックで攻撃判定を出す
-        if (Input.GetMouseButtonDown(0))
+        if (IsValidAttack())
         {
             StartAttack();
         }
@@ -58,7 +57,32 @@ public class SwordMan : MonoBehaviour
     public void OnHit(int enemyAttack)
     {
         Debug.Log("ダメージ受けた: " + enemyAttack);
+
+        // Percentage を増やす
         data.TakeDamage(enemyAttack);
+
+        // 吹っ飛び処理
+        Knockback(enemyAttack);
+
         Debug.Log("現在のPercentage: " + data.Percentage);
     }
+
+    void Knockback(int enemyAttack)
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        // 攻撃された方向（攻撃者 → 自分）
+        Vector3 dir = (transform.position - attackHitBox.owner.transform.position).normalized;
+
+        // 吹っ飛び力（スマブラ風）
+        float force = enemyAttack * (1 + data.Percentage * 0.05f);
+
+        // 上方向に少し加えるとスマブラっぽくなる
+        Vector3 knock = dir * force + Vector3.up * (force * 0.3f);
+
+        rb.AddForce(knock, ForceMode.Impulse);
+
+        Debug.Log("吹っ飛び力: " + force);
+    }
+
 }

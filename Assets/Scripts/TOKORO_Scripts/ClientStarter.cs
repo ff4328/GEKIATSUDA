@@ -1,11 +1,16 @@
+using TMPro;
 using UnityEngine;
-using Unity.Netcode;
+using Utp;
 
 public class ClientStarter : MonoBehaviour
 {
+    [SerializeField] TMP_InputField inputField;
+    [SerializeField] RelayNetworkManager relay;
+
     public void StartClient()
     {
-        NetworkManager.Singleton.StartClient();
-        Debug.Log("NGO Client started");
+        relay.relayJoinCode = inputField.text;
+
+        relay.JoinRelayServer();
     }
 }
