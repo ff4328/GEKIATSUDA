@@ -1,0 +1,21 @@
+using Mirror;
+using TMPro;
+using UnityEngine;
+
+public class ConnectPlayerNumber : NetworkBehaviour
+{
+    [SyncVar(hook = nameof(OnPlayerNumberChange))] private int _playerNumber;
+
+    [SerializeField] TMP_Text num;
+
+    private void OnPlayerNumberChange(int oldNumber, int newNumber)
+    {
+        num.text = $"{newNumber}P";
+    }
+
+    [Server]
+    private void SetPlayerNumber(int num)
+    {
+        _playerNumber = num;
+    }
+}

@@ -509,6 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31cb923701f41524eb2cd479935a80e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RelayManager
+  _maxPlayers: 7
 --- !u!4 &651186857
 Transform:
   m_ObjectHideFlags: 0
