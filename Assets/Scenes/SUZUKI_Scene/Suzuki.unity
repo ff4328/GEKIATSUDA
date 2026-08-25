@@ -381,7 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e310a82756dfec4a9a1edbc16077a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Heal_Effect
-  HealUI: {fileID: 0}
+  Smokeparticle: {fileID: 0}
+  Healparticle: {fileID: 0}
 --- !u!1 &2020609020
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,67 +622,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1001 &2147379381
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00000030248248
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.178281
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557590041919409800, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: simulationSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8824631069169513301, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_Name
-      value: Effect_TouchGround
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
 --- !u!1001 &7681190400727904880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -690,6 +630,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
+      propertyPath: Healparticle
+      value: 
+      objectReference: {fileID: 3851853913326536341, guid: 277969f98fc7ea24a8a37dcd31c3af16, type: 3}
     - target: {fileID: 5557526653558376471, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: m_Name
       value: EffectSystem
@@ -748,4 +692,3 @@ SceneRoots:
   - {fileID: 1539896616}
   - {fileID: 2020609024}
   - {fileID: 7681190400727904880}
-  - {fileID: 2147379381}
