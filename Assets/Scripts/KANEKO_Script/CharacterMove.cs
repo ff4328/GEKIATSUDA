@@ -34,6 +34,10 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     public CharaDataBase _characterData { get; protected set; } = null;
 
+    [SerializeField]
+    [Tooltip("ガードの画像")]
+    private SpriteRenderer _guardSprite;
+
     /// <summary>
     /// 移動速度
     /// </summary>
@@ -99,6 +103,8 @@ public class CharacterMove : MonoBehaviour
         {
             _rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
         }
+
+        _guardSprite.enabled = false;
 
         // アクションの参照を保存
         _actions[(int)PlayerAction.Move] = InputSystem.actions.FindAction("Move");
@@ -237,12 +243,17 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     private void Guard()
     {
-        if (MoveFlagForDebug()) return;
+        if (MoveFlagForDebug() || _isDodge) return;
 
         if (IsValidGuard())
         {
             //_moveValue = Vector2.zero;
+            _guardSprite.enabled = true;
             Dodge();
+        }
+        else if(!IsValidGuard() && _guardSprite.enabled)
+        {
+            _guardSprite.enabled = false;
         }
     }
 
@@ -253,7 +264,8 @@ public class CharacterMove : MonoBehaviour
     private bool IsValidGuard()
     {
         bool flag;
-        flag = _isGuardInput && _isGround;
+        if(_isGuardInput && _isGround && !_isDodge)flag = true;
+        else flag = false;
         return flag;
     }
 
@@ -279,6 +291,7 @@ public class CharacterMove : MonoBehaviour
         if (!_actions[(int)PlayerAction.Move].IsPressed()) return;
 
         _isDodge = true;
+        _guardSprite.enabled = false;
 
         Collider myCollider = this.gameObject.GetComponent<Collider>();
         myCollider.enabled = false;
@@ -319,7 +332,7 @@ public class CharacterMove : MonoBehaviour
         col.enabled = true;
         mat.color= Color.gray;
         rb.useGravity = true;
-        _isDodge = false;
+        StartCoroutine(DodgeCoolTimeCoroutine());
     }
 
     private IEnumerator DodgeLeftCoroutine(Collider col, Material mat, Rigidbody rb)
@@ -338,12 +351,12 @@ public class CharacterMove : MonoBehaviour
         col.enabled = true;
         mat.color = Color.gray;
         rb.useGravity = true;
-        _isDodge = false;
+        StartCoroutine(DodgeCoolTimeCoroutine());
     }
 
     private IEnumerator DodgeOnTheSpotCoroutine(Collider col, Material mat, Rigidbody rb)
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 30; i++)
         {
             yield return new WaitForSeconds(0.01f);
         }
@@ -351,7 +364,13 @@ public class CharacterMove : MonoBehaviour
         col.enabled = true;
         mat.color = Color.gray;
         rb.useGravity = true;
-        _isDodge= false;
+        StartCoroutine(DodgeCoolTimeCoroutine());
+    }
+
+    private IEnumerator DodgeCoolTimeCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _isDodge = false;
     }
 
     public Vector2 GetMoveValue() { return _moveValue; }

@@ -12,13 +12,13 @@ public class NeedleGimmick : DamageGimmickBase
         damage = 10;
     }
 
-    public override void HitToCharacter(CharacterMove hitCharacter)
+    public override void HitToCharacter(BaseCharacter hitCharacter)
     {
 
         //ダメージを呼ぶ
-        //hitCharacter.OnHit(damage);
+        hitCharacter.OnEnvironmentDamage(damage);
 
-        throw new System.NotImplementedException();
+        hitCharacter.ApplyKnockback(damage, transform.position);
 
     }
 
