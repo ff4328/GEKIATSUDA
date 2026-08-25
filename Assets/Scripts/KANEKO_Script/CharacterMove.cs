@@ -211,7 +211,7 @@ public class CharacterMove : MonoBehaviour
     //    }
     //}
 
-    protected bool IsValidAttack()
+    public bool IsValidAttack()
     {
         bool flag;
         if (_isAttackInput && !IsValidGuard()) flag = true;

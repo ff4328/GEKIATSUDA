@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SwordMan : CharacterBase
+public class SwordMan : CharacterMove
 {
     public CharaDataBase data;
     public AttackHitBox attackHitBox;
