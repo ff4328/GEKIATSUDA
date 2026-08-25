@@ -145,11 +145,15 @@ public class CharacterMove : MonoBehaviour
         if(moveValue.x >= 0.0f)
         {
             _dir = (int)Direction.Right;
+            _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
+            _rb.angularVelocity = new Vector3(0f, _rb.angularVelocity.y, 0f);
             this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
             _dir = (int)Direction.Left;
+            _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
+            _rb.angularVelocity = new Vector3(0f, _rb.angularVelocity.y, 0f);
             this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
     }
