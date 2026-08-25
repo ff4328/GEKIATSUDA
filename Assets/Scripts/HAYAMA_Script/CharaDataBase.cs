@@ -6,6 +6,7 @@ public class CharaDataBase
     public int Size { get; private set; }
     public int JumpPower { get; private set; }
     public float LaunchRate { get; private set; }
+    public bool IsTakeDamage { get; private set; }
 
     public void SetPercentage(float percentage)
     {
@@ -46,6 +47,8 @@ public class CharaDataBase
 
         // 吹っ飛び率を再計算
         UpdateLaunchRate();
+
+        IsTakeDamage = true;
     }
 
 }

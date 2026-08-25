@@ -6,84 +6,80 @@ public class SwordMan : MonoBehaviour
     public AttackHitBox attackHitBox;
     public CharacterMove characterMove;
 
-    private bool isAttacking = false;
+    public bool isStunned = false;     // 食らって動けない
+    public bool isKnockback = false;   // 吹っ飛び中は動けない
+
+    private Rigidbody rb;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         data = new CharaDataBase();
-        SetUp();
-
-        attackHitBox.owner = this;
-        attackHitBox.SetActiveHitBox(false);
-
-        Debug.Log("SwordMan 初期化完了");
-    }
-
-    void SetUp()
-    {
-        data.SetPercentage(0);
-        data.SetAttack(3);
-        data.SetSpeed(1);
-        data.SetSize(1);
-        data.SetJumpPower(2);
-
-        Debug.Log("ステータス設定完了");
+        data.SetAttack(10);
     }
 
     void Update()
     {
+        // スタン or 吹っ飛び中は操作禁止
+        if (isStunned || isKnockback)
+        {
+            return;
+        }
         if (characterMove.IsValidAttack())
         {
             StartAttack();
         }
     }
-
     void StartAttack()
     {
-        Debug.Log("攻撃開始");
-        isAttacking = true;
+        attackHitBox.transform.localPosition = new Vector3(1, 0, 0);
         attackHitBox.SetActiveHitBox(true);
-
-        // 0.2秒後に消す
         Invoke(nameof(EndAttack), 0.2f);
     }
 
+
     void EndAttack()
     {
-        Debug.Log("攻撃終了");
-        isAttacking = false;
         attackHitBox.SetActiveHitBox(false);
     }
-
-    public void OnHit(int enemyAttack)
+    public void OnHit(int enemyAttack, Vector3 attackerPos)
     {
-        Debug.Log("ダメージ受けた: " + enemyAttack);
-
-        // Percentage を増やす
         data.TakeDamage(enemyAttack);
 
-        // 吹っ飛び処理
-        Knockback(enemyAttack);
+        Debug.Log($"ダメージ受けた: {enemyAttack}, 現在のPercentage: {data.Percentage}");
 
-        Debug.Log("現在のPercentage: " + data.Percentage);
+        ApplyStun(0.3f);
+        Knockback(enemyAttack, attackerPos);
     }
 
-    void Knockback(int enemyAttack)
+
+    void ApplyStun(float duration)
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
+        isStunned = true;
+        Invoke(nameof(EndStun), duration);
+    }
 
-        // 攻撃された方向（攻撃者 → 自分）
-        Vector3 dir = (transform.position - attackHitBox.owner.transform.position).normalized;
+    void EndStun()
+    {
+        isStunned = false;
+    }
 
-        // 吹っ飛び力（スマブラ風）
+    void Knockback(int enemyAttack, Vector3 attackerPos)
+    {
+        isKnockback = true;
+
+        Vector3 dir = (transform.position - attackerPos).normalized;
         float force = enemyAttack * (1 + data.Percentage * 0.05f);
 
-        // 上方向に少し加えるとスマブラっぽくなる
         Vector3 knock = dir * force + Vector3.up * (force * 0.3f);
 
         rb.AddForce(knock, ForceMode.Impulse);
 
-        Debug.Log("吹っ飛び力: " + force);
+        Invoke(nameof(EndKnockback), 0.3f);
     }
 
+    void EndKnockback()
+    {
+        isKnockback = false;
+    }
 }
