@@ -6,11 +6,6 @@ using UnityEngine.InputSystem;
 public class CharacterMove : MonoBehaviour
 {
     /// <summary>
-    /// 移動速度の定数
-    /// </summary>
-    const float MOVE_SPEED = 0.1f;
-
-    /// <summary>
     /// ジャンプ力の定数
     /// </summary>
     const float JUMP_FORCE = 20f;
@@ -38,6 +33,12 @@ public class CharacterMove : MonoBehaviour
     /// このクラスと継承したクラスのみ値を変えられる
     /// </summary>
     public CharaDataBase _characterData { get; protected set; } = null;
+
+    /// <summary>
+    /// 移動速度
+    /// </summary>
+    public float moveSpeed = 0.1f;
+
 
     /// <summary>
     /// 移動入力格納用
@@ -108,6 +109,8 @@ public class CharacterMove : MonoBehaviour
         // 向きの初期設定
         _dir = (int)Direction.Right;
 
+        _isDodge = false;
+
         // 子オブジェクトから接地判定クラスを取得
         _isTouchGround = GetComponentInChildren(typeof(TouchGround)) as TouchGround;
     }
@@ -140,7 +143,7 @@ public class CharacterMove : MonoBehaviour
     /// <param name="moveValue"></param>
     private void Move(Vector2 moveValue)
     {
-        if (MoveFlagForDebug()) return;
+        if (MoveFlagForDebug() || _isDodge) return;
 
         if (!_actions[(int)PlayerAction.Move].IsPressed() || IsValidGuard())
         {
@@ -150,7 +153,7 @@ public class CharacterMove : MonoBehaviour
             return;
         }
 
-        float x = moveValue.x * MOVE_SPEED;
+        float x = moveValue.x * moveSpeed;
         this.gameObject.transform.position += new Vector3(x, 0f, 0f);
 
         if(moveValue.x >= 0.0f)
@@ -183,7 +186,7 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        if (MoveFlagForDebug()) return;
+        if (MoveFlagForDebug() || _isDodge) return;
 
         if (_isJumpInput && _isGround)
         {
@@ -275,6 +278,8 @@ public class CharacterMove : MonoBehaviour
     {
         if (!_actions[(int)PlayerAction.Move].IsPressed()) return;
 
+        _isDodge = true;
+
         Collider myCollider = this.gameObject.GetComponent<Collider>();
         myCollider.enabled = false;
         Material material = GetComponent<Renderer>().material;
@@ -314,6 +319,7 @@ public class CharacterMove : MonoBehaviour
         col.enabled = true;
         mat.color= Color.gray;
         rb.useGravity = true;
+        _isDodge = false;
     }
 
     private IEnumerator DodgeLeftCoroutine(Collider col, Material mat, Rigidbody rb)
@@ -332,6 +338,7 @@ public class CharacterMove : MonoBehaviour
         col.enabled = true;
         mat.color = Color.gray;
         rb.useGravity = true;
+        _isDodge = false;
     }
 
     private IEnumerator DodgeOnTheSpotCoroutine(Collider col, Material mat, Rigidbody rb)
@@ -344,7 +351,10 @@ public class CharacterMove : MonoBehaviour
         col.enabled = true;
         mat.color = Color.gray;
         rb.useGravity = true;
+        _isDodge= false;
     }
+
+    public Vector2 GetMoveValue() { return _moveValue; }
 }
 
 /// <summary>
