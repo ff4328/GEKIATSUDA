@@ -138,6 +138,8 @@ public class CharacterBase : MonoBehaviour
     {
         if (!_actions[(int)PlayerAction.Move].IsPressed() || IsValidGuard())
         {
+            _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
+            _rb.angularVelocity = new Vector3(0f, _rb.angularVelocity.y, 0f);
             this.gameObject.transform.position = transform.position;
             return;
         }
@@ -218,7 +220,8 @@ public class CharacterBase : MonoBehaviour
     protected bool IsValidAttack()
     {
         bool flag;
-        flag = _isAttackInput && !IsValidGuard();
+        if (_isAttackInput && !IsValidGuard()) flag = true;
+        else flag = false;
         return flag;
     }
 
