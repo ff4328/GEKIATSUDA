@@ -3,16 +3,13 @@ using UnityEngine;
 public class Smoke_Effect : EffectManager
 {
 
-   
 
-
-    void Start()
+    public void Smoke()
     {
+
+
        EffectManager Effect = GetComponent<EffectManager>();
-
-        Effect.Smokeparticle.Play();
-
-
+       Effect.Smokeparticle.Play();
     }
 
 }
