@@ -6,6 +6,7 @@ public class HostStarter : MonoBehaviour
 {
     [SerializeField] RelayNetworkManager relay;
     [SerializeField] TMP_Text roomID;
+    [SerializeField] static string roomName;
 
     public void StartHost()
     {
