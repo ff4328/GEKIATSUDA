@@ -7,7 +7,7 @@ public class Heal_Effect : EffectManager
 
 
 
-    void Start()
+    void Heal()
     {
         EffectManager Effect = GetComponent<EffectManager>();
 
