@@ -50,4 +50,15 @@ public class CharaDataBase
         IsTakeDamage = true;
     }
 
+    public void Dead()
+    {
+        Percentage = 0;
+    }
+
+    public void Heal(int heal)
+    {
+        Percentage -= heal;
+        UpdateLaunchRate();
+    }
+
 }

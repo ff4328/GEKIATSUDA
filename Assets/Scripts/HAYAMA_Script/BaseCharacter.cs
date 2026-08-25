@@ -33,6 +33,18 @@ public class BaseCharacter : MonoBehaviour
     public virtual void OnEnvironmentDamage(int damage)
     {
         data.TakeDamage(damage);
+        ApplyKnockback(damage, -transform.position);
     }
+    public virtual void ApplyKnockback(int power, Vector3 attackerPos)
+    {
+        var rb = GetComponent<Rigidbody>();
+        if (rb == null) return;
 
+        Vector3 dir = (transform.position - attackerPos).normalized;
+        float force = power * (1 + data.Percentage * 0.05f);
+
+        Vector3 knock = dir * force + Vector3.up * (force * 0.3f);
+
+        rb.AddForce(knock, ForceMode.Impulse);
+    }
 }
