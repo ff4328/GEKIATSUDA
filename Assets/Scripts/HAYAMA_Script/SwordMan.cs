@@ -4,6 +4,7 @@ public class SwordMan : BaseCharacter
 {
     public AttackHitBox attackHitBox;
     public CharacterMove characterMove;
+    [SerializeField]CharaDataBase data;
 
     public bool isStunned = false;
     public bool isKnockback = false;
@@ -26,6 +27,17 @@ public class SwordMan : BaseCharacter
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            data.Heal(100);
+            Debug.Log(data.Percentage);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            data.TakeDamage(10);
+            Debug.Log(data.Percentage);
+        }
+
         if (isStunned || isKnockback) return;
 
         if (characterMove.IsValidAttack())
