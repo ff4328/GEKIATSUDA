@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 /// <summary>
@@ -5,9 +6,17 @@ using UnityEngine;
 /// </summary>
 public abstract class StageGimmickBase : MonoBehaviour
 {
+    [SerializeField]
+    protected Collider collider = null;
 
     protected virtual void Start()
     {
+        if(collider == null)
+        {
+            Assert.Fail("StageGimmickのコライダーをセットしていない");
+            collider = gameObject.AddComponent<BoxCollider>();
+        }
+
     }
 
     /// <summary>
@@ -33,7 +42,7 @@ public abstract class StageGimmickBase : MonoBehaviour
     /// ギミックのアクティブ状態を設定
     /// </summary>
     /// <param name="active"></param>
-    void SetActive(bool active)
+    protected void SetActive(bool active)
     {
         gameObject.SetActive(active);
     }
