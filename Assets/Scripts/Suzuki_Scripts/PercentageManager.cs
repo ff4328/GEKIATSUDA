@@ -1,18 +1,25 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
-public class PercentageManager : MonoBehaviour
+public class TextColorChange : MonoBehaviour
 {
-    
-    TextMeshPro percentage;
+    [SerializeField] private TextMeshProUGUI text;
+    CharaDataBase chara;
 
+        // キャッシュ
+    float ShowPercentage;
+   
     private void Update()
     {
-        
-        // percentage.GetComponent<>    
-    
-    }
+       
+        ShowPercentage = chara.Percentage;
+        //パーセンテージの表示
+        text.text=ShowPercentage.ToString("F1");
+        //０～１００までの表示の色を白からジョジョに赤にしていく
+        float t = Mathf.Clamp01(ShowPercentage / 100.0f);
+        text.color = Color.Lerp(Color.white, Color.red, t);
 
+
+    }
 
 }
