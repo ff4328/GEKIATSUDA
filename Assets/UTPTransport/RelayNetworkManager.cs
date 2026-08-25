@@ -13,10 +13,10 @@ namespace Utp
 
 		private bool isJoinCode=false;
 
-		/// <summary>
-		/// Server's join code if using Relay.
-		/// </summary>
-		public string relayJoinCode = "";
+        /// <summary>
+        /// Server's join code if using Relay.
+        /// </summary>
+        public string relayJoinCode = "";
 
 		public override void Awake()
 		{
