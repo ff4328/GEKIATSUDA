@@ -13,20 +13,21 @@ public class AttackHitBox : MonoBehaviour
     public void SetActiveHitBox(bool active)
     {
         col.enabled = active;
-        Debug.Log("HitBox 状態: " + active);
+    }
 
-        if (active)
-        {
-            Debug.Log("HitBox 位置: " + transform.position);
-        }
+    public int attackPower;
+
+    public void SetAttackPower(int power)
+    {
+        attackPower = power;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyDummy enemy = other.GetComponent<EnemyDummy>();
-        if (enemy != null)
+        var target = other.GetComponent<BaseCharacter>();
+        if (target != null)
         {
-            enemy.OnHit(owner.data.Attack, owner.transform.position);
+            target.OnHit(attackPower, transform.position);
         }
     }
 }

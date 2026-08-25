@@ -6,11 +6,20 @@ public class ClientStarter : MonoBehaviour
 {
     [SerializeField] TMP_InputField inputField;
     [SerializeField] RelayNetworkManager relay;
+    [SerializeField] private GameObject cutting;
+    [SerializeField] private GameObject host;
+    [SerializeField] private GameObject client;
+    [SerializeField] private GameObject input;
 
     public void StartClient()
     {
         relay.relayJoinCode = inputField.text;
 
         relay.JoinRelayServer();
+
+        cutting.SetActive(true);
+        host.SetActive(false);
+        client.SetActive(false);
+        input.SetActive(false);
     }
 }

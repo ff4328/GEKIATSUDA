@@ -13,7 +13,7 @@ public class CanPassFloor : StageGimmickBase
     /// <summary>
     /// 無効にしているコリジョンのデータ
     /// </summary>
-    private struct IgnoreCollisionData
+    private class IgnoreCollisionData
     {
         public IgnoreCollisionData(Collider collider)
         {
@@ -22,7 +22,7 @@ public class CanPassFloor : StageGimmickBase
         }
 
         //無効にするコライダー
-        Collider collider;
+        public Collider collider;
         //無効にしている時間
         public float ignoreTimeSec;
 
@@ -50,12 +50,15 @@ public class CanPassFloor : StageGimmickBase
 
             //経過時間を加算
             checkData.ignoreTimeSec += deltaTime;
+            if (i == 0) Debug.Log(checkData.ignoreTimeSec);
             //コリジョンを有効にするタイミングでなければ処理しない
             if (checkData.ignoreTimeSec < _COLLISION_IGNORE_TIME) continue;
-
+            //衝突判定を有効
+            Physics.IgnoreCollision(checkData.collider, collider, false);
+            //配列から削除する
+            _ignoreCollisionList.Remove(checkData);
 
         }
-
 
     }
 
@@ -63,18 +66,18 @@ public class CanPassFloor : StageGimmickBase
     {
         if (hitCharacter == null || collider == null) return;
         //もし移動方向が下ならコリジョンを無効にする
+        //デバック用
         if (!Input.GetKey(KeyCode.L)) return;
 
         //無効にするコリジョンを取得
         Collider[] ignoreCollisionList = hitCharacter.GetColliders();
-
         for (int i = 0; i < ignoreCollisionList.Length; i++)
         {
             Collider ignoreCollider = ignoreCollisionList[i];
             if (ignoreCollider == null) continue;
 
             //コリジョンを無効にする
-            Physics.IgnoreCollision(ignoreCollider, collider, false);
+            Physics.IgnoreCollision(ignoreCollider, collider, true);
 
             //無効にするコリジョンリストのデータ作成
             IgnoreCollisionData newData = new IgnoreCollisionData(ignoreCollider);
