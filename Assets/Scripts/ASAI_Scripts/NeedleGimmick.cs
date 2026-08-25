@@ -6,8 +6,9 @@ using UnityEngine;
 public class NeedleGimmick : DamageGimmickBase
 {
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         damage = 10;
     }
 
