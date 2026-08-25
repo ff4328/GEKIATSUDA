@@ -607,6 +607,17 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1200731860 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2217182854139090242, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
+  m_PrefabInstance: {fileID: 1263091397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01766200d7d936a438928d60bc714c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordMan
 --- !u!1001 &1263091397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -655,6 +666,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2820455016931473472, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 1200731860}
+    - target: {fileID: 2820455016931473472, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180655570907681779, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3584263750959732939, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -686,7 +709,7 @@ GameObject:
   - component: {fileID: 1287041874}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -841,6 +864,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3743060004581411164, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827086464499356132, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6036873064789064572, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
