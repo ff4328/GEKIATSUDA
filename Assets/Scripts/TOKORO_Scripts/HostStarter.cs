@@ -1,11 +1,20 @@
+using TMPro;
 using UnityEngine;
-using Unity.Netcode;
+using Utp;
 
 public class HostStarter : MonoBehaviour
 {
+    [SerializeField] RelayNetworkManager relay;
+    [SerializeField] TMP_Text roomID;
+
     public void StartHost()
     {
-        NetworkManager.Singleton.StartHost();
-        Debug.Log("NGO Host started");
+        relay.StartRelayHost(2);
+    }
+
+    private void FixedUpdate()
+    {
+        if (relay.GetRoomID())
+            roomID.text = $"Room ID: {relay.relayJoinCode}";
     }
 }

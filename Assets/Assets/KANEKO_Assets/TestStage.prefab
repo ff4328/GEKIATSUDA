@@ -192,8 +192,8 @@ GameObject:
   - component: {fileID: 5287716191558318412}
   - component: {fileID: 5057156223570053217}
   - component: {fileID: 6036873064789064572}
-  - component: {fileID: 7492839530069207748}
   - component: {fileID: 9019020712664825999}
+  - component: {fileID: 5567524203540437724}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Player
@@ -296,19 +296,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7492839530069207748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4612161988684751157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6c6b1b82a8140f4293d3b67cd3bc102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
-  _attackArea: {fileID: 2895208841522905334, guid: b7d65eb18e637f743967c384827544f0, type: 3}
 --- !u!54 &9019020712664825999
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -336,6 +323,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 40
   m_CollisionDetection: 0
+--- !u!114 &5567524203540437724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612161988684751157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd572fa399a27e47bbf04098dfbf727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
+  _attackArea: {fileID: 0}
 --- !u!1 &6610903867615609929
 GameObject:
   m_ObjectHideFlags: 0

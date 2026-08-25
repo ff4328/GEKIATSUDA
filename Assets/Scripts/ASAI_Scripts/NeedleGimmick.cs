@@ -11,7 +11,7 @@ public class NeedleGimmick : DamageGimmickBase
         damage = 10;
     }
 
-    public override void HitToCharacter(CharacterBase hitCharacter)
+    public override void HitToCharacter(CharacterMove hitCharacter)
     {
 
         //ダメージを呼ぶ

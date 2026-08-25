@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 
 /// <summary>
@@ -13,7 +12,7 @@ public abstract class StageGimmickBase : MonoBehaviour
     {
         if(collider == null)
         {
-            Assert.Fail("StageGimmickのコライダーをセットしていない");
+            Debug.Log("StageGimmickのコライダーをセットしていない");
             collider = gameObject.AddComponent<BoxCollider>();
         }
 
@@ -22,7 +21,7 @@ public abstract class StageGimmickBase : MonoBehaviour
     /// <summary>
     /// キャラクターと衝突した時の処理
     /// </summary>
-    public abstract void HitToCharacter(CharacterBase hitCharacter);
+    public abstract void HitToCharacter(CharacterMove hitCharacter);
 
     /// <summary>
     /// 衝突方向を計算
@@ -45,6 +44,15 @@ public abstract class StageGimmickBase : MonoBehaviour
     protected void SetActive(bool active)
     {
         gameObject.SetActive(active);
+    }
+
+    /// <summary>
+    /// コライダーの有効、無効を設定
+    /// </summary>
+    /// <param name="enable"></param>
+    protected void SetEnabledCollider(bool enable)
+    {
+        collider.enabled = enable;
     }
 
 }
