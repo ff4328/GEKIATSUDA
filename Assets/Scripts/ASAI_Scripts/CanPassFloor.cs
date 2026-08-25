@@ -28,9 +28,6 @@ public class CanPassFloor : StageGimmickBase
 
     }
 
-    public override void HitToCharacter(CharacterMove hitCharacter)
-    {
-    }
     //無効なコリジョンのデータリスト
     private List<IgnoreCollisionData> _ignoreCollisionList;
 
@@ -62,7 +59,7 @@ public class CanPassFloor : StageGimmickBase
 
     }
 
-    public override void HitToCharacter(CharacterBase hitCharacter)
+    public override void HitToCharacter(CharacterMove hitCharacter)
     {
         if (hitCharacter == null || collider == null) return;
         //もし移動方向が下ならコリジョンを無効にする
