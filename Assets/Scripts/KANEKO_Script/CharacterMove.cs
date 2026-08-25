@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterBase : MonoBehaviour
+public class CharacterMove : MonoBehaviour
 {
     /// <summary>
     /// 移動速度の定数
@@ -70,12 +70,6 @@ public class CharacterBase : MonoBehaviour
     private bool _isAttackInput;
 
     /// <summary>
-    /// 攻撃範囲オブジェクト
-    /// </summary>
-    [SerializeField]
-    private GameObject _attackArea;
-
-    /// <summary>
     /// 防御入力してるか
     /// </summary>
     private bool _isGuardInput;
@@ -118,7 +112,7 @@ public class CharacterBase : MonoBehaviour
        
         IsTouchGround();
 
-        Attack();
+        //Attack();
         Jump();
         Guard();
         Debug.Log(_isGround + " : _isGround");
@@ -138,6 +132,8 @@ public class CharacterBase : MonoBehaviour
     {
         if (!_actions[(int)PlayerAction.Move].IsPressed() || IsValidGuard())
         {
+            _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
+            _rb.angularVelocity = new Vector3(0f, _rb.angularVelocity.y, 0f);
             this.gameObject.transform.position = transform.position;
             return;
         }
@@ -201,24 +197,25 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 攻撃アクション
-    /// </summary>
-    private void Attack()
-    {
+    ///// <summary>
+    ///// 攻撃アクション
+    ///// </summary>
+    //private void Attack()
+    //{
         
-        if (_isAttackInput && !IsValidGuard())
-        {
-            //GameObject aa = Instantiate(_attackArea, (this.transform.position + new Vector3((1f*_dir),0.0f,0.0f)), Quaternion.identity);
-            //aa.transform.parent = this.transform;
-            //Destroy(aa, 0.25f);
-        }
-    }
+    //    if (_isAttackInput && !IsValidGuard())
+    //    {
+    //        //GameObject aa = Instantiate(_attackArea, (this.transform.position + new Vector3((1f*_dir),0.0f,0.0f)), Quaternion.identity);
+    //        //aa.transform.parent = this.transform;
+    //        //Destroy(aa, 0.25f);
+    //    }
+    //}
 
     protected bool IsValidAttack()
     {
         bool flag;
-        flag = _isAttackInput && !IsValidGuard();
+        if (_isAttackInput && !IsValidGuard()) flag = true;
+        else flag = false;
         return flag;
     }
 

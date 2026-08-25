@@ -8,7 +8,7 @@ public class CanPassFloor : StageGimmickBase
 
 
 
-    public override void HitToCharacter(CharacterBase hitCharacter)
+    public override void HitToCharacter(CharacterMove hitCharacter)
     {
         //もし移動方向が下ならコリジョンを無効にする
 
