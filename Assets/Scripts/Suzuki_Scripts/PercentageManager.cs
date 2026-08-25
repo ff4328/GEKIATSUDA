@@ -10,7 +10,7 @@ public class PercentageManager : MonoBehaviour
     private void Update()
     {
         
-        percentage.GetComponent<>    
+        // percentage.GetComponent<>    
     
     }
 
