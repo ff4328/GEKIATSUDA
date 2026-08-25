@@ -50,4 +50,9 @@ public class CharaDataBase
         IsTakeDamage = true;
     }
 
+    public void Dead()
+    {
+        Percentage = 0;
+    }
+
 }

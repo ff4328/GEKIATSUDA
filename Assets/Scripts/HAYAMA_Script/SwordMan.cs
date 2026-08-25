@@ -51,11 +51,12 @@ public class SwordMan : BaseCharacter
     {
         data.TakeDamage(enemyAttack);
 
-        Debug.Log($"ダメージ受けた: {enemyAttack}, 現在のPercentage: {data.Percentage}");
-
         ApplyStun(0.3f);
-        Knockback(enemyAttack, attackerPos);
+
+        // ★共通ノックバックを使う
+        ApplyKnockback(enemyAttack, attackerPos);
     }
+
 
     void ApplyStun(float duration)
     {
@@ -66,20 +67,6 @@ public class SwordMan : BaseCharacter
     void EndStun()
     {
         isStunned = false;
-    }
-
-    void Knockback(int enemyAttack, Vector3 attackerPos)
-    {
-        isKnockback = true;
-
-        Vector3 dir = (transform.position - attackerPos).normalized;
-        float force = enemyAttack * (1 + data.Percentage * 0.05f);
-
-        Vector3 knock = dir * force + Vector3.up * (force * 0.3f);
-
-        rb.AddForce(knock, ForceMode.Impulse);
-
-        Invoke(nameof(EndKnockback), 0.3f);
     }
 
     void EndKnockback()
