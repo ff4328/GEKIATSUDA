@@ -1,31 +1,19 @@
 using System;
 using UnityEngine;
 
-public class Heal_Effect : MonoBehaviour
+public class Heal_Effect : EffectManager
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
+
+
     void Start()
     {
-        
-    }
-    [SerializeField] GameObject HealUI;
+        EffectManager Effect = GetComponent<EffectManager>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        Effect.Healparticle.Play();
 
-            TestHealEffect();
 
-        }
     }
 
-    bool TestHealEffect()
-    {
-
-      HealUI.SetActive(true);
-
-        return false;
-    }
 }

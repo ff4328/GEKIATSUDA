@@ -3,10 +3,7 @@ using UnityEngine;
 public class Smoke_Effect : EffectManager
 {
 
-   
-
-
-    void Start()
+    public void Start()
     {
        EffectManager Effect = GetComponent<EffectManager>();
 
