@@ -136,6 +136,8 @@ public class CharacterMove : MonoBehaviour
     /// <param name="moveValue"></param>
     private void Move(Vector2 moveValue)
     {
+        if (MoveFlagForDebug()) return;
+
         if (!_actions[(int)PlayerAction.Move].IsPressed() || IsValidGuard())
         {
             _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
@@ -143,8 +145,6 @@ public class CharacterMove : MonoBehaviour
             this.gameObject.transform.position = transform.position;
             return;
         }
-
-        if (MoveFlagForDebug()) return;
 
         Debug.Log(moveValue);
         float x = moveValue.x * MOVE_SPEED;
