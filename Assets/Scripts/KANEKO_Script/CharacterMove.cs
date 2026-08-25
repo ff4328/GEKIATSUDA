@@ -16,6 +16,12 @@ public class CharacterMove : MonoBehaviour
     const float JUMP_FORCE = 20f;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    [SerializeField]
+    [Tooltip("デバッグ用のフラグ。移動を無効にする")]
+    private bool _moveFlagforDebug = false;
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     /// <summary>
     /// InputAction配列 各アクションの参照を格納する
@@ -138,6 +144,8 @@ public class CharacterMove : MonoBehaviour
             return;
         }
 
+        if (MoveFlagForDebug()) return;
+
         Debug.Log(moveValue);
         float x = moveValue.x * MOVE_SPEED;
         this.gameObject.transform.position += new Vector3(x, 0f, 0f);
@@ -158,11 +166,6 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
-    private void MoveRotation()
-    {
-
-    }
-
     /// <summary>
     /// 接地判定
     /// </summary>
@@ -177,6 +180,8 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     private void Jump()
     {
+        if (MoveFlagForDebug()) return;
+
         Debug.Log(_isJumpInput);
         if (_isJumpInput && _isGround)
         {
@@ -228,6 +233,8 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     private void Guard()
     {
+        if (MoveFlagForDebug()) return;
+
         if (IsValidGuard())
         {
             _moveValue = Vector2.zero;
@@ -254,6 +261,14 @@ public class CharacterMove : MonoBehaviour
         colliders[(int)MyCollider.FootStep] = _isTouchGround.GetFootStepCollider();
 
         return colliders;
+    }
+
+    private bool MoveFlagForDebug()
+    {
+        if (!_moveFlagforDebug) return _moveFlagforDebug;
+        
+        Debug.LogWarning(gameObject + "_moveFlagforDebugがtrueになっています");
+        return _moveFlagforDebug;
     }
 }
 

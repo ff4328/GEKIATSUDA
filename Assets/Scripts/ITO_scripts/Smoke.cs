@@ -18,7 +18,7 @@ public class Smoke : MonoBehaviour
 
             Destroy(gameObject);
 
-            effect.Start();
+            effect.Smoke();
         }
     }
 }
