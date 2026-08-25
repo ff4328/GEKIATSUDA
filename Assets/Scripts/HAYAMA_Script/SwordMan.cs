@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class SwordMan : CharacterMove
+public class SwordMan : MonoBehaviour
 {
     public CharaDataBase data;
     public AttackHitBox attackHitBox;
+    public CharacterMove characterMove;
 
     private bool isAttacking = false;
 
@@ -31,7 +32,7 @@ public class SwordMan : CharacterMove
 
     void Update()
     {
-        if (IsValidAttack())
+        if (characterMove.IsValidAttack())
         {
             StartAttack();
         }
