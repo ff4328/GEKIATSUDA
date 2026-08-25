@@ -6,11 +6,6 @@ using UnityEngine.InputSystem;
 public class CharacterMove : MonoBehaviour
 {
     /// <summary>
-    /// 移動速度の定数
-    /// </summary>
-    const float MOVE_SPEED = 0.1f;
-
-    /// <summary>
     /// ジャンプ力の定数
     /// </summary>
     const float JUMP_FORCE = 20f;
@@ -38,6 +33,12 @@ public class CharacterMove : MonoBehaviour
     /// このクラスと継承したクラスのみ値を変えられる
     /// </summary>
     public CharaDataBase _characterData { get; protected set; } = null;
+
+    /// <summary>
+    /// 移動速度
+    /// </summary>
+    public float moveSpeed = 0.1f;
+
 
     /// <summary>
     /// 移動入力格納用
@@ -80,6 +81,11 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     private bool _isGuardInput;
 
+    /// <summary>
+    /// 回避してるか
+    /// </summary>
+    private bool _isDodge;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -103,6 +109,8 @@ public class CharacterMove : MonoBehaviour
         // 向きの初期設定
         _dir = (int)Direction.Right;
 
+        _isDodge = false;
+
         // 子オブジェクトから接地判定クラスを取得
         _isTouchGround = GetComponentInChildren(typeof(TouchGround)) as TouchGround;
     }
@@ -121,7 +129,6 @@ public class CharacterMove : MonoBehaviour
         //Attack();
         Jump();
         Guard();
-        Debug.Log(_isGround + " : _isGround");
     }
 
     private void FixedUpdate()
@@ -136,7 +143,7 @@ public class CharacterMove : MonoBehaviour
     /// <param name="moveValue"></param>
     private void Move(Vector2 moveValue)
     {
-        if (MoveFlagForDebug()) return;
+        if (MoveFlagForDebug() || _isDodge) return;
 
         if (!_actions[(int)PlayerAction.Move].IsPressed() || IsValidGuard())
         {
@@ -146,8 +153,7 @@ public class CharacterMove : MonoBehaviour
             return;
         }
 
-        Debug.Log(moveValue);
-        float x = moveValue.x * MOVE_SPEED;
+        float x = moveValue.x * moveSpeed;
         this.gameObject.transform.position += new Vector3(x, 0f, 0f);
 
         if(moveValue.x >= 0.0f)
@@ -180,9 +186,8 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        if (MoveFlagForDebug()) return;
+        if (MoveFlagForDebug() || _isDodge) return;
 
-        Debug.Log(_isJumpInput);
         if (_isJumpInput && _isGround)
         {
             _rb.AddForce(new Vector3(0f, JUMP_FORCE, 0f), ForceMode.Impulse);
@@ -202,7 +207,6 @@ public class CharacterMove : MonoBehaviour
             _rb.angularVelocity = Vector3.zero;
             _rb.AddForce(new Vector3(0f, JUMP_FORCE, 0f), ForceMode.Impulse);
             _isTouchGround.isDoubleJump = false;
-            Debug.Log("Double Jumped.");
         }
     }
 
@@ -237,8 +241,8 @@ public class CharacterMove : MonoBehaviour
 
         if (IsValidGuard())
         {
-            _moveValue = Vector2.zero;
-            Debug.Log(_isGuardInput);
+            //_moveValue = Vector2.zero;
+            Dodge();
         }
     }
 
@@ -250,7 +254,6 @@ public class CharacterMove : MonoBehaviour
     {
         bool flag;
         flag = _isGuardInput && _isGround;
-        Debug.Log(flag + " : IsValidGuard");
         return flag;
     }
 
@@ -270,6 +273,88 @@ public class CharacterMove : MonoBehaviour
         Debug.LogWarning(gameObject + "_moveFlagforDebugがtrueになっています");
         return _moveFlagforDebug;
     }
+
+    private void Dodge()
+    {
+        if (!_actions[(int)PlayerAction.Move].IsPressed()) return;
+
+        _isDodge = true;
+
+        Collider myCollider = this.gameObject.GetComponent<Collider>();
+        myCollider.enabled = false;
+        Material material = GetComponent<Renderer>().material;
+        material.color = Color.purple;
+        _rb.useGravity = false;
+
+        if (Mathf.Abs(_moveValue.x) > Mathf.Abs(_moveValue.y))
+        {
+            if(_moveValue.x > 0.0f)
+            {
+                StartCoroutine(DodgeRightCoroutine(myCollider, material, _rb));
+            }
+            if(_moveValue.x < 0.0f)
+            {
+                StartCoroutine(DodgeLeftCoroutine(myCollider, material, _rb));
+            }
+        }
+        else if(Mathf.Abs(_moveValue.x) < Mathf.Abs(_moveValue.y))
+        {
+            StartCoroutine(DodgeOnTheSpotCoroutine(myCollider, material, _rb));
+        }
+
+    }
+
+    private IEnumerator DodgeRightCoroutine(Collider col, Material mat, Rigidbody rb)
+    {
+        float x = transform.position.x;
+        float y = transform.position.y;
+
+        for (int i = 0; i < 20; i++)
+        {
+            x += 0.10f;
+            _rb.MovePosition(new Vector3(x, y, 0f));
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        col.enabled = true;
+        mat.color= Color.gray;
+        rb.useGravity = true;
+        _isDodge = false;
+    }
+
+    private IEnumerator DodgeLeftCoroutine(Collider col, Material mat, Rigidbody rb)
+    {
+
+        float x = transform.position.x;
+        float y = transform.position.y;
+
+        for (int i = 0; i < 20; i++)
+        {
+            x -= 0.10f;
+            _rb.MovePosition(new Vector3(x, y, 0f));
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        col.enabled = true;
+        mat.color = Color.gray;
+        rb.useGravity = true;
+        _isDodge = false;
+    }
+
+    private IEnumerator DodgeOnTheSpotCoroutine(Collider col, Material mat, Rigidbody rb)
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        col.enabled = true;
+        mat.color = Color.gray;
+        rb.useGravity = true;
+        _isDodge= false;
+    }
+
+    public Vector2 GetMoveValue() { return _moveValue; }
 }
 
 /// <summary>

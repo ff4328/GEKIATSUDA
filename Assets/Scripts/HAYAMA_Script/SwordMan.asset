@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc86f9b1e6d9cf9478f4d809c6901b97, type: 3}
+  m_Name: SwordMan
+  m_EditorClassIdentifier: Assembly-CSharp::RankParameter
+  attackRank: 1
+  speedRank: 1
+  sizeRank: 1
