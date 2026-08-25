@@ -15,13 +15,19 @@ public class AttackHitBox : MonoBehaviour
         col.enabled = active;
     }
 
+    public int attackPower;
+
+    public void SetAttackPower(int power)
+    {
+        attackPower = power;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        SwordMan enemy = other.GetComponent<SwordMan>();
-        if (enemy != null)
+        var target = other.GetComponent<BaseCharacter>();
+        if (target != null)
         {
-            // ★攻撃者の位置を正しく渡す
-            enemy.OnHit(owner.data.Attack, owner.transform.position);
+            target.OnHit(attackPower, transform.position);
         }
     }
 }

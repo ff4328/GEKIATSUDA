@@ -1,48 +1,53 @@
 using UnityEngine;
 
-public class SwordMan : MonoBehaviour
+public class SwordMan : BaseCharacter
 {
-    public CharaDataBase data;
     public AttackHitBox attackHitBox;
     public CharacterMove characterMove;
 
-    public bool isStunned = false;     // 食らって動けない
-    public bool isKnockback = false;   // 吹っ飛び中は動けない
+    public bool isStunned = false;
+    public bool isKnockback = false;
 
     private Rigidbody rb;
 
-    void Start()
+    protected override void Start()
     {
+        // ★職業ごとの最低値
+        baseAttack = 5;
+        baseSpeed = 1;
+        baseSize = 1;
+
+        // ★BaseCharacter の初期化（data, characterMove）
+        base.Start();
+
+        // ★SwordMan 固有の初期化
         rb = GetComponent<Rigidbody>();
-        data = new CharaDataBase();
-        data.SetAttack(10);
     }
 
     void Update()
     {
-        // スタン or 吹っ飛び中は操作禁止
-        if (isStunned || isKnockback)
-        {
-            return;
-        }
+        if (isStunned || isKnockback) return;
+
         if (characterMove.IsValidAttack())
         {
             StartAttack();
         }
     }
+
     void StartAttack()
     {
+        attackHitBox.SetAttackPower(finalAttackPower); // ★攻撃力を渡す
         attackHitBox.transform.localPosition = new Vector3(1, 0, 0);
         attackHitBox.SetActiveHitBox(true);
         Invoke(nameof(EndAttack), 0.2f);
     }
 
-
     void EndAttack()
     {
         attackHitBox.SetActiveHitBox(false);
     }
-    public void OnHit(int enemyAttack, Vector3 attackerPos)
+
+    public override void OnHit(int enemyAttack, Vector3 attackerPos)
     {
         data.TakeDamage(enemyAttack);
 
@@ -51,7 +56,6 @@ public class SwordMan : MonoBehaviour
         ApplyStun(0.3f);
         Knockback(enemyAttack, attackerPos);
     }
-
 
     void ApplyStun(float duration)
     {
