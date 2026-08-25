@@ -21,7 +21,7 @@ public abstract class StageGimmickBase : MonoBehaviour
     /// <summary>
     /// キャラクターと衝突した時の処理
     /// </summary>
-    public abstract void HitToCharacter(CharacterMove hitCharacter);
+    public abstract void HitToCharacter(BaseCharacter hitCharacter);
 
     /// <summary>
     /// 衝突方向を計算
