@@ -6,8 +6,13 @@ using UnityEngine;
 public abstract class DamageGimmickBase : StageGimmickBase
 {
 
-    protected float damage = 0.0f;
+    protected int damage = 0;
 
-    public abstract override void HitToCharacter(CharacterMove hitCharacter);
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    public abstract override void HitToCharacter(BaseCharacter hitCharacter);
 
 }
