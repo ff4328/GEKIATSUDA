@@ -266,6 +266,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3743060004581411164}
     m_Modifications:
+    - target: {fileID: -6008829924023993082, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 653772068239964458, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -306,6 +310,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2217182854139090242, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
+      propertyPath: rank
+      value: 
+      objectReference: {fileID: 11400000, guid: efdb008f8316e164cb2146ac6d0a69ad, type: 2}
     - target: {fileID: 4395440408720859938, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
       propertyPath: m_Name
       value: Sphere
