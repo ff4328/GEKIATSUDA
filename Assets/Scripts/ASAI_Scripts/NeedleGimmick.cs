@@ -14,11 +14,12 @@ public class NeedleGimmick : DamageGimmickBase
 
     public override void HitToCharacter(BaseCharacter hitCharacter)
     {
+        //衝突したキャラクターのコライダーを入手
+        Collider hitCollider = hitCharacter.GetComponent<Collider>();
+        //最近接点を求める
+        Vector3 closestPoint = collider.ClosestPoint(hitCollider.bounds.center);
 
-        //ダメージを呼ぶ
-        //hitCharacter.OnEnvironmentDamage(damage);
-
-        hitCharacter.ApplyKnockback(damage, transform.position);
+        hitCharacter.ApplyKnockback(damage, closestPoint);
 
     }
 
