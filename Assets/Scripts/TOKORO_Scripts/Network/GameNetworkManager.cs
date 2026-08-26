@@ -1,6 +1,7 @@
 using Mirror;
-using Utp;
 using System.Collections.Generic;
+using Utp;
+using UnityEngine;
 
 public class GameNetworkManager : RelayNetworkManager
 {
@@ -13,15 +14,28 @@ public class GameNetworkManager : RelayNetworkManager
         ConnectPlayerNumber player =
             conn.identity.GetComponent<ConnectPlayerNumber>();
 
-        if (player != null)
+        if (player != null && !players.Contains(player))
         {
             players.Add(player);
+            ReassignPlayerNumbers();
+        }
+    }
+    private void ReassignPlayerNumbers()
+    {
+        Debug.Log($"番号振り直し players.Count = {players.Count}");
+        players.RemoveAll(player => player == null);
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            Debug.Log($"{players[i].name} → {i + 1}P");
+            players[i].SetPlayerNumber(i + 1);
         }
     }
 
     [Server]
     public void SceneMove()
     {
-        ServerChangeScene("CharacterSelectScene");
+        //ServerChangeScene("CharacterSelectScene");
+        ServerChangeScene("Cave");
     }
 }
