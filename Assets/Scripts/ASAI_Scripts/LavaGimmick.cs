@@ -1,15 +1,15 @@
 using UnityEngine;
 
 /// <summary>
-/// とげのギミック
+/// 溶岩のダメージギミック
 /// </summary>
-public class NeedleGimmick : DamageGimmickBase
+public class LavaGimmick : DamageGimmickBase
 {
 
     protected override void Start()
     {
         base.Start();
-        damage = 10;
+        damage = 20;
     }
 
     public override void HitToCharacter(BaseCharacter hitCharacter)
@@ -22,5 +22,6 @@ public class NeedleGimmick : DamageGimmickBase
         hitCharacter.ApplyKnockback(damage, closestPoint);
 
     }
+
 
 }
