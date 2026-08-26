@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour
 {
+    public BaseCharacter player;
     private void OnTriggerEnter(Collider other)
     {
-        // 攻撃判定
         if (other.gameObject.tag == "AttackArea")
         {
-            Destroy(gameObject);
+            player.StartInvincible(5f); // ★5秒無敵
+            Destroy(gameObject);        // ★アイテムを消す
         }
     }
 }
+
+

@@ -44,19 +44,10 @@ public class AttackHitBox : MonoBehaviour
 
         if (other.gameObject.tag == "Barrier")
         {
-            character.isInvincible = true;
+            character.StartInvincible(5f);
             Debug.Log("無敵");
         }
 
-    }
-    private void FixedUpdate()
-    {
-        if (character.isInvincible == true)
-        {
-            count+=Time.deltaTime;
-            Debug.Log(count);
-            Invincible();
-        }
     }
 
     public void TemporaryPowerUp(int power)
@@ -66,14 +57,5 @@ public class AttackHitBox : MonoBehaviour
     public void TemporaryPowerDown(int power)
     {
         character.finalAttackPower -= power;
-    }
-
-    public void Invincible()
-    {
-        if (count >= 10)
-        {
-            count = 0;
-            character.isInvincible = false;
-        }
     }
 }
