@@ -4,12 +4,12 @@ public class Atuage : MonoBehaviour
 {
     public bool isAttackArea;
 
-    public CharaDataBase chara;
+    public CharaDataBase charaData;
 
 
     void Start()
     {
-        chara = new CharaDataBase();
+        charaData = new CharaDataBase();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -18,7 +18,7 @@ public class Atuage : MonoBehaviour
         {
             isAttackArea = true;
 
-            chara.Heal(100);
+            charaData.Heal(100);
             Debug.Log("回復");
 
             Destroy(gameObject);
