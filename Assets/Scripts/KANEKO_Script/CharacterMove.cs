@@ -13,7 +13,7 @@ public class CharacterMove : MonoBehaviour
     
     [SerializeField]
     [Tooltip("デバッグ用のフラグ。移動を無効にする")]
-    private bool _moveFlagforDebug = false;
+    private bool _moveFlagForDebug = false;
     
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -282,10 +282,10 @@ public class CharacterMove : MonoBehaviour
 
     private bool MoveFlagForDebug()
     {
-        if (!_moveFlagforDebug) return _moveFlagforDebug;
+        if (!_moveFlagForDebug) return _moveFlagForDebug;
         
         Debug.LogWarning(gameObject + "_moveFlagforDebugがtrueになっています");
-        return _moveFlagforDebug;
+        return _moveFlagForDebug;
     }
 
     private void Dodge()
@@ -297,24 +297,24 @@ public class CharacterMove : MonoBehaviour
 
         Collider myCollider = this.gameObject.GetComponent<Collider>();
         myCollider.enabled = false;
-        Material material = GetComponent<Renderer>().material;
-        material.color = Color.purple;
+        //Material material = GetComponent<Renderer>().material;
+        //material.color = Color.purple;
         _rb.useGravity = false;
 
         if (Mathf.Abs(_moveValue.x) > Mathf.Abs(_moveValue.y))
         {
             if(_moveValue.x > 0.0f)
             {
-                StartCoroutine(DodgeRightCoroutine(myCollider, material, _rb));
+                StartCoroutine(DodgeRightCoroutine(myCollider, _rb));
             }
             if(_moveValue.x < 0.0f)
             {
-                StartCoroutine(DodgeLeftCoroutine(myCollider, material, _rb));
+                StartCoroutine(DodgeLeftCoroutine(myCollider, _rb));
             }
         }
         else if(Mathf.Abs(_moveValue.x) < Mathf.Abs(_moveValue.y))
         {
-            StartCoroutine(DodgeOnTheSpotCoroutine(myCollider, material, _rb));
+            StartCoroutine(DodgeOnTheSpotCoroutine(myCollider, _rb));
         }
 
     }
@@ -333,6 +333,23 @@ public class CharacterMove : MonoBehaviour
 
         col.enabled = true;
         mat.color= Color.gray;
+        rb.useGravity = true;
+        StartCoroutine(DodgeCoolTimeCoroutine());
+    }
+
+    private IEnumerator DodgeRightCoroutine(Collider col,Rigidbody rb)
+    {
+        float x = transform.position.x;
+        float y = transform.position.y;
+
+        for (int i = 0; i < 20; i++)
+        {
+            x += 0.10f;
+            _rb.MovePosition(new Vector3(x, y, 0f));
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        col.enabled = true;
         rb.useGravity = true;
         StartCoroutine(DodgeCoolTimeCoroutine());
     }
@@ -356,6 +373,24 @@ public class CharacterMove : MonoBehaviour
         StartCoroutine(DodgeCoolTimeCoroutine());
     }
 
+    private IEnumerator DodgeLeftCoroutine(Collider col,Rigidbody rb)
+    {
+
+        float x = transform.position.x;
+        float y = transform.position.y;
+
+        for (int i = 0; i < 20; i++)
+        {
+            x -= 0.10f;
+            _rb.MovePosition(new Vector3(x, y, 0f));
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        col.enabled = true;
+        rb.useGravity = true;
+        StartCoroutine(DodgeCoolTimeCoroutine());
+    }
+
     private IEnumerator DodgeOnTheSpotCoroutine(Collider col, Material mat, Rigidbody rb)
     {
         for (int i = 0; i < 30; i++)
@@ -369,6 +404,18 @@ public class CharacterMove : MonoBehaviour
         StartCoroutine(DodgeCoolTimeCoroutine());
     }
 
+    private IEnumerator DodgeOnTheSpotCoroutine(Collider col, Rigidbody rb)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        col.enabled = true;
+        rb.useGravity = true;
+        StartCoroutine(DodgeCoolTimeCoroutine());
+    }
+
     private IEnumerator DodgeCoolTimeCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
@@ -378,14 +425,16 @@ public class CharacterMove : MonoBehaviour
     private void GuardSpriteMove(short dir)
     {
         Transform transform = _guardSprite.GetComponent<Transform>();
+        float x = transform.transform.localPosition.x;
+        float y = transform.transform.localPosition.y;
 
         if (dir > 0)
         {
-            transform.transform.localPosition = new Vector3(0f, 0f, -1f);
+            transform.transform.localPosition = new Vector3(x, y, -1f);
         }
         else
         {
-            transform.transform.localPosition = new Vector3(0f, 0f, 1f);
+            transform.transform.localPosition = new Vector3(x, y, 1f);
         }
     }
 
