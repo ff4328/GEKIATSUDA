@@ -5,6 +5,7 @@ public class AttackHitBox : MonoBehaviour
     public SwordMan owner;
     private Collider col;
     public bool isPowerUp = false;
+    public bool isInvincible = false;
     public BaseCharacter character;
 
     void Awake()
@@ -39,6 +40,14 @@ public class AttackHitBox : MonoBehaviour
             TemporaryPowerUp(20);
             Debug.Log("パワーアップ");
         }
+
+        if (other.gameObject.tag == "Barrier")
+        {
+            isInvincible= true;
+            Invincible(10);
+            Debug.Log("無敵");
+        }
+
     }
 
     public void TemporaryPowerUp(int power)
@@ -48,5 +57,10 @@ public class AttackHitBox : MonoBehaviour
     public void TemporaryPowerDown(int power)
     {
         character.finalAttackPower -= power;
+    }
+
+    public void Invincible(int barrier)
+    {
+
     }
 }
