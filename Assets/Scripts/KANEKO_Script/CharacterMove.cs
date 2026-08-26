@@ -85,6 +85,11 @@ public class CharacterMove : MonoBehaviour
     private bool _isGuardInput;
 
     /// <summary>
+    /// 防御時間
+    /// </summary>
+    private float _guardTime = 3.0f;
+
+    /// <summary>
     /// 回避してるか
     /// </summary>
     private bool _isDodge;
@@ -102,6 +107,9 @@ public class CharacterMove : MonoBehaviour
         {
             _rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
         }
+
+        _rb.linearVelocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
 
         _guardSprite.enabled = false;
 
@@ -269,6 +277,11 @@ public class CharacterMove : MonoBehaviour
         if(_isGuardInput && _isGround && !_isDodge)flag = true;
         else flag = false;
         return flag;
+    }
+
+    private void GuardRemainTime()
+    {
+       
     }
 
     public Collider[] GetColliders()
