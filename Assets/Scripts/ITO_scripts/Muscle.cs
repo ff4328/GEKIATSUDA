@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Muscle : MonoBehaviour
 {
-    public bool isAttackArea;
-
     public BaseCharacter character;
 
     void Start()
@@ -17,9 +15,6 @@ public class Muscle : MonoBehaviour
         // 攻撃判定
         if (other.gameObject.tag == "AttackArea")
         {
-            isAttackArea = true;
-            character.TemporaryPowerUp(20);
-            Debug.Log("パワーアップ");
             Destroy(gameObject);
         }
     }
