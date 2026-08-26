@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc86f9b1e6d9cf9478f4d809c6901b97, type: 3}
   m_Name: Dummy
   m_EditorClassIdentifier: Assembly-CSharp::RankParameter
-  attackRank: 3
-  speedRank: 3
-  sizeRank: 3
+  attackRank: 1
+  speedRank: 1
+  sizeRank: 5

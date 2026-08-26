@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class CharaDataBase
 {
     public float Percentage { get; private set; }
@@ -53,12 +55,33 @@ public class CharaDataBase
     public void Dead()
     {
         Percentage = 0;
+        UpdateLaunchRate();
+        Debug.Log("Character is dead.");
     }
-
     public void Heal(int heal)
     {
+        if (Percentage <= 0)
+        {
+            Percentage = 0;
+        }
         Percentage -= heal;
         UpdateLaunchRate();
     }
+    public void PowerUp(int power)
+    {
+        Attack += power;
+    }
+    public void PowerDown(int power)
+    {
+        Attack -= power;
+    }
 
+    public void SmashDead()
+    {
+        if(Percentage >= 200)
+        {
+            LaunchRate += LaunchRate * LaunchRate;
+            UpdateLaunchRate();
+        }
+    }
 }
