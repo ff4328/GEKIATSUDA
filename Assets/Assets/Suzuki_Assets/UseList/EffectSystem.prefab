@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectManager
   Smokeparticle: {fileID: 3302369515627654214, guid: 0a0789b29d0af7f4d8545ed5b2400ec6, type: 3}
+  Healparticle: {fileID: 0}

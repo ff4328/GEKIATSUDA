@@ -12,7 +12,8 @@ public class CharacterSelectUI : MonoBehaviour
 
     private void FindLocalPlayer()
     {
-        foreach (var player in FindObjectsByType<CharacterSelectPlayer>(FindObjectsSortMode.None))
+        foreach (var player in FindObjectsByType<CharacterSelectPlayer>(
+                     FindObjectsSortMode.None))
         {
             if (player.isLocalPlayer)
             {
@@ -36,5 +37,21 @@ public class CharacterSelectUI : MonoBehaviour
         }
 
         localPlayer.SelectCharacter(characterID);
+    }
+
+    public void Ready()
+    {
+        if (localPlayer == null)
+        {
+            FindLocalPlayer();
+
+            if (localPlayer == null)
+            {
+                Debug.LogWarning("LocalPlayerが見つかりません");
+                return;
+            }
+        }
+
+        localPlayer.Ready();
     }
 }
