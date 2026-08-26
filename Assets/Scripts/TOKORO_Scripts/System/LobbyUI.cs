@@ -11,6 +11,7 @@ public class LobbyUI : MonoBehaviour
             return;
         }
 
-        NetworkManager.singleton.ServerChangeScene("CharacterSelectScene");
+        //NetworkManager.singleton.ServerChangeScene("CharacterSelectScene");
+        NetworkManager.singleton.ServerChangeScene("Cave");
     }
 }

@@ -10,12 +10,20 @@ public class BaseCharacter : MonoBehaviour
 
     public CharaDataBase data;
     public CharacterMove characterMove;
+    public AttackHitBox attackHitBox;
 
     public int finalAttackPower;
 
     protected virtual void Start()
     {
         data = new CharaDataBase();
+
+        // ★ SwordMan の Inspector の値を BaseCharacter に反映
+        if (characterMove == null)
+            characterMove = GetComponent<CharacterMove>();
+
+        if (attackHitBox == null)
+            attackHitBox = GetComponentInChildren<AttackHitBox>();
 
         finalAttackPower = rank.GetAttack(baseAttack);
 
@@ -24,12 +32,42 @@ public class BaseCharacter : MonoBehaviour
 
         characterMove.moveSpeed = finalSpeed * 0.1f;
         transform.localScale = Vector3.one * finalSize;
+        data.SetSize(finalSize);
     }
 
-    // ★★★ これを追加する ★★★
-    public virtual void OnHit(int enemyAttack, Vector3 attackerPos)
+    protected virtual void Update()
     {
+        if (characterMove.IsValidAttack())
+        {
+            Debug.Log("Attack!");
+            StartAttack();
+            Debug.Log("Attack Power: " + data.Attack);
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            data.PowerUp(DataConst.POWER);
+            Debug.Log("PowerUp!");
+            Debug.Log("Attack Power: " + data.Attack);
+        }
+
     }
+
+    void StartAttack()
+    {
+        attackHitBox.SetAttackPower(finalAttackPower); // ★攻撃力を渡す
+        attackHitBox.transform.localPosition = new Vector3(1, 0, 0);
+        attackHitBox.SetActiveHitBox(true);
+        Invoke(nameof(EndAttack), 0.2f);
+    }
+    void EndAttack()
+    {
+            data.PowerDown(DataConst.POWER);
+            Debug.Log("PowerDown");
+            Debug.Log("Attack Power: " + data.Attack);
+        attackHitBox.SetActiveHitBox(false);
+    }
+
+    public virtual void OnHit(int enemyAttack, Vector3 attackerPos){}
     public virtual void OnEnvironmentDamage(int damage)
     {
         data.TakeDamage(damage);
