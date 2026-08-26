@@ -16,7 +16,7 @@ public class ConnectPlayerNumber : NetworkBehaviour
     }
 
     [Server]
-    private void SetPlayerNumber(int num)
+    public void SetPlayerNumber(int num)
     {
         _playerNumber = num;
     }
