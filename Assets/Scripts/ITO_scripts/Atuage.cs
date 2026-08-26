@@ -6,6 +6,17 @@ public class Atuage : MonoBehaviour
 
     public CharaDataBase charaData;
 
+    private Heal_Effect effect;
+
+    private void Awake()
+    {
+        EffectManager manager =
+              FindFirstObjectByType<EffectManager>();
+
+        effect = new Heal_Effect(manager);
+
+
+    }
 
     void Start()
     {
@@ -21,6 +32,7 @@ public class Atuage : MonoBehaviour
             charaData.Heal(100);
             Debug.Log("回復");
 
+            effect.Heal(transform.position);
             Destroy(gameObject);
         }
     }
