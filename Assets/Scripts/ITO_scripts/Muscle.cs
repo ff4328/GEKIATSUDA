@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class Muscle : MonoBehaviour
 {
-    public BaseCharacter character;
-
-    void Start()
-    {
-        character = new BaseCharacter();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         // 攻撃判定
