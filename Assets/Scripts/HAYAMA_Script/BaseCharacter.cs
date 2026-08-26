@@ -17,6 +17,8 @@ public class BaseCharacter : MonoBehaviour
     public CharacterMove characterMove;
     public AttackHitBox attackHitBox;
 
+    public SpriteRenderer[] Item;
+
     public int finalAttackPower {  get; set; }
 
     protected virtual void Start()
@@ -96,7 +98,15 @@ public class BaseCharacter : MonoBehaviour
 
     public virtual void OnHit(int enemyAttack, Vector3 attackerPos)
     {
-        if (isInvincible) return; // ★無敵ならダメージ無効
+        if (isInvincible)
+        {
+            Item[0].enabled = true;
+            return; // ★無敵ならダメージ無効
+        }
+        else
+        {
+            Item[0].enabled=false;
+        }
 
         data.TakeDamage(enemyAttack);
         ApplyKnockback(enemyAttack, attackerPos);
