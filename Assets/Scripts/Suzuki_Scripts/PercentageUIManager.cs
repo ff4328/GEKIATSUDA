@@ -1,51 +1,67 @@
+using System;
 using TMPro;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 public class PercentageUIManager : MonoBehaviour
 {
-    [SerializeField] private CharaDataBase[] characters;
-    [SerializeField] private TextMeshProUGUI[] texts;
+
+    [SerializeField] TextMeshProUGUI[] textPercentages;
+    [SerializeField] public CharaDataBase characters;
+    float percentages;
 
 
     private void Awake()
     {
-        characters = FindObjectsByType<CharaDataBase>(
-            FindObjectsSortMode.None
-        );
+     
+
+
+        characters = new CharaDataBase();
+
+
+
+
+
     }
     private void Update()
     {
-        if (characters == null)
+
+        percentages = characters.Percentage;
+
+        //percentages = characters.Percentage;
+        //debug用
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            Debug.LogError("characters配列がnullです");
-            return;
+            characters.TakeDamage(1);
+            Debug.Log(characters.Percentage);
+        }
+        for (int i = 0; i < textPercentages.Length; i++)
+        {
+            textPercentages[i].text = percentages.ToString("F1");
+
+
+            /*
+             １５から黄色に代わっていって
+              ５０まで黄色からオレンジに変わっていって
+                １００まで赤に川廷ってる
+             */
+
+
+            if (percentages <= 50)
+            {
+                float ColorChange = (percentages - 20.0f) / 50.0f;
+                textPercentages[i].color =
+                Color.Lerp(Color.white, Color.yellow, ColorChange);
+            }
+            else
+            {
+                float ColorChange = (percentages - 50.0f) / 50.0f;
+                textPercentages[i].color =
+                Color.Lerp(Color.yellow, Color.red, ColorChange);
+            }
+
+
         }
 
-        for (int i = 0; i < characters.Length; i++)
-        {
-            if (characters[i] == null)
-            {
-                Debug.LogError($"characters[{i}] がnullです");
-                continue;
-            }
-
-            if (texts == null || i >= texts.Length)
-            {
-                Debug.LogError("texts配列のサイズが不足しています");
-                continue;
-            }
-
-            if (texts[i] == null)
-            {
-                Debug.LogError($"texts[{i}] がnullです");
-                continue;
-            }
-
-            float percentage = characters[i].Percentage;
-            texts[i].text = percentage.ToString("F1");
-
-            float t = Mathf.Clamp01(percentage / 100f);
-            texts[i].color = Color.Lerp(Color.white, Color.red, t);
-        }
     }
 }

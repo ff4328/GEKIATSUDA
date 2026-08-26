@@ -25,6 +25,14 @@ public class TouchGround : MonoBehaviour
             isGround = true;
             isDoubleJump = true;
         }
+        if (other.gameObject.tag == "StageGimmick")
+        {
+            if (other.GetComponent<StageGimmickBase>().IsDamageGimmick()) return;
+            isGround = true;
+            isDoubleJump = true;
+
+        }
+
     }
 
     /// <summary>
@@ -35,7 +43,7 @@ public class TouchGround : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // 接地判定
-        if (other.gameObject.tag == "Ground") isGround = false;
+        if (other.gameObject.tag == "Ground"|| other.gameObject.tag == "StageGimmick") isGround = false;
     }
 
     public Collider GetFootStepCollider() => this.gameObject.GetComponent<Collider>();

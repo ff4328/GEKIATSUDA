@@ -29,7 +29,7 @@ public class ControllerLongPress : MonoBehaviour
 
                 _coolTimeImage.fillAmount = 0;
 
-                disconnect.Disconnect();
+                GetComponent<LobbyUI>().StartCharacterSelect();
 
                 Debug.Log("長押し！");
             }
