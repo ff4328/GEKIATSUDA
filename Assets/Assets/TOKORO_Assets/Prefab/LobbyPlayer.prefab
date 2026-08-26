@@ -243,7 +243,6 @@ GameObject:
   - component: {fileID: 132841527590142616}
   - component: {fileID: 3584263750959732939}
   - component: {fileID: 2217182854139090242}
-  - component: {fileID: -6008829924023993082}
   - component: {fileID: 1962270899094462582}
   - component: {fileID: 396804427128524579}
   - component: {fileID: 41568616130804656}
@@ -412,28 +411,10 @@ MonoBehaviour:
   baseSize: 1
   characterMove: {fileID: 3584263750959732939}
   attackHitBox: {fileID: 2820455016931473472}
+  muscle: {fileID: 0}
   finalAttackPower: 0
   isStunned: 0
   isKnockback: 0
---- !u!114 &-6008829924023993082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4395440408720859938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 463e167dd9e56d14680d6c75eedb0682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDummy
-  rank: {fileID: 11400000, guid: efdb008f8316e164cb2146ac6d0a69ad, type: 2}
-  baseAttack: 3
-  baseSpeed: 1
-  baseSize: 1
-  characterMove: {fileID: 3584263750959732939}
-  attackHitBox: {fileID: 2820455016931473472}
-  finalAttackPower: 0
 --- !u!114 &1962270899094462582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +496,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  num: {fileID: 0}
+  num: {fileID: 1006525722233432301}
 --- !u!1 &7833048668702491188
 GameObject:
   m_ObjectHideFlags: 0
