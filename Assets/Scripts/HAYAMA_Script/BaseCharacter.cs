@@ -51,24 +51,12 @@ public class BaseCharacter : MonoBehaviour
             StartAttack();
             Debug.Log("Attack Power: " + data.Attack);
         }
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            TemporaryPowerUp(DataConst.POWER);
-            Debug.Log("PowerUp!");
-            Debug.Log("Attack Power: " + data.Attack);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            TemporaryPowerDown(DataConst.POWER);
-            Debug.Log("PowerDown");
-            Debug.Log("Attack Power: " + data.Attack);
-        }
     }
 
     void StartAttack()
     {
         attackHitBox.SetAttackPower(finalAttackPower); // ★攻撃力を渡す
-        attackHitBox.transform.localPosition = new Vector3(1, 0, 0);
+        attackHitBox.transform.localPosition = new Vector3(1, 1, 0);
         attackHitBox.SetActiveHitBox(true);
         Invoke(nameof(EndAttack), 0.2f);
     }
