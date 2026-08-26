@@ -51,6 +51,7 @@ public class CharaDataBase
     public void Dead()
     {
         Percentage = 0;
+        LaunchRate = 0;
         UpdateLaunchRate();
         Debug.Log("Character is dead.");
     }
