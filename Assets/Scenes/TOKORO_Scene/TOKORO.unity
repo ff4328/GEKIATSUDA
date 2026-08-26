@@ -1011,6 +1011,10 @@ MonoBehaviour:
   evaluationInterval: 3
   timeInterpolationGui: 0
   relayJoinCode: 
+  _characterPrefabs:
+  - {fileID: 142755718922643781, guid: e60bae8310d3d3a47b1ed676e11fb588, type: 3}
+  - {fileID: 8776588553418340641, guid: d350ec62d6089ea45af151b2a7456233, type: 3}
+  - {fileID: 2848750835474259134, guid: 40651c6c233a49b4d837ee2efb827cad, type: 3}
 --- !u!114 &1894728755 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 305064039141660894, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
