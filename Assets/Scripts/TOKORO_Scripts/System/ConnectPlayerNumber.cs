@@ -15,6 +15,11 @@ public class ConnectPlayerNumber : NetworkBehaviour
         num.text = $"{newNumber}P";
     }
 
+    public int GetPlayerNumber()
+    {
+        return _playerNumber;
+    }
+
     [Server]
     public void SetPlayerNumber(int num)
     {
