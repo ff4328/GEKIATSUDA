@@ -8,6 +8,8 @@ public class ConnectPlayerNumber : NetworkBehaviour
 
     [SerializeField] TMP_Text num;
 
+    public int PlayerNumber => _playerNumber;
+
     private void OnPlayerNumberChange(int oldNumber, int newNumber)
     {
         num.text = $"{newNumber}P";

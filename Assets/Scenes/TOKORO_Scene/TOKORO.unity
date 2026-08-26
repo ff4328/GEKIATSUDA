@@ -332,17 +332,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &464039970 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6189858908583681697, guid: 935a5ac30d8c9e64694fcdb6ab8fda89, type: 3}
-  m_PrefabInstance: {fileID: 9005237055673077863}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3130411ad885e4aa635aea96a572a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UtpTransport::Utp.RelayNetworkManager
 --- !u!1 &588514464
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +946,68 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &1632992529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7329406050985910645, guid: 935a5ac30d8c9e64694fcdb6ab8fda89, type: 3}
+  m_PrefabInstance: {fileID: 9005237055673077863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1632992530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6271857335485930808, guid: 935a5ac30d8c9e64694fcdb6ab8fda89, type: 3}
+  m_PrefabInstance: {fileID: 9005237055673077863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632992529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4f9593ba7f845458730213887b5758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UtpTransport::Utp.UtpTransport
+--- !u!114 &1632992532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632992529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 243267ac8ae2ad64da9fe98922d39441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameNetworkManager
+  dontDestroyOnLoad: 1
+  runInBackground: 1
+  headlessStartMode: 0
+  editorAutoStart: 0
+  sendRate: 60
+  offlineScene: 
+  onlineScene: 
+  offlineSceneLoadDelay: 0
+  transport: {fileID: 1632992530}
+  networkAddress: localhost
+  maxConnections: 100
+  disconnectInactiveConnections: 0
+  disconnectInactiveTimeout: 60
+  authenticator: {fileID: 0}
+  playerPrefab: {fileID: 4395440408720859938, guid: 2a1c9542867d15a488c9921a7257d10a, type: 3}
+  autoCreatePlayer: 1
+  playerSpawnMethod: 0
+  spawnPrefabs: []
+  exceptionsDisconnect: 1
+  snapshotSettings:
+    bufferTimeMultiplier: 2
+    bufferLimit: 32
+    catchupNegativeThreshold: -1
+    catchupPositiveThreshold: 1
+    catchupSpeed: 0.019999999552965164
+    slowdownSpeed: 0.03999999910593033
+    driftEmaDuration: 1
+    dynamicAdjustment: 1
+    dynamicAdjustmentTolerance: 1
+    deliveryTimeEmaDuration: 2
+  evaluationMethod: 0
+  evaluationInterval: 3
+  timeInterpolationGui: 0
+  relayJoinCode: 
 --- !u!114 &1894728755 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 305064039141660894, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
@@ -1085,6 +1136,7 @@ GameObject:
   - component: {fileID: 2097526966}
   - component: {fileID: 2097526965}
   - component: {fileID: 2097526967}
+  - component: {fileID: 2097526968}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -1137,6 +1189,18 @@ MonoBehaviour:
   longPressTime: 2
   disconnect: {fileID: 1894728758}
   _coolTimeImage: {fileID: 120792407}
+--- !u!114 &2097526968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097526964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e14d705ed009a45a57beb8f9ea3874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LobbyUI
 --- !u!1001 &3479995433366692374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1156,7 +1220,7 @@ PrefabInstance:
     - target: {fileID: 305064039141660894, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
       propertyPath: relay
       value: 
-      objectReference: {fileID: 464039970}
+      objectReference: {fileID: 1632992532}
     - target: {fileID: 305064039141660894, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
       propertyPath: client
       value: 
@@ -1224,7 +1288,7 @@ PrefabInstance:
     - target: {fileID: 4025158737281779886, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
       propertyPath: relay
       value: 
-      objectReference: {fileID: 464039970}
+      objectReference: {fileID: 1632992532}
     - target: {fileID: 4025158737281779886, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
       propertyPath: client
       value: 
@@ -1248,7 +1312,7 @@ PrefabInstance:
     - target: {fileID: 4622547991527300794, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
       propertyPath: relay
       value: 
-      objectReference: {fileID: 464039970}
+      objectReference: {fileID: 1632992532}
     - target: {fileID: 4622547991527300794, guid: 3c39f8f3432a49a4fa04a0b2cbe38ec6, type: 3}
       propertyPath: client
       value: 
@@ -1456,7 +1520,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7329406050985910645, guid: 935a5ac30d8c9e64694fcdb6ab8fda89, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1632992532}
   m_SourcePrefab: {fileID: 100100000, guid: 935a5ac30d8c9e64694fcdb6ab8fda89, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

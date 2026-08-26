@@ -131,6 +131,7 @@ public class CharacterMove : MonoBehaviour
         _isGuardInput = _actions[(int)PlayerAction.Guard].IsPressed();
        
         IsTouchGround();
+        //GuardSpriteMove(_dir);
 
         //Attack();
         Jump();
@@ -371,6 +372,21 @@ public class CharacterMove : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         _isDodge = false;
+    }
+
+    private void GuardSpriteMove(short dir)
+    {
+        GameObject go = _guardSprite.GetComponent<GameObject>();
+        Transform transform = go.transform;
+
+        if (dir > 0)
+        {
+            transform.transform.localPosition = new Vector3(0f, 0f, -1f);
+        }
+        else
+        {
+            transform.transform.localPosition = new Vector3(0f, 0f, 1f);
+        }
     }
 
     public Vector2 GetMoveValue() { return _moveValue; }
