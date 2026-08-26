@@ -12,6 +12,7 @@ public class BaseCharacter : MonoBehaviour
     public CharaDataBase data;
     public CharacterMove characterMove;
     public AttackHitBox attackHitBox;
+    public Muscle muscle;
 
     public int finalAttackPower;
 
@@ -47,9 +48,7 @@ public class BaseCharacter : MonoBehaviour
 
         if (characterMove.IsValidAttack())
         {
-            Debug.Log("Attack!");
             StartAttack();
-            Debug.Log("Attack Power: " + data.Attack);
         }
     }
 
@@ -63,6 +62,11 @@ public class BaseCharacter : MonoBehaviour
     void EndAttack()
     {
         attackHitBox.SetActiveHitBox(false);
+        if (muscle.isAttackArea == true)
+        {
+            TemporaryPowerDown(DataConst.POWER);
+            muscle.isAttackArea = false;
+        }
     }
 
     public virtual void OnHit(int enemyAttack, Vector3 attackerPos){}
