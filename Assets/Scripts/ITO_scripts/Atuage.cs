@@ -15,13 +15,17 @@ public class Atuage : MonoBehaviour
 
         effect = new Heal_Effect(manager);
 
-
+        
+        
     }
 
     void Start()
     {
         charaData = new CharaDataBase();
     }
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         // 攻撃判定
@@ -32,8 +36,10 @@ public class Atuage : MonoBehaviour
             charaData.Heal(100);
             Debug.Log("回復");
 
-            effect.Heal(transform.position);
+            effect.Heal(effect.PlayerPos());
             Destroy(gameObject);
         }
     }
+
+
 }

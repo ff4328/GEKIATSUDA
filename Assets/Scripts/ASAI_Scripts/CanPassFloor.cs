@@ -50,7 +50,6 @@ public class CanPassFloor : StageGimmickBase
 
             //経過時間を加算
             checkData.ignoreTimeSec += deltaTime;
-            if (i == 0) Debug.Log(checkData.ignoreTimeSec);
             //コリジョンを有効にするタイミングでなければ処理しない
             if (checkData.ignoreTimeSec < _COLLISION_IGNORE_TIME) continue;
             //衝突判定を有効
