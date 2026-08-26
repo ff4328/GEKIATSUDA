@@ -9,6 +9,11 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     const float JUMP_FORCE = 20f;
 
+    /// <summary>
+    /// 防御時間の定数
+    /// </summary>
+    const float GUARD_TIME = 3.0f;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     
     [SerializeField]
@@ -87,7 +92,8 @@ public class CharacterMove : MonoBehaviour
     /// <summary>
     /// 防御時間
     /// </summary>
-    private float _guardTime = 3.0f;
+    [SerializeField]
+    private float _guardTime = GUARD_TIME;
 
     /// <summary>
     /// 回避してるか
@@ -136,6 +142,7 @@ public class CharacterMove : MonoBehaviour
        
         IsTouchGround();
         GuardSpriteMove(_dir);
+        GuardSpriteScaleChange();
 
         //Attack();
         Jump();
@@ -216,8 +223,7 @@ public class CharacterMove : MonoBehaviour
     {
         if (_isJumpInput && !_isGround && _isDoubleJump)
         {
-            _rb.linearVelocity = Vector3.zero;
-            _rb.angularVelocity = Vector3.zero;
+            VectorToZero();
             _rb.AddForce(new Vector3(0f, JUMP_FORCE, 0f), ForceMode.Impulse);
             _isTouchGround.isDoubleJump = false;
         }
@@ -256,11 +262,16 @@ public class CharacterMove : MonoBehaviour
         {
             //_moveValue = Vector2.zero;
             _guardSprite.enabled = true;
+            DecreaseGuardTime();
             Dodge();
         }
         else if(!IsValidGuard() && _guardSprite.enabled)
         {
             _guardSprite.enabled = false;
+        }
+        else if(!IsValidGuard()) 
+        {
+            IncreaseGuardTime();
         }
     }
 
@@ -276,9 +287,35 @@ public class CharacterMove : MonoBehaviour
         return flag;
     }
 
-    private void GuardRemainTime()
+    private void DecreaseGuardTime()
     {
-       
+        if(_guardTime > 0f)
+        {
+            _guardTime -= Time.deltaTime;
+        }
+        else
+        {
+            _guardTime = 0f;
+        }
+    }
+
+    private void IncreaseGuardTime()
+    {
+        if (_guardTime < GUARD_TIME)
+        {
+            _guardTime += Time.deltaTime;
+        }
+        else
+        {
+            _guardTime = GUARD_TIME;
+        }
+    }
+
+    private void GuardSpriteScaleChange()
+    {
+        float guardPer = _guardTime / GUARD_TIME * 100f;
+        Vector3 guardScale = _guardSprite.transform.localScale;
+        guardScale = new Vector3(guardScale.x * guardPer, guardScale.y * guardPer, guardScale.z * guardPer);
     }
 
     public Collider[] GetColliders()
@@ -397,6 +434,8 @@ public class CharacterMove : MonoBehaviour
     }
 
     public Vector2 GetMoveValue() { return _moveValue; }
+
+    public Vector3 GetPos() { return this.transform.position; }
 
     public void VectorToZero()
     {
