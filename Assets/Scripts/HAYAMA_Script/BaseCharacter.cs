@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BaseCharacter : MonoBehaviour
 {
@@ -37,33 +38,30 @@ public class BaseCharacter : MonoBehaviour
 
     protected virtual void Update()
     {
+        if(transform.position.x>=200|| transform.position.x <= -200 || transform.position.y >= 100 || transform.position.y <= -100)
+        {
+            data.Dead();
+            transform.position = Vector3.zero;
+            characterMove.VectorToZero();
+        }
+
         if (characterMove.IsValidAttack())
         {
             Debug.Log("Attack!");
             StartAttack();
             Debug.Log("Attack Power: " + data.Attack);
         }
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            data.PowerUp(DataConst.POWER);
-            Debug.Log("PowerUp!");
-            Debug.Log("Attack Power: " + data.Attack);
-        }
-
     }
 
     void StartAttack()
     {
         attackHitBox.SetAttackPower(finalAttackPower); // ★攻撃力を渡す
-        attackHitBox.transform.localPosition = new Vector3(1, 0, 0);
+        attackHitBox.transform.localPosition = new Vector3(1, 1, 0);
         attackHitBox.SetActiveHitBox(true);
         Invoke(nameof(EndAttack), 0.2f);
     }
     void EndAttack()
     {
-            data.PowerDown(DataConst.POWER);
-            Debug.Log("PowerDown");
-            Debug.Log("Attack Power: " + data.Attack);
         attackHitBox.SetActiveHitBox(false);
     }
 
@@ -85,4 +83,14 @@ public class BaseCharacter : MonoBehaviour
 
         rb.AddForce(knock, ForceMode.Impulse);
     }
+
+    public void TemporaryPowerUp(int power)
+    {
+        finalAttackPower += power;
+    }
+    public void TemporaryPowerDown(int power)
+    {
+        finalAttackPower -= power;
+    }
+
 }

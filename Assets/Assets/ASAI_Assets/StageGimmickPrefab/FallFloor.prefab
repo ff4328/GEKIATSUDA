@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4697575979996983068
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.85
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.3172584
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.16480997
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_Name
+      value: FallFloor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      propertyPath: m_TagString
+      value: StageGimmick
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1929180926627072227}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5641715951909913503}
+  m_SourcePrefab: {fileID: 100100000, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+--- !u!1 &5616074114670105165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a82540fb511a9f449b464ecc89876d81, type: 3}
+  m_PrefabInstance: {fileID: 4697575979996983068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1929180926627072227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616074114670105165}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.099999994, z: 1}
+  m_Center: {x: 0, y: 0.049999997, z: 0}
+--- !u!114 &5641715951909913503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616074114670105165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aebe621cc8480c4aa0b335b592594c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallFloor
+  collider: {fileID: 1929180926627072227}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SwordMan
   m_EditorClassIdentifier: Assembly-CSharp::RankParameter
   attackRank: 1
-  speedRank: 5
-  sizeRank: 5
+  speedRank: 1
+  sizeRank: 3

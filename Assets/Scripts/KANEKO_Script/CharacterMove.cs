@@ -85,6 +85,11 @@ public class CharacterMove : MonoBehaviour
     private bool _isGuardInput;
 
     /// <summary>
+    /// 防御時間
+    /// </summary>
+    private float _guardTime = 3.0f;
+
+    /// <summary>
     /// 回避してるか
     /// </summary>
     private bool _isDodge;
@@ -271,6 +276,11 @@ public class CharacterMove : MonoBehaviour
         return flag;
     }
 
+    private void GuardRemainTime()
+    {
+       
+    }
+
     public Collider[] GetColliders()
     {
         Collider[] colliders = new Collider[(int)MyCollider.Max];
@@ -387,6 +397,12 @@ public class CharacterMove : MonoBehaviour
     }
 
     public Vector2 GetMoveValue() { return _moveValue; }
+
+    public void VectorToZero()
+    {
+        _rb.linearVelocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
+    }
 }
 
 /// <summary>
