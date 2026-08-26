@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class CharaDataBase
 {
     public float Percentage { get; private set; }
@@ -41,24 +43,32 @@ public class CharaDataBase
     }
     public void TakeDamage(int attackPower)
     {
-        // 攻撃力分だけパーセンテージを増やす
         Percentage += attackPower;
-
-        // 吹っ飛び率を再計算
         UpdateLaunchRate();
-
         IsTakeDamage = true;
     }
 
     public void Dead()
     {
         Percentage = 0;
+        UpdateLaunchRate();
+        Debug.Log("Character is dead.");
     }
-
     public void Heal(int heal)
     {
+        if (Percentage <= 0)
+        {
+            Percentage = 0;
+        }
         Percentage -= heal;
         UpdateLaunchRate();
     }
-
+    public void SmashDead()
+    {
+        if (Percentage >= 200)
+        {
+            LaunchRate += LaunchRate * LaunchRate;
+            UpdateLaunchRate();
+        }
+    }
 }

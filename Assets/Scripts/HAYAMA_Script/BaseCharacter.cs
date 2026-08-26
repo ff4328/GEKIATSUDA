@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BaseCharacter : MonoBehaviour
 {
@@ -10,12 +11,21 @@ public class BaseCharacter : MonoBehaviour
 
     public CharaDataBase data;
     public CharacterMove characterMove;
+    public AttackHitBox attackHitBox;
+    public Muscle muscle;
 
     public int finalAttackPower;
 
     protected virtual void Start()
     {
         data = new CharaDataBase();
+
+        // ★ SwordMan の Inspector の値を BaseCharacter に反映
+        if (characterMove == null)
+            characterMove = GetComponent<CharacterMove>();
+
+        if (attackHitBox == null)
+            attackHitBox = GetComponentInChildren<AttackHitBox>();
 
         finalAttackPower = rank.GetAttack(baseAttack);
 
@@ -24,12 +34,42 @@ public class BaseCharacter : MonoBehaviour
 
         characterMove.moveSpeed = finalSpeed * 0.1f;
         transform.localScale = Vector3.one * finalSize;
+        data.SetSize(finalSize);
     }
 
-    // ★★★ これを追加する ★★★
-    public virtual void OnHit(int enemyAttack, Vector3 attackerPos)
+    protected virtual void Update()
     {
+        if(transform.position.x>=200|| transform.position.x <= -200 || transform.position.y >= 100 || transform.position.y <= -100)
+        {
+            data.Dead();
+            transform.position = Vector3.zero;
+            characterMove.VectorToZero();
+        }
+
+        if (characterMove.IsValidAttack())
+        {
+            StartAttack();
+        }
     }
+
+    void StartAttack()
+    {
+        attackHitBox.SetAttackPower(finalAttackPower); // ★攻撃力を渡す
+        attackHitBox.transform.localPosition = new Vector3(1, 1, 0);
+        attackHitBox.SetActiveHitBox(true);
+        Invoke(nameof(EndAttack), 0.2f);
+    }
+    void EndAttack()
+    {
+        attackHitBox.SetActiveHitBox(false);
+        if (muscle.isAttackArea == true)
+        {
+            TemporaryPowerDown(DataConst.POWER);
+            muscle.isAttackArea = false;
+        }
+    }
+
+    public virtual void OnHit(int enemyAttack, Vector3 attackerPos){}
     public virtual void OnEnvironmentDamage(int damage)
     {
         data.TakeDamage(damage);
@@ -47,4 +87,14 @@ public class BaseCharacter : MonoBehaviour
 
         rb.AddForce(knock, ForceMode.Impulse);
     }
+
+    public void TemporaryPowerUp(int power)
+    {
+        finalAttackPower += power;
+    }
+    public void TemporaryPowerDown(int power)
+    {
+        finalAttackPower -= power;
+    }
+
 }
