@@ -167,6 +167,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5792284579413278481, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: rank
+      value: 
+      objectReference: {fileID: 11400000, guid: efdb008f8316e164cb2146ac6d0a69ad, type: 2}
+    - target: {fileID: 5792284579413278481, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: characterMove
+      value: 
+      objectReference: {fileID: 384302722}
+    - target: {fileID: 7078261310775187285, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: rank
+      value: 
+      objectReference: {fileID: 11400000, guid: efdb008f8316e164cb2146ac6d0a69ad, type: 2}
     - target: {fileID: 9050981558853373978, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
       propertyPath: m_Name
       value: TestStage
@@ -176,6 +188,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+--- !u!114 &384302722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5567524203540437724, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+  m_PrefabInstance: {fileID: 351374085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd572fa399a27e47bbf04098dfbf727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
 --- !u!1 &523945203
 GameObject:
   m_ObjectHideFlags: 0

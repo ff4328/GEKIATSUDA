@@ -17,7 +17,7 @@ public class NeedleGimmick : DamageGimmickBase
 
         //ダメージを呼ぶ
         hitCharacter.OnEnvironmentDamage(damage);
-
+        Debug.Log(damage);
         hitCharacter.ApplyKnockback(damage, transform.position);
 
     }

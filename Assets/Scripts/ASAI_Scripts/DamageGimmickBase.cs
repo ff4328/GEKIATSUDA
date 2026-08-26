@@ -15,4 +15,9 @@ public abstract class DamageGimmickBase : StageGimmickBase
 
     public abstract override void HitToCharacter(BaseCharacter hitCharacter);
 
+    public override bool IsDamageGimmick()
+    {
+        return false;
+    }
+
 }
