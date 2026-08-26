@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,14 +11,14 @@ public class BaseCharacter : MonoBehaviour
     public int baseSize = 1;
 
     public int finalStrongAttackPower; // 強攻撃の攻撃力
-    public bool isInvincible = false;
 
 
     public CharaDataBase data;
     public CharacterMove characterMove;
     public AttackHitBox attackHitBox;
 
-    public SpriteRenderer[] Item;
+    public SpriteRenderer barrier;
+    public bool isInvincible = false;
 
     public int finalAttackPower { get; set; }
 
@@ -57,23 +58,13 @@ public class BaseCharacter : MonoBehaviour
             if (attackHitBox.isPowerUp == true)
             {
                 attackHitBox.TemporaryPowerDown(20);
-                Debug.Log("パワーダウン");
                 attackHitBox.isPowerUp = false;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            Debug.Log("Strong Attack!");
             StartStrongAttack();
-        }
-        if (!isInvincible)
-        {
-            Item[0].color = new Color(1f, 1f, 1f, 1f);
-        }
-        else
-        {
-            Item[0].color = new Color(1f, 1f, 1f, 0f);
         }
     }
 
@@ -107,10 +98,11 @@ public class BaseCharacter : MonoBehaviour
 
     public virtual void OnHit(int enemyAttack, Vector3 attackerPos)
     {
-        if(isInvincible) return;
+        if (isInvincible) return;
         data.TakeDamage(enemyAttack);
         ApplyKnockback(enemyAttack, attackerPos);
     }
+
     public virtual void OnEnvironmentDamage(int damage)
     {
         data.TakeDamage(damage);
@@ -121,12 +113,36 @@ public class BaseCharacter : MonoBehaviour
         var rb = GetComponent<Rigidbody>();
         if (rb == null) return;
 
+        // ★ 攻撃方向（上下成分も使う）
         Vector3 dir = (transform.position - attackerPos).normalized;
+
         float force = power * (1 + data.Percentage * 0.05f);
 
-        Vector3 knock = dir * force + Vector3.up * (force * 0.3f);
+        // ★ 斜めに飛ぶ自然なノックバック
+        Vector3 knock = dir * force;
+
+        // ★ 少しだけ上方向を足す（スマブラ風）
+        knock += Vector3.up * (force * 0.2f);
 
         rb.AddForce(knock, ForceMode.Impulse);
+    }
+
+    public void StartInvincible(float duration)
+    {
+        isInvincible = true;
+
+        if (barrier != null)
+            barrier.enabled = true;
+
+        Invoke(nameof(EndInvincible), duration);
+    }
+
+    void EndInvincible()
+    {
+        isInvincible = false;
+
+        if (barrier != null)
+            barrier.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
