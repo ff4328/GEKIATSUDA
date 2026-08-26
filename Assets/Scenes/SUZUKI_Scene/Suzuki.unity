@@ -198,83 +198,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &668275949
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.969914
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -40.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 148.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445096388751440891, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557590041919409800, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: stopAction
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557590041919409800, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: lengthInSec
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557590041919409800, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557590041919409800, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557590041919409800, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: InitialModule.startSpeed.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8824631069169513301, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
-      propertyPath: m_Name
-      value: Effect_TouchGround
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
+--- !u!114 &693992225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3584263750959732939, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
+  m_PrefabInstance: {fileID: 1513924844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd572fa399a27e47bbf04098dfbf727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
 --- !u!1001 &1176313648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -626,7 +560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3156794808722383089, guid: f1805973260992346a826f2bb743ec44, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.49418
+      value: -27.2
       objectReference: {fileID: 0}
     - target: {fileID: 3156794808722383089, guid: f1805973260992346a826f2bb743ec44, type: 3}
       propertyPath: m_LocalPosition.y
@@ -998,21 +932,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6437554714711083857, guid: 6c8dafacf0fd3dc49b6c54b605dbb568, type: 3}
     - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
+      propertyPath: chara
+      value: 
+      objectReference: {fileID: 693992225}
+    - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: smoke
       value: 
       objectReference: {fileID: 8149549277597688497, guid: d52df39a21ab1284fa3c49130f0edfc6, type: 3}
+    - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
+      propertyPath: Hitparticle
+      value: 
+      objectReference: {fileID: 6788152408311876760, guid: 5bf73f650ddc39f429f24d861a68c817, type: 3}
     - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: Healparticle
       value: 
       objectReference: {fileID: 3851853913326536341, guid: 277969f98fc7ea24a8a37dcd31c3af16, type: 3}
     - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
+      propertyPath: Shotdownparticle
+      value: 
+      objectReference: {fileID: 9027939498563205152, guid: 4fb45e07a552602499f45bbcce514e3b, type: 3}
+    - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: Effects.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
+      propertyPath: ExplosionparticleEnd
+      value: 
+      objectReference: {fileID: 5949239381556378453, guid: eee7b2c4d231e7445aff0e6d912f701e, type: 3}
+    - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: TouchGuroundparticle
       value: 
       objectReference: {fileID: 6557590041919409800, guid: fc7ee2b8cf82a1447b53382c33ac6c65, type: 3}
+    - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
+      propertyPath: ExplosionparticleFirst
+      value: 
+      objectReference: {fileID: 8254332109540567477, guid: a68b92e086ed7c744b19e2cec314513a, type: 3}
     - target: {fileID: 146966001533000938, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: EffectsHolder.Array.size
       value: 3
@@ -1088,4 +1042,3 @@ SceneRoots:
   - {fileID: 7153088030634185542}
   - {fileID: 493019309}
   - {fileID: 1658137933}
-  - {fileID: 668275949}
