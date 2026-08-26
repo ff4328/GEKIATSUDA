@@ -323,6 +323,14 @@ PrefabInstance:
       propertyPath: muscle
       value: 
       objectReference: {fileID: -2019898222196794747, guid: 953454d88137cbe4c85dd962ca0e298b, type: 3}
+    - target: {fileID: 7078261310775187285, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: Item.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078261310775187285, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: 'Item.Array.data[0]'
+      value: 
+      objectReference: {fileID: 561852444091337340, guid: c73f6b741044c434ca633180b9b6063d, type: 3}
     - target: {fileID: 8497350337867987773, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
