@@ -1,40 +1,51 @@
 using UnityEngine;
 
-public class Smoke_Effect : MonoBehaviour
+public class Smoke_Effect
 {
     private EffectManager effect;
 
-    private void Awake()
+    public Smoke_Effect(EffectManager effect)
     {
-        effect = FindFirstObjectByType<EffectManager>();
+        this.effect = effect;
 
-        if (effect == null)
-        {
-            Debug.LogError("EffectManagerが見つかりません");
-        }
+        Debug.Log("EffectManager取得成功: " + effect.gameObject.name);
     }
 
-    public void Smoke()
+    public void Smoke(Vector3 pos)
     {
+        Debug.Log("Smoke()開始");
+
         if (effect == null)
         {
-            Debug.LogError("EffectManagerが見つかりません");
+            Debug.LogError("EffectManagerがNULLです");
             return;
         }
 
         if (effect.Smokeparticle == null)
         {
-            Debug.LogError("SmokeParticleが設定されていません");
+            Debug.LogError("SmokeparticleがNULLです！");
             return;
         }
 
-        ParticleSystem smoke = Instantiate(
+        Debug.Log("Smokeparticle取得成功: " + effect.Smokeparticle.name);
+
+        Vector3 spawnPos = new Vector3(
+            pos.x,
+            pos.y,
+            pos.z
+        );
+
+        ParticleSystem smoke = Object.Instantiate(
             effect.Smokeparticle,
-            transform.position,
+            spawnPos,
             Quaternion.identity
         );
 
+        Debug.Log("生成位置: " + smoke.transform.position);
+        Debug.Log("Smoke生成成功: " + smoke.name);
+
         smoke.Play();
 
+        Debug.Log("Smoke再生中: " + smoke.isPlaying);
     }
 }

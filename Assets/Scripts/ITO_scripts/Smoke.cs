@@ -9,7 +9,10 @@ public class Smoke : MonoBehaviour
 
     private void Awake()
     {
-        effect = FindFirstObjectByType<Smoke_Effect>();
+        EffectManager manager =
+              FindFirstObjectByType<EffectManager>();
+
+        effect = new Smoke_Effect(manager);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,11 +22,9 @@ public class Smoke : MonoBehaviour
         if (other.gameObject.tag == "AttackArea")
         {
 
-           
-
             isAttackArea = true;
 
-            effect.Smoke();
+            effect.Smoke(transform.position);
 
             Destroy(gameObject);
 
