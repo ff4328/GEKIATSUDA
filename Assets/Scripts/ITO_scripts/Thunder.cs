@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Kaminari : MonoBehaviour
+public class Thunder : MonoBehaviour
 {
     public bool isAttackArea;
 
