@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 132841527590142616}
   - component: {fileID: 3584263750959732939}
   - component: {fileID: 2217182854139090242}
-  - component: {fileID: -6008829924023993082}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Player
@@ -158,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd572fa399a27e47bbf04098dfbf727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
-  _moveFlagforDebug: 0
+  _moveFlagForDebug: 0
   _guardSprite: {fileID: 7625673885053001054}
   moveSpeed: 0.1
 --- !u!114 &2217182854139090242
@@ -173,22 +172,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01766200d7d936a438928d60bc714c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordMan
-  attackHitBox: {fileID: 2820455016931473472}
+  rank: {fileID: 0}
+  baseAttack: 3
+  baseSpeed: 1
+  baseSize: 1
   characterMove: {fileID: 3584263750959732939}
+  attackHitBox: {fileID: 2820455016931473472}
+  finalAttackPower: 0
   isStunned: 0
   isKnockback: 0
---- !u!114 &-6008829924023993082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4395440408720859938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 463e167dd9e56d14680d6c75eedb0682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDummy
 --- !u!1 &4934037019783807512
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +352,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttackArea
       objectReference: {fileID: 0}
+    - target: {fileID: 5262662760688096291, guid: b7d65eb18e637f743967c384827544f0, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 2217182854139090242}
     - target: {fileID: 9139975197972547039, guid: b7d65eb18e637f743967c384827544f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
