@@ -12,7 +12,7 @@ public class CharacterMove : MonoBehaviour
     /// <summary>
     /// 防御時間の定数
     /// </summary>
-    const float GUARD_TIME = 3.0f;
+    const float GUARD_TIME = 2.0f;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -85,6 +85,11 @@ public class CharacterMove : MonoBehaviour
     private bool _isAttackInput;
 
     /// <summary>
+    /// 強攻撃入力してるか
+    /// </summary>
+    private bool _isPowerAttackInput;
+
+    /// <summary>
     /// 防御入力してるか
     /// </summary>
     private bool _isGuardInput;
@@ -92,8 +97,12 @@ public class CharacterMove : MonoBehaviour
     /// <summary>
     /// 防御時間
     /// </summary>
-    [SerializeField]
     private float _guardTime = GUARD_TIME;
+
+    /// <summary>
+    /// 最初に設定するガード画像の大きさ
+    /// </summary>
+    private Vector3 _guardScale;
 
     /// <summary>
     /// 回避してるか
@@ -115,11 +124,14 @@ public class CharacterMove : MonoBehaviour
         }
 
         _guardSprite.enabled = false;
+        Transform transform = _guardSprite.GetComponent<Transform>();
+        _guardScale = transform.transform.localScale;
 
         // アクションの参照を保存
         _actions[(int)PlayerAction.Move] = InputSystem.actions.FindAction("Move");
         _actions[(int)PlayerAction.Jump] = InputSystem.actions.FindAction("Jump");
         _actions[(int)PlayerAction.Attack] = InputSystem.actions.FindAction("Attack");
+        _actions[(int)PlayerAction.PowerAttack] = InputSystem.actions.FindAction("PowerAttack");
         _actions[(int)PlayerAction.Guard] = InputSystem.actions.FindAction("Guard");
 
         // 向きの初期設定
@@ -138,6 +150,7 @@ public class CharacterMove : MonoBehaviour
         _moveValue = _actions[(int)PlayerAction.Move].ReadValue<Vector2>();
         _isJumpInput = _actions[(int)PlayerAction.Jump].WasPressedThisFrame();
         _isAttackInput = _actions[(int)PlayerAction.Attack].WasPressedThisFrame();
+        _isPowerAttackInput = _actions[(int)PlayerAction.PowerAttack].WasPressedThisFrame();
         _isGuardInput = _actions[(int)PlayerAction.Guard].IsPressed();
        
         IsTouchGround();
@@ -246,7 +259,15 @@ public class CharacterMove : MonoBehaviour
     public bool IsValidAttack()
     {
         bool flag;
-        if (_isAttackInput && !IsValidGuard()) flag = true;
+        if (_isAttackInput && !_isPowerAttackInput && !IsValidGuard()) flag = true;
+        else flag = false;
+        return flag;
+    }
+
+    public bool IsValidPowerAttack()
+    {
+        bool flag;
+        if (_isPowerAttackInput && !_isAttackInput && !IsValidGuard()) flag = true;
         else flag = false;
         return flag;
     }
@@ -313,9 +334,25 @@ public class CharacterMove : MonoBehaviour
 
     private void GuardSpriteScaleChange()
     {
-        float guardPer = _guardTime / GUARD_TIME * 100f;
-        Vector3 guardScale = _guardSprite.transform.localScale;
-        guardScale = new Vector3(guardScale.x * guardPer, guardScale.y * guardPer, guardScale.z * guardPer);
+        float guardPer = _guardTime / GUARD_TIME;
+        Transform transform = _guardSprite.GetComponent<Transform>();
+        transform.transform.localScale = new Vector3(_guardScale.x * guardPer, _guardScale.y * guardPer, _guardScale.z * guardPer);
+    }
+
+    private void GuardSpriteMove(short dir)
+    {
+        Transform transform = _guardSprite.GetComponent<Transform>();
+        float x = transform.transform.localPosition.x;
+        float y = transform.transform.localPosition.y;
+
+        if (dir > 0)
+        {
+            transform.transform.localPosition = new Vector3(x, y, -1f);
+        }
+        else
+        {
+            transform.transform.localPosition = new Vector3(x, y, 1f);
+        }
     }
 
     public Collider[] GetColliders()
@@ -417,22 +454,6 @@ public class CharacterMove : MonoBehaviour
         _isDodge = false;
     }
 
-    private void GuardSpriteMove(short dir)
-    {
-        Transform transform = _guardSprite.GetComponent<Transform>();
-        float x = transform.transform.localPosition.x;
-        float y = transform.transform.localPosition.y;
-
-        if (dir > 0)
-        {
-            transform.transform.localPosition = new Vector3(x, y, -1f);
-        }
-        else
-        {
-            transform.transform.localPosition = new Vector3(x, y, 1f);
-        }
-    }
-
     public Vector2 GetMoveValue() { return _moveValue; }
 
     public Vector3 GetPos() { return this.transform.position; }
@@ -453,6 +474,7 @@ enum PlayerAction
     Move,
     Jump,
     Attack,
+    PowerAttack,
     Guard,
     Max
 }

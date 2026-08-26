@@ -184,6 +184,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3584263750959732939, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
+      propertyPath: _guardTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584263750959732939, guid: 3b323932e7cf1e449abde0afb625be31, type: 3}
       propertyPath: _moveFlagForDebug
       value: 1
       objectReference: {fileID: 0}
@@ -374,6 +378,10 @@ PrefabInstance:
     - target: {fileID: 1882066826482339822, guid: e60bae8310d3d3a47b1ed676e11fb588, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321637121639523128, guid: e60bae8310d3d3a47b1ed676e11fb588, type: 3}
+      propertyPath: _guardTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2867547636861294990, guid: e60bae8310d3d3a47b1ed676e11fb588, type: 3}
       propertyPath: attackHitBox
