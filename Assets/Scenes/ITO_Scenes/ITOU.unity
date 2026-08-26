@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &921982 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7078261310775187285, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+  m_PrefabInstance: {fileID: 376420455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01766200d7d936a438928d60bc714c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordMan
 --- !u!1 &99756385
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +315,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6618683704409750103, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 921982}
+    - target: {fileID: 7078261310775187285, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: muscle
+      value: 
+      objectReference: {fileID: -2019898222196794747, guid: 953454d88137cbe4c85dd962ca0e298b, type: 3}
     - target: {fileID: 8497350337867987773, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -798,17 +817,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 143165684496710402, guid: ee395f766b8cb454cb5c379fddc89027, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 2464928881557905697, guid: ee395f766b8cb454cb5c379fddc89027, type: 3}
       propertyPath: m_Name
       value: Item Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 2623554501729095485, guid: ee395f766b8cb454cb5c379fddc89027, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.97087
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2623554501729095485, guid: ee395f766b8cb454cb5c379fddc89027, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.16142
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2623554501729095485, guid: ee395f766b8cb454cb5c379fddc89027, type: 3}
       propertyPath: m_LocalPosition.z

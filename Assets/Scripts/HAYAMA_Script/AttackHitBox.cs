@@ -5,7 +5,6 @@ public class AttackHitBox : MonoBehaviour
     public SwordMan owner;
     private Collider col;
     public bool isPowerUp = false;
-    public bool isInvincible = false;
     public BaseCharacter character;
 
     void Awake()
@@ -43,7 +42,7 @@ public class AttackHitBox : MonoBehaviour
 
         if (other.gameObject.tag == "Barrier")
         {
-            isInvincible= true;
+            character.isInvincible= true;
             Invincible(10);
             Debug.Log("無敵");
         }
@@ -61,6 +60,6 @@ public class AttackHitBox : MonoBehaviour
 
     public void Invincible(int barrier)
     {
-
+        // カウント　０でファルス
     }
 }
