@@ -43,12 +43,8 @@ public class CharaDataBase
     }
     public void TakeDamage(int attackPower)
     {
-        // 攻撃力分だけパーセンテージを増やす
         Percentage += attackPower;
-
-        // 吹っ飛び率を再計算
         UpdateLaunchRate();
-
         IsTakeDamage = true;
     }
 
@@ -67,18 +63,9 @@ public class CharaDataBase
         Percentage -= heal;
         UpdateLaunchRate();
     }
-    public void PowerUp(int power)
-    {
-        Attack += power;
-    }
-    public void PowerDown(int power)
-    {
-        Attack -= power;
-    }
-
     public void SmashDead()
     {
-        if(Percentage >= 200)
+        if (Percentage >= 200)
         {
             LaunchRate += LaunchRate * LaunchRate;
             UpdateLaunchRate();

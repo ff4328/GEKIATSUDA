@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BaseCharacter : MonoBehaviour
 {
@@ -37,6 +38,13 @@ public class BaseCharacter : MonoBehaviour
 
     protected virtual void Update()
     {
+        if(transform.position.x>=200|| transform.position.x <= -200 || transform.position.y >= 100 || transform.position.y <= -100)
+        {
+            data.Dead();
+            transform.position = Vector3.zero;
+            characterMove.VectorToZero();
+        }
+
         if (characterMove.IsValidAttack())
         {
             Debug.Log("Attack!");
@@ -45,11 +53,16 @@ public class BaseCharacter : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            data.PowerUp(DataConst.POWER);
+            TemporaryPowerUp(DataConst.POWER);
             Debug.Log("PowerUp!");
             Debug.Log("Attack Power: " + data.Attack);
         }
-
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            TemporaryPowerDown(DataConst.POWER);
+            Debug.Log("PowerDown");
+            Debug.Log("Attack Power: " + data.Attack);
+        }
     }
 
     void StartAttack()
@@ -61,9 +74,6 @@ public class BaseCharacter : MonoBehaviour
     }
     void EndAttack()
     {
-            data.PowerDown(DataConst.POWER);
-            Debug.Log("PowerDown");
-            Debug.Log("Attack Power: " + data.Attack);
         attackHitBox.SetActiveHitBox(false);
     }
 
@@ -85,4 +95,14 @@ public class BaseCharacter : MonoBehaviour
 
         rb.AddForce(knock, ForceMode.Impulse);
     }
+
+    public void TemporaryPowerUp(int power)
+    {
+        finalAttackPower += power;
+    }
+    public void TemporaryPowerDown(int power)
+    {
+        finalAttackPower -= power;
+    }
+
 }
