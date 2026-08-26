@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class AttackHitBox : MonoBehaviour
@@ -6,6 +7,7 @@ public class AttackHitBox : MonoBehaviour
     private Collider col;
     public bool isPowerUp = false;
     public BaseCharacter character;
+    float count = 0;
 
     void Awake()
     {
@@ -42,11 +44,19 @@ public class AttackHitBox : MonoBehaviour
 
         if (other.gameObject.tag == "Barrier")
         {
-            character.isInvincible= true;
-            Invincible(10);
+            character.isInvincible = true;
             Debug.Log("無敵");
         }
 
+    }
+    private void FixedUpdate()
+    {
+        if (character.isInvincible == true)
+        {
+            count+=Time.deltaTime;
+            Debug.Log(count);
+            Invincible();
+        }
     }
 
     public void TemporaryPowerUp(int power)
@@ -58,8 +68,12 @@ public class AttackHitBox : MonoBehaviour
         character.finalAttackPower -= power;
     }
 
-    public void Invincible(int barrier)
+    public void Invincible()
     {
-        // カウント　０でファルス
+        if (count >= 10)
+        {
+            count = 0;
+            character.isInvincible = false;
+        }
     }
 }

@@ -19,7 +19,7 @@ public class BaseCharacter : MonoBehaviour
 
     public SpriteRenderer[] Item;
 
-    public int finalAttackPower {  get; set; }
+    public int finalAttackPower { get; set; }
 
     protected virtual void Start()
     {
@@ -54,10 +54,11 @@ public class BaseCharacter : MonoBehaviour
         if (characterMove.IsValidAttack())
         {
             StartAttack();
-            if (attackHitBox.isPowerUp==true) {
+            if (attackHitBox.isPowerUp == true)
+            {
                 attackHitBox.TemporaryPowerDown(20);
                 Debug.Log("パワーダウン");
-                attackHitBox.isPowerUp =false;
+                attackHitBox.isPowerUp = false;
             }
         }
 
@@ -65,6 +66,14 @@ public class BaseCharacter : MonoBehaviour
         {
             Debug.Log("Strong Attack!");
             StartStrongAttack();
+        }
+        if (!isInvincible)
+        {
+            Item[0].color = new Color(1f, 1f, 1f, 1f);
+        }
+        else
+        {
+            Item[0].color = new Color(1f, 1f, 1f, 0f);
         }
     }
 
@@ -98,16 +107,7 @@ public class BaseCharacter : MonoBehaviour
 
     public virtual void OnHit(int enemyAttack, Vector3 attackerPos)
     {
-        if (isInvincible)
-        {
-            Item[0].enabled = true;
-            return; // ★無敵ならダメージ無効
-        }
-        else
-        {
-            Item[0].enabled=false;
-        }
-
+        if(isInvincible) return;
         data.TakeDamage(enemyAttack);
         ApplyKnockback(enemyAttack, attackerPos);
     }
@@ -127,5 +127,22 @@ public class BaseCharacter : MonoBehaviour
         Vector3 knock = dir * force + Vector3.up * (force * 0.3f);
 
         rb.AddForce(knock, ForceMode.Impulse);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "StageGimmick")
+        {
+            other.GetComponent<StageGimmickBase>().HitToCharacter(this);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "StageGimmick")
+        {
+            if (other.GetComponent<StageGimmickBase>().IsDamageGimmick()) return;
+            other.GetComponent<StageGimmickBase>().HitToCharacter(this);
+        }
     }
 }
