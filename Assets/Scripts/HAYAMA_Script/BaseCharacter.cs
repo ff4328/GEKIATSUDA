@@ -22,8 +22,20 @@ public class BaseCharacter : MonoBehaviour
 
     public int finalAttackPower { get; set; }
 
+    //鈴木
+    private Hit_Effect  effect;
+
     protected virtual void Start()
     {
+
+        //鈴木＝＝＝＝＝＝＝＝
+        //書くとここじゃなかったらごめん
+        EffectManager manager =
+             FindFirstObjectByType<EffectManager>();
+
+        effect = new Hit_Effect(manager);
+        //＝＝＝＝＝＝＝＝＝＝
+
         data = new CharaDataBase();
 
         // ★ SwordMan の Inspector の値を BaseCharacter に反映
@@ -101,6 +113,8 @@ public class BaseCharacter : MonoBehaviour
         if (isInvincible) return;
         data.TakeDamage(enemyAttack);
         ApplyKnockback(enemyAttack, attackerPos);
+        //鈴木
+        effect.Hit(attackerPos);
     }
 
     public virtual void OnEnvironmentDamage(int damage)
