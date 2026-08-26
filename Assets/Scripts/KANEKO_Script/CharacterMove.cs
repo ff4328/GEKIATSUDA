@@ -297,8 +297,6 @@ public class CharacterMove : MonoBehaviour
 
         Collider myCollider = this.gameObject.GetComponent<Collider>();
         myCollider.enabled = false;
-        //Material material = GetComponent<Renderer>().material;
-        //material.color = Color.purple;
         _rb.useGravity = false;
 
         if (Mathf.Abs(_moveValue.x) > Mathf.Abs(_moveValue.y))
@@ -319,24 +317,6 @@ public class CharacterMove : MonoBehaviour
 
     }
 
-    private IEnumerator DodgeRightCoroutine(Collider col, Material mat, Rigidbody rb)
-    {
-        float x = transform.position.x;
-        float y = transform.position.y;
-
-        for (int i = 0; i < 20; i++)
-        {
-            x += 0.10f;
-            _rb.MovePosition(new Vector3(x, y, 0f));
-            yield return new WaitForSeconds(0.01f);
-        }
-
-        col.enabled = true;
-        mat.color= Color.gray;
-        rb.useGravity = true;
-        StartCoroutine(DodgeCoolTimeCoroutine());
-    }
-
     private IEnumerator DodgeRightCoroutine(Collider col,Rigidbody rb)
     {
         float x = transform.position.x;
@@ -350,25 +330,6 @@ public class CharacterMove : MonoBehaviour
         }
 
         col.enabled = true;
-        rb.useGravity = true;
-        StartCoroutine(DodgeCoolTimeCoroutine());
-    }
-
-    private IEnumerator DodgeLeftCoroutine(Collider col, Material mat, Rigidbody rb)
-    {
-
-        float x = transform.position.x;
-        float y = transform.position.y;
-
-        for (int i = 0; i < 20; i++)
-        {
-            x -= 0.10f;
-            _rb.MovePosition(new Vector3(x, y, 0f));
-            yield return new WaitForSeconds(0.01f);
-        }
-
-        col.enabled = true;
-        mat.color = Color.gray;
         rb.useGravity = true;
         StartCoroutine(DodgeCoolTimeCoroutine());
     }
@@ -387,19 +348,6 @@ public class CharacterMove : MonoBehaviour
         }
 
         col.enabled = true;
-        rb.useGravity = true;
-        StartCoroutine(DodgeCoolTimeCoroutine());
-    }
-
-    private IEnumerator DodgeOnTheSpotCoroutine(Collider col, Material mat, Rigidbody rb)
-    {
-        for (int i = 0; i < 30; i++)
-        {
-            yield return new WaitForSeconds(0.01f);
-        }
-
-        col.enabled = true;
-        mat.color = Color.gray;
         rb.useGravity = true;
         StartCoroutine(DodgeCoolTimeCoroutine());
     }
