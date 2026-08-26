@@ -8,6 +8,10 @@ TagManager:
   - AttackArea
   - asd
   - StageGimmick
+  - FxTemporaire
+  - Obstacle
+  - Obstcales
+  - Muscle
   layers:
   - Default
   - TransparentFX
