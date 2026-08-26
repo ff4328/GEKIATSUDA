@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class SwordMan : BaseCharacter
 {
-    public AttackHitBox attackHitBox;
-    public CharacterMove characterMove;
-    [SerializeField]CharaDataBase data;
-
     public bool isStunned = false;
     public bool isKnockback = false;
 
@@ -25,38 +21,10 @@ public class SwordMan : BaseCharacter
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            data.Heal(100);
-            Debug.Log(data.Percentage);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            data.TakeDamage(10);
-            Debug.Log(data.Percentage);
-        }
-
+        base.Update();
         if (isStunned || isKnockback) return;
-
-        if (characterMove.IsValidAttack())
-        {
-            StartAttack();
-        }
-    }
-
-    void StartAttack()
-    {
-        attackHitBox.SetAttackPower(finalAttackPower); // ★攻撃力を渡す
-        attackHitBox.transform.localPosition = new Vector3(1, 0, 0);
-        attackHitBox.SetActiveHitBox(true);
-        Invoke(nameof(EndAttack), 0.2f);
-    }
-
-    void EndAttack()
-    {
-        attackHitBox.SetActiveHitBox(false);
     }
 
     public override void OnHit(int enemyAttack, Vector3 attackerPos)
