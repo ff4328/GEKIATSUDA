@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -131,7 +130,7 @@ public class CharacterMove : MonoBehaviour
         _isGuardInput = _actions[(int)PlayerAction.Guard].IsPressed();
        
         IsTouchGround();
-        //GuardSpriteMove(_dir);
+        GuardSpriteMove(_dir);
 
         //Attack();
         Jump();
@@ -161,9 +160,11 @@ public class CharacterMove : MonoBehaviour
         }
 
         float x = moveValue.x * moveSpeed;
-        this.gameObject.transform.position += new Vector3(x, 0f, 0f);
+        Vector3 vector3 = new Vector3(x, 0f, 0f);
+        _rb.MovePosition(transform.position + vector3);
 
-        if(moveValue.x >= 0.0f)
+
+        if (moveValue.x >= 0.0f)
         {
             _dir = (int)Direction.Right;
             _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
@@ -376,8 +377,7 @@ public class CharacterMove : MonoBehaviour
 
     private void GuardSpriteMove(short dir)
     {
-        GameObject go = _guardSprite.GetComponent<GameObject>();
-        Transform transform = go.transform;
+        Transform transform = _guardSprite.GetComponent<Transform>();
 
         if (dir > 0)
         {
