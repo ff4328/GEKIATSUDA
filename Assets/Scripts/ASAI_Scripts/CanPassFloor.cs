@@ -66,8 +66,7 @@ public class CanPassFloor : StageGimmickBase
     {
         if (hitCharacter == null || collider == null) return;
         //もし移動方向が下ならコリジョンを無効にする
-        //デバック用
-        if (hitCharacter.characterMove.GetMoveValue().y <= 0) return;
+        if (hitCharacter.characterMove.GetMoveValue().y >= 0) return;
 
         //無効にするコリジョンを取得
         Collider[] ignoreCollisionList = hitCharacter.characterMove.GetColliders();
