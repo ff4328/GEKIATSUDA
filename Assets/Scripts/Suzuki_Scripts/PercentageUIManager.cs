@@ -7,12 +7,12 @@ public class PercentageUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] texts;
 
 
-    private void Awake()
-    {
-        characters = FindObjectsByType<CharaDataBase>(
-            FindObjectsSortMode.None
-        );
-    }
+    //private void Awake()
+    //{
+    //    characters = FindObjectsByType<CharaDataBase>(
+    //        FindObjectsSortMode.None
+    //    );
+    //}
     private void Update()
     {
         if (characters == null)

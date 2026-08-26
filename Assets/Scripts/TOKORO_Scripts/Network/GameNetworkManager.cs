@@ -18,4 +18,10 @@ public class GameNetworkManager : RelayNetworkManager
             players.Add(player);
         }
     }
+
+    [Server]
+    public void SceneMove()
+    {
+        ServerChangeScene("CharacterSelectScene");
+    }
 }
