@@ -12,8 +12,10 @@ public class BaseCharacter : MonoBehaviour
     public CharaDataBase data;
     public CharacterMove characterMove;
     public AttackHitBox attackHitBox;
+    public Muscle muscle;
 
-    public int finalAttackPower;
+    public int finalAttackPower {  get; set; }
+
 
     protected virtual void Start()
     {
@@ -38,7 +40,7 @@ public class BaseCharacter : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(transform.position.x>=200|| transform.position.x <= -200 || transform.position.y >= 100 || transform.position.y <= -100)
+        if (transform.position.x >= 200 || transform.position.x <= -200 || transform.position.y >= 100 || transform.position.y <= -100)
         {
             data.Dead();
             transform.position = Vector3.zero;
@@ -47,9 +49,12 @@ public class BaseCharacter : MonoBehaviour
 
         if (characterMove.IsValidAttack())
         {
-            Debug.Log("Attack!");
             StartAttack();
-            Debug.Log("Attack Power: " + data.Attack);
+            if (attackHitBox.isPowerUp==true) {
+                attackHitBox.TemporaryPowerDown(20);
+                Debug.Log("パワーダウン");
+                attackHitBox.isPowerUp =false;
+            }
         }
     }
 
@@ -65,7 +70,7 @@ public class BaseCharacter : MonoBehaviour
         attackHitBox.SetActiveHitBox(false);
     }
 
-    public virtual void OnHit(int enemyAttack, Vector3 attackerPos){}
+    public virtual void OnHit(int enemyAttack, Vector3 attackerPos) { }
     public virtual void OnEnvironmentDamage(int damage)
     {
         data.TakeDamage(damage);
@@ -83,14 +88,4 @@ public class BaseCharacter : MonoBehaviour
 
         rb.AddForce(knock, ForceMode.Impulse);
     }
-
-    public void TemporaryPowerUp(int power)
-    {
-        finalAttackPower += power;
-    }
-    public void TemporaryPowerDown(int power)
-    {
-        finalAttackPower -= power;
-    }
-
 }
