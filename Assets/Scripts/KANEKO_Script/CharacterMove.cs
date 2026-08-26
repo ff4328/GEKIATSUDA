@@ -108,9 +108,6 @@ public class CharacterMove : MonoBehaviour
             _rb = this.gameObject.AddComponent(typeof(Rigidbody)) as Rigidbody;
         }
 
-        _rb.linearVelocity = Vector3.zero;
-        _rb.angularVelocity = Vector3.zero;
-
         _guardSprite.enabled = false;
 
         // アクションの参照を保存
@@ -400,6 +397,12 @@ public class CharacterMove : MonoBehaviour
     }
 
     public Vector2 GetMoveValue() { return _moveValue; }
+
+    public void VectorToZero()
+    {
+        _rb.linearVelocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
+    }
 }
 
 /// <summary>
