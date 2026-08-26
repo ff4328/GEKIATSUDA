@@ -17,7 +17,7 @@ public abstract class DamageGimmickBase : StageGimmickBase
 
     public override bool IsDamageGimmick()
     {
-        return false;
+        return true;
     }
 
 }
