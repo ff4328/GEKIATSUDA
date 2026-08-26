@@ -24,6 +24,15 @@ public abstract class StageGimmickBase : MonoBehaviour
     public abstract void HitToCharacter(BaseCharacter hitCharacter);
 
     /// <summary>
+    /// ダメージギミックならtrue、ダメージギミックでないならfalse
+    /// </summary>
+    /// <returns></returns>
+    public virtual bool IsDamageGimmick()
+    {
+        return false;
+    }
+
+    /// <summary>
     /// 衝突方向を計算
     /// </summary>
     /// <param name="position"></param>
