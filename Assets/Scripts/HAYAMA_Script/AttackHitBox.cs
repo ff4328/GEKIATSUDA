@@ -4,6 +4,8 @@ public class AttackHitBox : MonoBehaviour
 {
     public SwordMan owner;
     private Collider col;
+    public bool isPowerUp = false;
+    public BaseCharacter character;
 
     void Awake()
     {
@@ -29,5 +31,22 @@ public class AttackHitBox : MonoBehaviour
         {
             target.OnHit(attackPower, transform.position);
         }
+
+
+        if (other.gameObject.tag == "Muscle")
+        {
+            isPowerUp = true;
+            TemporaryPowerUp(20);
+            Debug.Log("パワーアップ");
+        }
+    }
+
+    public void TemporaryPowerUp(int power)
+    {
+        character.finalAttackPower += power;
+    }
+    public void TemporaryPowerDown(int power)
+    {
+        character.finalAttackPower -= power;
     }
 }
