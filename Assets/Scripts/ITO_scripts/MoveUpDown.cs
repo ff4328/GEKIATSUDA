@@ -4,6 +4,7 @@ public class MoveUpDown : StageGimmickBase
 {
     [SerializeField] private float moveHeight = 2f;
     [SerializeField] private float speed = 2f;
+   
 
     private Vector3 prevPos;
     private Vector3 startPos;
