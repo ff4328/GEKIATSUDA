@@ -1,38 +1,57 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TouchGuround_Effect
+public class TouchGround_Effect
 {
 
     private EffectManager effect;
+    Vector3 vec;
 
-    public TouchGuround_Effect(EffectManager effect)
+    public TouchGround_Effect(EffectManager effect)
     {
         this.effect = effect;
-        
+
     }
 
-    public void TouchGuround(Vector3 pos)
+    public Vector3 PlayerPos()
     {
+        vec = effect.PlayerEffectPos();
+        Debug.Log(vec);
+        return vec;
+    }
 
+    public void TouchGround(Vector3 pos)
+    {
+        Debug.Log("Grounded");
 
         if (effect == null) return;
-
-
         if (effect.TouchGuroundparticle == null) return;
 
-
-
-        Vector3 spawnPos = new Vector3(
-            pos.x,
-            pos.y,
-            pos.z
-        );
-
         ParticleSystem touchGuround = UnityEngine.Object.Instantiate(
-            effect.TouchGuroundparticle,
-            spawnPos,
-            Quaternion.identity
+            effect.TouchGuroundparticle
         );
+
+        // プレイヤーの子にする
+        touchGuround.transform.SetParent(effect.chara.transform, false);
+
+        // エフェクト微調整
+        touchGuround.transform.localPosition = new Vector3(0, -0.5f, 0);
+        touchGuround.transform.localScale = new Vector3(0.3f, 0.2f, 0.3f);
+        ParticleSystem.MainModule main = touchGuround.main;
+        main.simulationSpeed = 6.0f;
+
         touchGuround.Play();
+
+        UnityEngine.Object.Destroy(touchGuround.gameObject, 0.5f);
+    }
+
+    public void EffectStop()
+    {
+        ParticleSystem touchGuround = UnityEngine.Object.Instantiate(
+          effect.TouchGuroundparticle
+      );
+
+        touchGuround.Stop();
     }
 }

@@ -12,6 +12,19 @@ public class TouchGround : MonoBehaviour
     /// </summary>
     public bool isDoubleJump;
 
+
+    private TouchGround_Effect effect;
+    private void Awake()
+    {
+        EffectManager manager =
+              FindFirstObjectByType<EffectManager>();
+
+        effect = new TouchGround_Effect(manager);
+
+
+
+    }
+
     /// <summary>
     /// 接地判定
     /// otherに入ったColliderのTagがGroundの時処理を行う
@@ -24,12 +37,14 @@ public class TouchGround : MonoBehaviour
         {
             isGround = true;
             isDoubleJump = true;
+            effect.TouchGround(effect.PlayerPos());
         }
         if (other.gameObject.tag == "StageGimmick")
         {
             if (other.GetComponent<StageGimmickBase>().IsDamageGimmick()) return;
             isGround = true;
             isDoubleJump = true;
+            effect.TouchGround(effect.PlayerPos());
 
         }
 
@@ -44,6 +59,8 @@ public class TouchGround : MonoBehaviour
     {
         // 接地判定
         if (other.gameObject.tag == "Ground"|| other.gameObject.tag == "StageGimmick") isGround = false;
+        effect.EffectStop();
+
     }
 
     public Collider GetFootStepCollider() => this.gameObject.GetComponent<Collider>();

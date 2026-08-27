@@ -20,7 +20,10 @@ public class EffectManager : MonoBehaviour
     [SerializeField] public ParticleSystem Smokeparticle;
     [SerializeField] public ParticleSystem Healparticle;
     [SerializeField] public ParticleSystem TouchGuroundparticle;
-
+    [SerializeField] public ParticleSystem Shotdownparticle;
+    [SerializeField] public ParticleSystem Hitparticle;
+    [SerializeField] public ParticleSystem ExplosionparticleFirst;
+    [SerializeField] public ParticleSystem ExplosionparticleEnd;
 
     public void Update()
     {
