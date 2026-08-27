@@ -908,9 +908,10 @@ GameObject:
   - component: {fileID: 2002511483179503570}
   - component: {fileID: 7739136328472150275}
   - component: {fileID: 7469400005995253763}
+  - component: {fileID: 2701735380437964322}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Ground
+  m_TagString: StageGimmick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1008,6 +1009,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2701735380437964322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338661399459221433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f449b98e52a4e9440a2db011431f83ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveUpDown
+  collider: {fileID: 7469400005995253763}
+  moveHeight: 15
+  speed: 1
 --- !u!1 &2681668967460348131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,9 +2114,10 @@ GameObject:
   - component: {fileID: 9028130973002294028}
   - component: {fileID: 8575135619841897643}
   - component: {fileID: 7419144754514239369}
+  - component: {fileID: 3091574098191634549}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Ground
+  m_TagString: StageGimmick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2198,6 +2215,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3091574098191634549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823544010642833797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512073962595e4145943e487be296040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveLeftRight
+  collider: {fileID: 7419144754514239369}
+  moveWidth: 30
+  speed: 1
 --- !u!1 &4830951570360183530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,7 +2842,7 @@ GameObject:
   - component: {fileID: 7047454613010251748}
   m_Layer: 0
   m_Name: L Stage
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3449,7 +3481,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 71287479956898315}
-  - component: {fileID: 8719656578591692057}
   m_Layer: 0
   m_Name: MoveGround
   m_TagString: Untagged
@@ -3473,20 +3504,6 @@ Transform:
   - {fileID: 1090688468853497038}
   m_Father: {fileID: 5529385269878701854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8719656578591692057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7286740226255135221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512073962595e4145943e487be296040, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoveLeftRight
-  moveWidth: 30
-  speed: 1
 --- !u!1 &7369736980571895679
 GameObject:
   m_ObjectHideFlags: 0
@@ -3608,7 +3625,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2497298973774602904}
-  - component: {fileID: 1031005442635650026}
   m_Layer: 0
   m_Name: UpDownRock
   m_TagString: Ground
@@ -3632,20 +3648,6 @@ Transform:
   - {fileID: 7634164181435631604}
   m_Father: {fileID: 5529385269878701854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1031005442635650026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7375380469951824179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f449b98e52a4e9440a2db011431f83ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoveUpDown
-  moveHeight: 15
-  speed: 1
 --- !u!1 &7405303899342862340
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,7 +4535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641715951909913503, guid: 3507808293c153f4f9d49b6731531560, type: 3}
       propertyPath: _additionalFallSpeed
-      value: 1
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

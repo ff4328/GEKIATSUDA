@@ -1,23 +1,31 @@
-using System;
-using System.Collections;
+
 using TMPro;
-using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 public class PercentageUIManager : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI[] textPercentages;
+    [SerializeField] TextMeshProUGUI textPrefab;   // ★HP表示用のプレハブ
+    [SerializeField] Transform parent;             // ★Horizontal Layout Group の親
+
     BaseCharacter[] characters;
+    TextMeshProUGUI[] texts;
 
 
     private void Start()
     {
+        // ★シーン内の BaseCharacter を全部自動取得
         characters = FindObjectsByType<BaseCharacter>(FindObjectsSortMode.None);
 
-        if (textPercentages.Length < characters.Length)
+        // ★キャラ数に応じて UI を自動生成
+        texts = new TextMeshProUGUI[characters.Length];
+
+        for (int i = 0; i < characters.Length; i++)
         {
-            Debug.LogError("UIの数がキャラ数より少ないよ！");
+            // Text を生成して Horizontal の子にする
+            var t = Instantiate(textPrefab, parent);
+            t.text = "0.0"; // 初期値
+            texts[i] = t;
         }
     }
     private void Update()
@@ -26,19 +34,19 @@ public class PercentageUIManager : MonoBehaviour
         {
             float p = characters[i].data.Percentage;
 
-            // UI更新
-            textPercentages[i].text = p.ToString("F1");
+            // HP表示
+            texts[i].text = p.ToString("F1");
 
             // 色変化
             if (p <= 50)
             {
                 float t = (p - 20.0f) / 50.0f;
-                textPercentages[i].color = Color.Lerp(Color.white, Color.yellow, t);
+                texts[i].color = Color.Lerp(Color.white, Color.yellow, t);
             }
             else
             {
                 float t = (p - 50.0f) / 50.0f;
-                textPercentages[i].color = Color.Lerp(Color.yellow, Color.red, t);
+                texts[i].color = Color.Lerp(Color.yellow, Color.red, t);
             }
         }
 

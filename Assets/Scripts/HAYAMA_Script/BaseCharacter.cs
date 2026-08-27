@@ -1,6 +1,7 @@
 using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Timeline;
 
 public class BaseCharacter : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class BaseCharacter : MonoBehaviour
 
     public int finalStrongAttackPower; // 強攻撃の攻撃力
 
+    [SerializeField] protected Vector3 attackOffset;
+    [SerializeField] protected Vector3 strongAttackOffset;
 
     public CharaDataBase data;
     public CharacterMove characterMove;
@@ -57,6 +60,8 @@ public class BaseCharacter : MonoBehaviour
     }
     protected virtual void Update()
     {
+        Debug.Log(data.LaunchRate);
+
         if (transform.position.x >= 200 || transform.position.x <= -200 || transform.position.y >= 100 || transform.position.y <= -100)
         {
             data.Dead();
@@ -84,7 +89,7 @@ public class BaseCharacter : MonoBehaviour
     void StartAttack()
     {
         attackHitBox.SetAttackPower(finalAttackPower); // ★攻撃力を渡す
-        attackHitBox.transform.localPosition = new Vector3(1, 0, 0);
+        attackHitBox.transform.localPosition = attackOffset;
         attackHitBox.SetActiveHitBox(true);
         Invoke(nameof(EndAttack), 0.2f);
     }
@@ -97,7 +102,7 @@ public class BaseCharacter : MonoBehaviour
         attackHitBox.SetAttackPower(finalStrongAttackPower);
 
         // 強攻撃はリーチ長めにするなど
-        attackHitBox.transform.localPosition = new Vector3(1.5f, 0, 0);
+        attackHitBox.transform.localPosition = strongAttackOffset;
 
         attackHitBox.SetActiveHitBox(true);
 
