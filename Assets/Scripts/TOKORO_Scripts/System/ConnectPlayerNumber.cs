@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class ConnectPlayerNumber : NetworkBehaviour
 {
-    [SyncVar(hook = nameof(OnPlayerNumberChange))] private int _playerNumber;
+    [SyncVar(hook = nameof(OnPlayerNumberChange))]
+    private int _playerNumber;
 
-    [SerializeField] TMP_Text num;
+    [SerializeField] private TMP_Text num;
+
+    private bool _spawned = false;
 
     public int PlayerNumber => _playerNumber;
 
     private void OnPlayerNumberChange(int oldNumber, int newNumber)
     {
-        num.text = $"{newNumber}P";
+        if (num != null)
+            num.text = $"{newNumber}P";
     }
 
     public int GetPlayerNumber()
@@ -24,5 +28,39 @@ public class ConnectPlayerNumber : NetworkBehaviour
     public void SetPlayerNumber(int num)
     {
         _playerNumber = num;
+
+        SetInitialSpawnPosition();
+    }
+
+    [Server]
+    private void SetInitialSpawnPosition()
+    {
+        // 初回だけ
+        if (_spawned)
+            return;
+
+        BattleSpawnPoints spawnPoints =
+            FindFirstObjectByType<BattleSpawnPoints>();
+
+        if (spawnPoints == null)
+        {
+            Debug.LogWarning("BattleSpawnPointsがありません");
+            return;
+        }
+
+        Transform point = spawnPoints.GetSpawnPoint(_playerNumber);
+
+        if (point == null)
+        {
+            Debug.LogWarning($"{_playerNumber}PのSpawnPointがありません");
+            return;
+        }
+
+        transform.SetPositionAndRotation(
+            point.position,
+            point.rotation
+        );
+
+        _spawned = true;
     }
 }
