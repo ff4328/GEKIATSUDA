@@ -47,7 +47,6 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     public float moveSpeed = 0.1f;
 
-
     /// <summary>
     /// 移動入力格納用
     /// </summary>
@@ -58,6 +57,19 @@ public class CharacterMove : MonoBehaviour
     /// 1 = 右、-1 = 左
     /// </summary>
     private short _dir;
+
+    private short _prevDir;
+
+    private bool _isDashStart;
+
+    private bool _isReallyDashStart;
+
+    private bool _isDash;
+
+    private int _dashCount;
+
+    [SerializeField]
+    private bool _isRepeatDash;
 
     /// <summary>
     /// ジャンプ入力してるか
@@ -136,6 +148,9 @@ public class CharacterMove : MonoBehaviour
 
         // 向きの初期設定
         _dir = (int)Direction.Right;
+        _prevDir = _dir;
+
+        InitDash();
 
         _isDodge = false;
 
@@ -176,6 +191,8 @@ public class CharacterMove : MonoBehaviour
     {
         if (MoveFlagForDebug() || _isDodge) return;
 
+        ChangeDash();
+
         if (!_actions[(int)PlayerAction.Move].IsPressed() || IsValidGuard())
         {
             _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
@@ -185,23 +202,77 @@ public class CharacterMove : MonoBehaviour
         }
 
         float x = moveValue.x * moveSpeed;
+        if (_isRepeatDash) x *= 2f;
         Vector3 vector3 = new Vector3(x, 0f, 0f);
         _rb.MovePosition(transform.position + vector3);
 
 
-        if (moveValue.x >= 0.0f)
+        if (moveValue.x > 0.0f)
         {
             _dir = (int)Direction.Right;
             _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
             _rb.angularVelocity = new Vector3(0f, _rb.angularVelocity.y, 0f);
             this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
-        else
+        else if(moveValue.x < 0.0f)
         {
             _dir = (int)Direction.Left;
             _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
             _rb.angularVelocity = new Vector3(0f, _rb.angularVelocity.y, 0f);
             this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+    }
+
+    private void InitDash()
+    {
+        _isDashStart = false;
+
+        _isReallyDashStart = false;
+
+        _isDash = false;
+
+        _dashCount = 0;
+
+        _isRepeatDash = false;
+    }
+
+    private void ChangeDash()
+    {
+        if(Mathf.Abs(_moveValue.x) >= 0.8f && _isGround)
+            _isDashStart = true;
+
+        if(_isDashStart) _dashCount++;
+
+        if(_isDashStart && Mathf.Abs(_moveValue.x) < 0.8f)
+            _isReallyDashStart = true;
+
+        if (_dashCount <= 10
+            && _isReallyDashStart
+            && Mathf.Abs(_moveValue.x) >= 0.8f
+            && _isGround
+            && _prevDir == _dir)
+            _isDash = true;
+
+        _prevDir = _dir;
+
+        RepeatDash();
+
+        if (_isRepeatDash || (_dashCount > 10 && !_isDash))
+        {
+            _isDashStart = false;
+            _dashCount = 0;
+            _isReallyDashStart = false;
+        }
+    }
+
+    private void RepeatDash()
+    {
+        if (_isDash && Mathf.Abs(_moveValue.x) >= 0.8f)
+            _isRepeatDash = true;
+        else 
+        {
+            _isDash = false;
+            _isRepeatDash = false; 
         }
     }
 
