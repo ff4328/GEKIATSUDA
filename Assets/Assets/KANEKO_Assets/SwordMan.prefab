@@ -110,9 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd572fa399a27e47bbf04098dfbf727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _moveFlagForDebug: 0
   _guardSprite: {fileID: 5022661486072121639}
   moveSpeed: 0.1
+  _isRepeatDash: 0
 --- !u!114 &2615868957149511591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,12 +134,15 @@ MonoBehaviour:
   baseSpeed: 1
   baseSize: 1
   finalStrongAttackPower: 0
+  attackOffset: {x: 0, y: 0, z: 0}
+  strongAttackOffset: {x: 0, y: 0, z: 0}
   characterMove: {fileID: 2321637121639523128}
   attackHitBox: {fileID: 5235148039464466216}
-  barrier: {fileID: 0}
+  barrier: {fileID: 561852444091337340, guid: c73f6b741044c434ca633180b9b6063d, type: 3}
   isInvincible: 0
   isStunned: 0
   isKnockback: 0
+  attackOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &6897977487780965837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,6 +682,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5262662760688096291, guid: b7d65eb18e637f743967c384827544f0, type: 3}
       propertyPath: owner
+      value: 
+      objectReference: {fileID: 2615868957149511591}
+    - target: {fileID: 5262662760688096291, guid: b7d65eb18e637f743967c384827544f0, type: 3}
+      propertyPath: character
       value: 
       objectReference: {fileID: 2615868957149511591}
     - target: {fileID: 9139975197972547039, guid: b7d65eb18e637f743967c384827544f0, type: 3}

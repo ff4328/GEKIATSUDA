@@ -38,6 +38,8 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     public CharaDataBase _characterData { get; protected set; } = null;
 
+    private BaseCharacter _baseCharacter;
+
     [SerializeField]
     [Tooltip("ガードの画像")]
     private SpriteRenderer _guardSprite;
@@ -126,6 +128,8 @@ public class CharacterMove : MonoBehaviour
     {
         // キャラクターデータ生成
         _characterData = new CharaDataBase();
+        _baseCharacter = this.GetComponent<BaseCharacter>();
+        if(_baseCharacter == null)_baseCharacter = new BaseCharacter();
 
         // アタッチしているオブジェクトからリジッドボディ取得
         // なければ付与
@@ -354,17 +358,21 @@ public class CharacterMove : MonoBehaviour
         {
             //_moveValue = Vector2.zero;
             _guardSprite.enabled = true;
+            GuardEnableProcess();
             DecreaseGuardTime();
             Dodge();
         }
         else if(!IsValidGuard() && _guardSprite.enabled)
         {
             _guardSprite.enabled = false;
+            GuardDisenableProcess();
         }
-        else if(!IsValidGuard()) 
+        else if(!_isGuardInput && !_isDodge) 
         {
             IncreaseGuardTime();
         }
+
+        if(_guardTime == Mathf.Epsilon) GuardDisenableProcess();
     }
 
     /// <summary>
@@ -377,6 +385,30 @@ public class CharacterMove : MonoBehaviour
         if(_isGuardInput && _isGround && !_isDodge)flag = true;
         else flag = false;
         return flag;
+    }
+
+    private void GuardEnableProcess()
+    {
+        Debug.Log("aaa : " + _baseCharacter.barrier.enabled);
+        if (_baseCharacter.barrier.enabled == false)
+        {
+
+        Debug.Log("bbb");
+        _baseCharacter.isInvincible = true;
+        }
+        Debug.Log("ccc");
+    }
+
+    private void GuardDisenableProcess()
+    {
+        Debug.Log("ddd");
+        if (_baseCharacter.barrier.enabled == false)
+        {
+
+            Debug.Log("eee");
+        _baseCharacter.isInvincible = false;
+        }
+        Debug.Log("fff");
     }
 
     private void DecreaseGuardTime()
@@ -479,7 +511,7 @@ public class CharacterMove : MonoBehaviour
 
         for (int i = 0; i < 20; i++)
         {
-            x += 0.10f;
+            x += 1f;
             _rb.MovePosition(new Vector3(x, y, 0f));
             yield return new WaitForSeconds(0.01f);
         }
@@ -497,7 +529,7 @@ public class CharacterMove : MonoBehaviour
 
         for (int i = 0; i < 20; i++)
         {
-            x -= 0.10f;
+            x -= 1f;
             _rb.MovePosition(new Vector3(x, y, 0f));
             yield return new WaitForSeconds(0.01f);
         }
