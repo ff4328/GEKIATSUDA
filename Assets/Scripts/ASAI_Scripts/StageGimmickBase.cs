@@ -1,9 +1,10 @@
+using Mirror;
 using UnityEngine;
 
 /// <summary>
 /// ステージギミックの基底
 /// </summary>
-public abstract class StageGimmickBase : MonoBehaviour
+public abstract class StageGimmickBase : NetworkBehaviour
 {
     [SerializeField]
     protected Collider collider = null;

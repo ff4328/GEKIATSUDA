@@ -384,6 +384,7 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+<<<<<<< HEAD
 --- !u!114 &456118753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +465,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+=======
+>>>>>>> 98c98e4618690dfbad84f8c27b4ca0cd13a19621
 --- !u!1001 &4860533066282064531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -572,4 +575,3 @@ SceneRoots:
   - {fileID: 456118751}
   - {fileID: 76338639}
   - {fileID: 4860533066282064531}
-  - {fileID: 1873743617}

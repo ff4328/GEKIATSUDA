@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2811793242695552203, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: sceneId
+      value: 31552327
+      objectReference: {fileID: 0}
     - target: {fileID: 3743060004581411164, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -395,6 +399,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 788298659011560162, guid: 6e042a32e9e280d46b652e2957b8249f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 788298659011560162, guid: 6e042a32e9e280d46b652e2957b8249f, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3982784833865569307, guid: 6e042a32e9e280d46b652e2957b8249f, type: 3}
       propertyPath: m_Name
       value: CanPassFloor

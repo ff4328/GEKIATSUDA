@@ -1,3 +1,4 @@
+using Mirror;
 using UnityEngine;
 
 public class MoveLeftRight : StageGimmickBase
@@ -16,21 +17,39 @@ public class MoveLeftRight : StageGimmickBase
 
     private void FixedUpdate()
     {
-        // 現在位置を保存
+        // 全端末で更新する
         prevPos = transform.position;
 
-        // 左右に移動
+        // Serverだけ床を動かす
+        if (isServer)
+        {
+            MoveGround();
+        }
+    }
+
+    [Server]
+    private void MoveGround()
+    {
         float x = Mathf.Sin(Time.time * speed) * moveWidth;
         transform.position = startPos + new Vector3(x, 0f, 0f);
     }
 
     public override void HitToCharacter(BaseCharacter hitCharacter)
     {
-        // このフレームで足場が移動した量
+        CharacterMove characterMove =
+            hitCharacter.GetComponent<CharacterMove>();
+
+        // このPCが操作しているPlayerだけ追従させる
+        if (characterMove == null || !characterMove.isLocalPlayer)
+            return;
+
         Vector3 moveDelta = transform.position - prevPos;
-        Debug.Log("aaa");
-        // キャラクターも同じだけ移動
+
         Rigidbody rb = hitCharacter.GetComponent<Rigidbody>();
-        rb.MovePosition(hitCharacter.transform.position + moveDelta);
+
+        if (rb != null)
+        {
+            rb.MovePosition(rb.position + moveDelta);
+        }
     }
 }

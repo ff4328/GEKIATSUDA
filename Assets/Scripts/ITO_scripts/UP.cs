@@ -1,3 +1,4 @@
+using Mirror;
 using UnityEngine;
 
 public class UP : StageGimmickBase
@@ -20,6 +21,15 @@ public class UP : StageGimmickBase
         // 現在位置を保存
         prevPos = transform.position;
 
+        if (isServer)
+        {
+            MoveLava();
+        }
+    }
+
+    [Server]
+    private void MoveLava()
+    {
         // 元の位置 → 上 → 元の位置を繰り返す
         float y = Mathf.PingPong(Time.time * speed, moveHeight);
 
@@ -28,11 +38,21 @@ public class UP : StageGimmickBase
 
     public override void HitToCharacter(BaseCharacter hitCharacter)
     {
-        // このフレームで足場が移動した量
-        Vector3 moveDelta = transform.position - prevPos;
-        Debug.Log("aaa");
-        // キャラクターも同じだけ移動
-        Rigidbody rb = hitCharacter.GetComponent<Rigidbody>();
-        rb.MovePosition(hitCharacter.transform.position + moveDelta);
+        CharacterMove characterMove =
+            hitCharacter.GetComponent<CharacterMove>();
+
+        if (characterMove == null || !characterMove.isLocalPlayer)
+            return;
+
+        Vector3 moveDelta =
+            transform.position - prevPos;
+
+        Rigidbody rb =
+            hitCharacter.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.MovePosition(rb.position + moveDelta);
+        }
     }
 }
