@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class SwordMan : BaseCharacter
+public class GunMan : BaseCharacter
 {
     public bool isStunned = false;
     public bool isKnockback = false;
@@ -11,7 +12,7 @@ public class SwordMan : BaseCharacter
     protected override void Start()
     {
         // ★職業ごとの最低値
-        baseAttack = 5;
+        baseAttack = 2;
         baseSpeed = 1;
         baseSize = 1;
 
