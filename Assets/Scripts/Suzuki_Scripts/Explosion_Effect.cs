@@ -68,6 +68,8 @@ public class Explosion_Effect
             Quaternion.identity
         );
 
+        explosionEnd.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
+
         UnityEngine.Object.Destroy(explosionEnd.gameObject, totalEndTime);
 
         explosionEnd.Play();
