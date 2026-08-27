@@ -36,7 +36,7 @@ public class TouchGround_Effect
         touchGuround.transform.SetParent(effect.chara.transform, false);
 
         // エフェクト微調整
-        touchGuround.transform.localPosition = new Vector3(0, -0.5f, 0);
+        //touchGuround.transform.localPosition = new Vector3(0, -0.5f, 0);
         touchGuround.transform.localScale = new Vector3(0.3f, 0.2f, 0.3f);
         ParticleSystem.MainModule main = touchGuround.main;
         main.simulationSpeed = 6.0f;
