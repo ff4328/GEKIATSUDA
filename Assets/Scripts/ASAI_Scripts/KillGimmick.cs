@@ -8,7 +8,6 @@ public class KillGimmick : DamageGimmickBase
 
     public override void HitToCharacter(BaseCharacter hitCharacter)
     {
-
         //当たったキャラクターを即死させる
         hitCharacter.Deads();
 

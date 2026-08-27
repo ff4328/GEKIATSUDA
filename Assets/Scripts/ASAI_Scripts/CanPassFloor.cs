@@ -90,6 +90,14 @@ public class CanPassFloor : StageGimmickBase
             AddIgnoreCollisionList(hitCharacter);
         }
 
+        Vector3 characterTop = hitCharacter.GetComponent<Collider>().bounds.max;
+        Vector3 myCenter = collider.bounds.center;
+        //自身の下方向から当たっていたら
+        if (characterTop.y <= myCenter.y)
+        {
+            AddIgnoreCollisionList(hitCharacter);
+        }
+
     }
 
 }
