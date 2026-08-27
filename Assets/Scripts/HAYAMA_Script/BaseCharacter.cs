@@ -169,20 +169,20 @@ public class BaseCharacter : MonoBehaviour
             barrier.enabled = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "StageGimmick")
         {
-            other.GetComponent<StageGimmickBase>().HitToCharacter(this);
+            other.gameObject.GetComponent<StageGimmickBase>().HitToCharacter(this);
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.tag == "StageGimmick")
         {
-            if (other.GetComponent<StageGimmickBase>().IsDamageGimmick()) return;
-            other.GetComponent<StageGimmickBase>().HitToCharacter(this);
+            if (other.gameObject.GetComponent<StageGimmickBase>().IsDamageGimmick()) return;
+            other.gameObject.GetComponent<StageGimmickBase>().HitToCharacter(this);
         }
     }
 
