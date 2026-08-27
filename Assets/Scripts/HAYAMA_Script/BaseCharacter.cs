@@ -77,7 +77,7 @@ public class BaseCharacter : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (characterMove.IsValidPowerAttack())
         {
             StartStrongAttack();
             data.SmashDead();
