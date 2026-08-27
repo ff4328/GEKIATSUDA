@@ -18,15 +18,10 @@ public class Bomb : MonoBehaviour
         // 攻撃判定
         if (other.gameObject.tag == "AttackArea")
         {
-             
+             effect.Explosion(transform.position);
 
             Destroy(gameObject);
         }
     }
 
-    private async Task BombEffct()
-    {
-        await effect.Explosion(transform.position);
-
-    }
 }
