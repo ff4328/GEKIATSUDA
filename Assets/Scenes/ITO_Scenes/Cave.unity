@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 2811793242695552203, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+      propertyPath: sceneId
+      value: 569969377
+      objectReference: {fileID: 0}
     - target: {fileID: 3743060004581411164, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.55398
