@@ -62,11 +62,9 @@ public class BaseCharacter : MonoBehaviour
     {
         Debug.Log(data.LaunchRate);
 
-        if (transform.position.x >= 200 || transform.position.x <= -200 || transform.position.y >= 100 || transform.position.y <= -100)
+        if (transform.position.x >= 280 || transform.position.x <= -280 || transform.position.y >= 140 || transform.position.y <= -140)
         {
-            data.Dead();
-            transform.position = Vector3.zero;
-            characterMove.VectorToZero();
+            Deads();
         }
 
         if (characterMove.IsValidAttack())
@@ -234,4 +232,10 @@ public class BaseCharacter : MonoBehaviour
         UpdateFinalStats();
     }
 
+    public void Deads()
+    {
+        data.Dead();
+        transform.position = Vector3.zero;
+        characterMove.VectorToZero();
+    }
 }

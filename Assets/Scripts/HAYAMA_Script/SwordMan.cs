@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwordMan : BaseCharacter
@@ -6,7 +7,12 @@ public class SwordMan : BaseCharacter
     public bool isKnockback = false;
 
     private Rigidbody rb;
-    [SerializeField] Vector3 attackOffset;
+
+    private void Awake()
+    {
+        attackOffset = new Vector3(1, 1, 0);
+        strongAttackOffset = new Vector3(1.5f, 1,0);
+    }
 
     protected override void Start()
     {
