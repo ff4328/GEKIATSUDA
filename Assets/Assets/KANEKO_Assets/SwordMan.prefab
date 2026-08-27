@@ -96,7 +96,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 40
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!114 &2321637121639523128
 MonoBehaviour:
@@ -110,13 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd572fa399a27e47bbf04098dfbf727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   _moveFlagForDebug: 0
   _guardSprite: {fileID: 5022661486072121639}
   moveSpeed: 0.1
   _isRepeatDash: 0
+  _isGuard: 0
+  _guardTime: 2
 --- !u!114 &2615868957149511591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +141,6 @@ MonoBehaviour:
   isInvincible: 0
   isStunned: 0
   isKnockback: 0
-  attackOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &6897977487780965837
 MonoBehaviour:
   m_ObjectHideFlags: 0

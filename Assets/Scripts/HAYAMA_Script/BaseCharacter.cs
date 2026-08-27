@@ -37,6 +37,9 @@ public class BaseCharacter : MonoBehaviour
              FindFirstObjectByType<EffectManager>();
 
         effect = new Hit_Effect(manager);
+
+
+
         //＝＝＝＝＝＝＝＝＝＝
 
         data = new CharaDataBase();
@@ -57,6 +60,9 @@ public class BaseCharacter : MonoBehaviour
         transform.localScale = Vector3.one * finalSize;
         data.SetSize(finalSize);
         finalStrongAttackPower = finalAttackPower * 2;
+
+
+        data.Start();
     }
     protected virtual void Update()
     {
@@ -77,7 +83,7 @@ public class BaseCharacter : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (characterMove.IsValidPowerAttack())
         {
             StartStrongAttack();
             data.SmashDead();

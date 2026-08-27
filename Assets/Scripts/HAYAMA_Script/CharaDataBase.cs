@@ -5,9 +5,10 @@ public class CharaDataBase
 {
 
     private Shotdown_Effect effect;
-
-    private void Start()
+    
+    public void Start()
     {
+    
         EffectManager manager =
             MonoBehaviour.FindFirstObjectByType<EffectManager>();
 
