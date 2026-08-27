@@ -7,10 +7,11 @@ public class FallFloor : StageGimmickBase
 {
     //移動方向
     private readonly Vector3 _MOVE_DIRECTION = new Vector3(0.0f, -1.0f, 0.0f);
-    //落下速度の加算量
-    private const float _ADDITIONAL_FALL_SPEED = 10.0f;
+    //落下速度の加算
+    [SerializeField]
+    private float _additionalFallSpeed = 20.0f;
     //落下の最大速度
-    private const float _MAX_FALL_SPEED = 20.0f;
+    private readonly float _MAX_FALL_SPEED = 5000;
     //落下速度
     private float _fallSpeed = 0;
 
@@ -77,7 +78,7 @@ public class FallFloor : StageGimmickBase
         {
 
             //落下速度を加算
-            _fallSpeed += _ADDITIONAL_FALL_SPEED * deltaTime;
+            _fallSpeed += _additionalFallSpeed * deltaTime;
             //落下速度の上限対策
             _fallSpeed = Mathf.Min(_fallSpeed, _MAX_FALL_SPEED);
 
