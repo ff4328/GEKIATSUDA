@@ -531,6 +531,9 @@ MonoBehaviour:
   _moveFlagForDebug: 0
   _guardSprite: {fileID: 3954882881298622983}
   moveSpeed: 0.1
+  _isRepeatDash: 0
+  _isGuard: 0
+  _guardTime: 2
 --- !u!114 &-306410116302647426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +633,8 @@ MonoBehaviour:
   baseSpeed: 1
   baseSize: 1
   finalStrongAttackPower: 0
+  attackOffset: {x: 0, y: 0, z: 0}
+  strongAttackOffset: {x: 0, y: 0, z: 0}
   characterMove: {fileID: 4495325914717533284}
   attackHitBox: {fileID: 4821378821035461706}
   barrier: {fileID: 3954882881298622983}
@@ -805,7 +810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9054518748988142691, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.651918
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9054518748988142691, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: m_LocalPosition.y
@@ -813,7 +818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9054518748988142691, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.010284
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9054518748988142691, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: m_LocalRotation.w
