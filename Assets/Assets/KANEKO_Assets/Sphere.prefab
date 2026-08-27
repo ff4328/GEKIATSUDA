@@ -15,6 +15,10 @@ GameObject:
   - component: {fileID: 132841527590142616}
   - component: {fileID: 3584263750959732939}
   - component: {fileID: 2217182854139090242}
+  - component: {fileID: 6628016798964846300}
+  - component: {fileID: -7061952061058699560}
+  - component: {fileID: -2306809088188007595}
+  - component: {fileID: -5659652322493506413}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Player
@@ -157,10 +161,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd572fa399a27e47bbf04098dfbf727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _moveFlagForDebug: 0
   _guardSprite: {fileID: 7625673885053001054}
   moveSpeed: 0.1
   _isRepeatDash: 0
+  _isGuard: 0
+  _guardTime: 2
 --- !u!114 &2217182854139090242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +195,88 @@ MonoBehaviour:
   isInvincible: 0
   isStunned: 0
   isKnockback: 0
-  attackOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &6628016798964846300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395440408720859938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror::Mirror.NetworkIdentity
+  sceneId: 0
+  _assetId: 3139978961
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
+--- !u!114 &-7061952061058699560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395440408720859938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror.Components::Mirror.NetworkTransformReliable
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 653772068239964458}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  useFixedUpdate: 0
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
+--- !u!114 &-2306809088188007595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395440408720859938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3899fccd911a3d844b9866be1f5daa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectPlayer
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+--- !u!114 &-5659652322493506413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395440408720859938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc79d89732f55f544a0867e64fa327a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConnectPlayerNumber
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  num: {fileID: 2960582587109859437, guid: e60bae8310d3d3a47b1ed676e11fb588, type: 3}
 --- !u!1 &4934037019783807512
 GameObject:
   m_ObjectHideFlags: 0
