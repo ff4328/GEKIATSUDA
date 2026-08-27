@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 
 public class RelayManager : MonoBehaviour
 {
-   [SerializeField] private int _maxPlayers = 2;
+   [SerializeField] private int _maxPlayers=7;
 
     public void HostSetup()
     {

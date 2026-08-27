@@ -14,7 +14,7 @@ public class HostStarter : MonoBehaviour
 
     public void StartHost()
     {
-        relay.StartRelayHost(2);
+        relay.StartRelayHost(7);
 
         cutting.SetActive(true);
         client.SetActive(false);

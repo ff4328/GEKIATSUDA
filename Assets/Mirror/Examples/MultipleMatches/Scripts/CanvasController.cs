@@ -369,7 +369,7 @@ namespace Mirror.Examples.MultipleMatch
             matchConnections.Add(newMatchId, new HashSet<NetworkConnectionToClient>());
             matchConnections[newMatchId].Add(conn);
             playerMatches.Add(conn, newMatchId);
-            openMatches.Add(newMatchId, new MatchInfo { matchId = newMatchId, maxPlayers = 2, players = 1 });
+            openMatches.Add(newMatchId, new MatchInfo { matchId = newMatchId, maxPlayers = 7, players = 1 });
 
             PlayerInfo playerInfo = playerInfos[conn];
             playerInfo.ready = false;
