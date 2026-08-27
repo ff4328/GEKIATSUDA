@@ -13,8 +13,8 @@ EditorBuildSettings:
     guid: 75bf9548fe51ff4439fe02e77fad3168
   - enabled: 0
     path: Assets/Scenes/TOKORO_Scene/Cave.unity
-    guid: 1ab42c04786514aa5a5cb0e45a9612c4
-  - enabled: 1
+    guid: 0f1b3ab87e75b4b46b2fadd1461baa91
+  - enabled: 0
     path: Assets/Scenes/ITO_Scenes/Cave.unity
     guid: 2f79d8d1c926cf9489d951cdf43b5b4b
   m_configObjects:

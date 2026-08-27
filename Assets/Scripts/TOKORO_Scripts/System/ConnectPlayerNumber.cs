@@ -63,4 +63,32 @@ public class ConnectPlayerNumber : NetworkBehaviour
 
         _spawned = true;
     }
+
+    [Server]
+    private void SetInitialPlayerUI()
+    {
+        BattleSpawnPoints spawnPoints =
+            FindFirstObjectByType<BattleSpawnPoints>();
+
+        if (spawnPoints == null)
+        {
+            Debug.LogWarning("BattleSpawnPointsがありません");
+            return;
+        }
+
+        Transform point = spawnPoints.GetSpawnPoint(_playerNumber);
+
+        if (point == null)
+        {
+            Debug.LogWarning($"{_playerNumber}PのSpawnPointがありません");
+            return;
+        }
+
+        transform.SetPositionAndRotation(
+            point.position,
+            point.rotation
+        );
+
+        _spawned = true;
+    }
 }

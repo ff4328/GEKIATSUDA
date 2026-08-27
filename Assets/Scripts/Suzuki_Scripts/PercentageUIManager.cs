@@ -1,8 +1,9 @@
 
+using Mirror;
 using TMPro;
 using UnityEngine;
 
-public class PercentageUIManager : MonoBehaviour
+public class PercentageUIManager : NetworkBehaviour
 {
 
     [SerializeField] TextMeshProUGUI textPrefab;   // ★HP表示用のプレハブ
@@ -28,6 +29,30 @@ public class PercentageUIManager : MonoBehaviour
             texts[i] = t;
         }
     }
+
+    [ClientRpc]
+    public void RpcSetInitialPlayerUI()
+    {
+        StartUI();
+    }
+
+    private void StartUI()
+    {
+        // ★シーン内の BaseCharacter を全部自動取得
+        characters = FindObjectsByType<BaseCharacter>(FindObjectsSortMode.None);
+
+        // ★キャラ数に応じて UI を自動生成
+        texts = new TextMeshProUGUI[characters.Length];
+
+        for (int i = 0; i < characters.Length; i++)
+        {
+            // Text を生成して Horizontal の子にする
+            var t = Instantiate(textPrefab, parent);
+            t.text = "0.0"; // 初期値
+            texts[i] = t;
+        }
+    }
+
     private void Update()
     {
         for (int i = 0; i < characters.Length; i++)

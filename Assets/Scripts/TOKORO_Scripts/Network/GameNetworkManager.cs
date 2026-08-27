@@ -155,6 +155,11 @@ public class GameNetworkManager : RelayNetworkManager
             );
         }
 
+        PercentageUIManager percentageUIMgr =
+    FindFirstObjectByType<PercentageUIManager>();
+
+        percentageUIMgr.RpcSetInitialPlayerUI();
+
         _battlePlayerData.Clear();
     }
 
