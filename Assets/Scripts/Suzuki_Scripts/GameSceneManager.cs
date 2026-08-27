@@ -19,13 +19,34 @@ public class GameSceneManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void GoTitle() { SceneManager.LoadScene("Scene_Title"); }
-    public void GoMaching() { SceneManager.LoadScene("所のなかのシーン"); }
-    public void GoBuild() { SceneManager.LoadScene("Scene_Build"); }
-    public void GoNormal() { SceneManager.LoadScene("Scene_Normal"); }
-    public void GoIsland() { SceneManager.LoadScene("Scene_Island"); }
-    public void GoCave() { SceneManager.LoadScene("Scene_Cave"); }
-    public void GoResult() { SceneManager.LoadScene("Scene_Result"); }
+    public void GoTitle() {
+        LoadingManager.nextScene = "Scene_Title" ; 
+        SceneManager.LoadScene("Scene_Loading");
+    }
+    public void GoMaching() {
+        LoadingManager.nextScene = "Scene_Maching";
+        SceneManager.LoadScene("Scene_Loading");
+    }
+    public void GoBuild() {
+        LoadingManager.nextScene = "Scene_Build";
+        SceneManager.LoadScene("Scene_Loading");
+    }
+    public void GoNormal() {
+        LoadingManager.nextScene = "Scene_Normal";
+        SceneManager.LoadScene("Scene_Loading");
+    }
+    public void GoIsland() {
+        LoadingManager.nextScene = "Scene_Island";
+        SceneManager.LoadScene("Scene_Loading");
+    }
+    public void GoCave() {
+        LoadingManager.nextScene = "Scene_Cave";
+        SceneManager.LoadScene("Scene_Loading");
+    }
+    public void GoResult() {
+        LoadingManager.nextScene = "Scene_Result";
+        SceneManager.LoadScene("Scene_Loading");
+    }
 
 
 }
