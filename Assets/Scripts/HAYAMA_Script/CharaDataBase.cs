@@ -1,7 +1,19 @@
 using UnityEngine;
+using System;
 
-public class CharaDataBase
+public class CharaDataBase 
 {
+
+    private Shotdown_Effect effect;
+
+    private void Start()
+    {
+        EffectManager manager =
+            MonoBehaviour.FindFirstObjectByType<EffectManager>();
+
+        effect = new Shotdown_Effect(manager);
+    }
+
     public float Percentage { get; private set; }
     public int Attack { get; private set; }
     public float Speed { get; set; }
@@ -10,6 +22,7 @@ public class CharaDataBase
     public float LaunchRate { get; private set; }
     public bool IsTakeDamage { get; private set; }
 
+   
     public void SetPercentage(float percentage)
     {
         Percentage = percentage;
@@ -70,6 +83,7 @@ public class CharaDataBase
         {
             LaunchRate += LaunchRate * LaunchRate;
             UpdateLaunchRate();
+            effect.Shotdown(effect.PlayerPos());
         }
     }
 }

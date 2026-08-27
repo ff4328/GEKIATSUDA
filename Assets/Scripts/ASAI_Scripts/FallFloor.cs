@@ -11,7 +11,7 @@ public class FallFloor : StageGimmickBase
     [SerializeField]
     private float _additionalFallSpeed = 20.0f;
     //落下の最大速度
-    private readonly float _MAX_FALL_SPEED = 50;
+    private readonly float _MAX_FALL_SPEED = 5000;
     //落下速度
     private float _fallSpeed = 0;
 
