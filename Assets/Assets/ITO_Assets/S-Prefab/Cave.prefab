@@ -976,6 +976,7 @@ GameObject:
   - component: {fileID: 7739136328472150275}
   - component: {fileID: 7469400005995253763}
   - component: {fileID: 2701735380437964322}
+  - component: {fileID: 3086607711014774172}
   m_Layer: 0
   m_Name: Cube
   m_TagString: StageGimmick
@@ -1091,6 +1092,40 @@ MonoBehaviour:
   collider: {fileID: 7469400005995253763}
   moveHeight: 15
   speed: 1
+--- !u!114 &3086607711014774172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338661399459221433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror.Components::Mirror.NetworkTransformReliable
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 7634164181435631604}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  useFixedUpdate: 0
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &2681668967460348131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,6 +2250,7 @@ GameObject:
   - component: {fileID: 8575135619841897643}
   - component: {fileID: 7419144754514239369}
   - component: {fileID: 3091574098191634549}
+  - component: {fileID: 1259900534236599950}
   m_Layer: 0
   m_Name: Cube
   m_TagString: StageGimmick
@@ -2330,6 +2366,40 @@ MonoBehaviour:
   collider: {fileID: 7419144754514239369}
   moveWidth: 30
   speed: 1
+--- !u!114 &1259900534236599950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823544010642833797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror.Components::Mirror.NetworkTransformReliable
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1090688468853497038}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  useFixedUpdate: 0
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &4830951570360183530
 GameObject:
   m_ObjectHideFlags: 0
@@ -4323,6 +4393,7 @@ GameObject:
   - component: {fileID: 3511833721673460532}
   - component: {fileID: 6078221229045703630}
   - component: {fileID: 6032796918949286301}
+  - component: {fileID: 3210616141766318248}
   m_Layer: 0
   m_Name: Cube
   m_TagString: StageGimmick
@@ -4438,6 +4509,40 @@ MonoBehaviour:
   collider: {fileID: 6078221229045703630}
   moveHeight: 15
   speed: 1
+--- !u!114 &3210616141766318248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7737573597258573395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror.Components::Mirror.NetworkTransformReliable
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 3975139895641169126}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  useFixedUpdate: 0
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &7877290671734717093
 GameObject:
   m_ObjectHideFlags: 0
