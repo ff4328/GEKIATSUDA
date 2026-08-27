@@ -18,6 +18,9 @@ public class GameNetworkManager : RelayNetworkManager
 
     [SerializeField] private List<GameObject> _characterPrefabs=new();
 
+
+
+
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         base.OnServerAddPlayer(conn);
@@ -94,7 +97,7 @@ public class GameNetworkManager : RelayNetworkManager
             });
         }
 
-        ServerChangeScene("Cave");
+        ServerChangeScene("Normal");
     }
 
     [Server]
@@ -167,7 +170,7 @@ public class GameNetworkManager : RelayNetworkManager
     {
         base.OnServerSceneChanged(sceneName);
 
-        if (sceneName == "Cave")
+        if (sceneName == "Normal")
         {
             SpawnBattlePlayers();
         }
