@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class MoveUpDown : StageGimmickBase
+public class UP : StageGimmickBase
 {
     [SerializeField] private float moveHeight = 2f;
     [SerializeField] private float speed = 2.0f;
-   
+
 
     private Vector3 prevPos;
     private Vector3 startPos;
@@ -20,8 +20,9 @@ public class MoveUpDown : StageGimmickBase
         // 現在位置を保存
         prevPos = transform.position;
 
-        // 左右に移動
-        float y = Mathf.Sin(Time.time * speed) * moveHeight;
+        // 元の位置 → 上 → 元の位置を繰り返す
+        float y = Mathf.PingPong(Time.time * speed, moveHeight);
+
         transform.position = startPos + new Vector3(0f, y, 0f);
     }
 
