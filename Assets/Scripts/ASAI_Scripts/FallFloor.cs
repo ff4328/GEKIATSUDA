@@ -62,7 +62,7 @@ public class FallFloor : StageGimmickBase
             _fallStayTimerSec += deltaTime;
 
             //待機時間終了でなければ処理しない
-            if (_fallStayTimerSec > _FALL_STAY_TIME_SEC_)
+            if (_fallStayTimerSec >= _FALL_STAY_TIME_SEC_)
             {
                 //状態を変更
                 _state = State.Fall;
@@ -86,7 +86,7 @@ public class FallFloor : StageGimmickBase
             _resurrectionTimer += deltaTime;
 
             //復活時間になったら
-            if (_resurrectionTimer > _RESURRECTION_TIME)
+            if (_resurrectionTimer >= _RESURRECTION_TIME)
             {
                 //状態を変更
                 _state = State.None;
@@ -109,7 +109,7 @@ public class FallFloor : StageGimmickBase
         //落下状態でなければ処理しない
         if (_state != State.Fall) return;
         //落下
-        transform.position += _MOVE_DIRECTION * Time.deltaTime * _fallSpeed;
+        transform.position += _MOVE_DIRECTION * Time.fixedDeltaTime * _fallSpeed;
     }
 
     public override void HitToCharacter(BaseCharacter hitCharacter)
