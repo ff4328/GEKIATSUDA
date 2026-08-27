@@ -57,6 +57,8 @@ public class BaseCharacter : MonoBehaviour
     }
     protected virtual void Update()
     {
+        Debug.Log(data.LaunchRate);
+
         if (transform.position.x >= 200 || transform.position.x <= -200 || transform.position.y >= 100 || transform.position.y <= -100)
         {
             data.Dead();
