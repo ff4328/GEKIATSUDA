@@ -24,4 +24,9 @@ public class CharacterAnimation : MonoBehaviour
     {
         
     }
+
+    private void SwordAttackAnim(bool isAttacked)
+    {
+
+    }
 }
