@@ -61,12 +61,8 @@ public class CanPassFloor : StageGimmickBase
 
     }
 
-    public override void HitToCharacter(BaseCharacter hitCharacter)
+    private void AddIgnoreCollisionList(BaseCharacter hitCharacter)
     {
-        if (hitCharacter == null || collider == null) return;
-        //もし移動方向が下ならコリジョンを無効にする
-        if (hitCharacter.characterMove.GetMoveValue().y >= 0) return;
-
         //無効にするコリジョンを取得
         Collider[] ignoreCollisionList = hitCharacter.characterMove.GetColliders();
         for (int i = 0; i < ignoreCollisionList.Length; i++)
@@ -81,6 +77,17 @@ public class CanPassFloor : StageGimmickBase
             IgnoreCollisionData newData = new IgnoreCollisionData(ignoreCollider);
             //無効にするコリジョンリストに追加
             _ignoreCollisionList.Add(newData);
+        }
+    }
+
+    public override void HitToCharacter(BaseCharacter hitCharacter)
+    {
+        if (hitCharacter == null || collider == null) return;
+        //もし移動方向が下ならコリジョンを無効にする
+        if (hitCharacter.characterMove.GetMoveValue().y < 0)
+        {
+            //無効なコリジョンのリストに登録
+            AddIgnoreCollisionList(hitCharacter);
         }
 
     }
