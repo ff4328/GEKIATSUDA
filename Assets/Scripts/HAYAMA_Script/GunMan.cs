@@ -7,8 +7,12 @@ public class GunMan : BaseCharacter
     public bool isKnockback = false;
 
     private Rigidbody rb;
-    [SerializeField] Vector3 attackOffset;
 
+    private void Awake()
+    {
+        attackOffset = new Vector3(1, 1, 0);
+        strongAttackOffset = new Vector3(2, 1, 0);
+    }
     protected override void Start()
     {
         // ★職業ごとの最低値
@@ -18,6 +22,7 @@ public class GunMan : BaseCharacter
 
         // ★BaseCharacter の初期化（data, characterMove）
         base.Start();
+
 
         // ★SwordMan 固有の初期化
         rb = GetComponent<Rigidbody>();

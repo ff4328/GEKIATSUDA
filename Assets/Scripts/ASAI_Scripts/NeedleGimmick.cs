@@ -26,9 +26,7 @@ public class NeedleGimmick : DamageGimmickBase
         Physics.ComputePenetration(hitCollider, hitCollider.transform.position, hitCollider.transform.rotation,
             collider, collider.transform.position, collider.transform.rotation, out direction, out distance);
 
-
-
-        hitCharacter.ApplyKnockback(damage, closestPoint);
+        hitCharacter.OnHit(damage, closestPoint);
 
     }
 

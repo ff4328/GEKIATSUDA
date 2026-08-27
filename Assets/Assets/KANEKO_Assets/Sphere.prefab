@@ -160,6 +160,7 @@ MonoBehaviour:
   _moveFlagForDebug: 0
   _guardSprite: {fileID: 7625673885053001054}
   moveSpeed: 0.1
+  _isRepeatDash: 0
 --- !u!114 &2217182854139090242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,12 +178,15 @@ MonoBehaviour:
   baseSpeed: 1
   baseSize: 1
   finalStrongAttackPower: 0
+  attackOffset: {x: 0, y: 0, z: 0}
+  strongAttackOffset: {x: 0, y: 0, z: 0}
   characterMove: {fileID: 3584263750959732939}
   attackHitBox: {fileID: 2820455016931473472}
-  barrier: {fileID: 0}
+  barrier: {fileID: 561852444091337340, guid: c73f6b741044c434ca633180b9b6063d, type: 3}
   isInvincible: 0
   isStunned: 0
   isKnockback: 0
+  attackOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &4934037019783807512
 GameObject:
   m_ObjectHideFlags: 0

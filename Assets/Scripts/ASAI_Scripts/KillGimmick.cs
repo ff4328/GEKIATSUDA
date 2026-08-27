@@ -10,7 +10,7 @@ public class KillGimmick : DamageGimmickBase
     {
 
         //当たったキャラクターを即死させる
-        hitCharacter.data.Dead();
+        hitCharacter.Deads();
 
     }
 

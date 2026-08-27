@@ -62,11 +62,9 @@ public class BaseCharacter : MonoBehaviour
     {
         Debug.Log(data.LaunchRate);
 
-        if (transform.position.x >= 200 || transform.position.x <= -200 || transform.position.y >= 100 || transform.position.y <= -100)
+        if (transform.position.x >= 280 || transform.position.x <= -280 || transform.position.y >= 140 || transform.position.y <= -140)
         {
-            data.Dead();
-            transform.position = Vector3.zero;
-            characterMove.VectorToZero();
+            Deads();
         }
 
         if (characterMove.IsValidAttack())
@@ -116,7 +114,7 @@ public class BaseCharacter : MonoBehaviour
 
     public virtual void OnHit(int enemyAttack, Vector3 attackerPos)
     {
-        if (isInvincible) return;
+        if (isInvincible || characterMove.GetIsGuard()) return;
         data.TakeDamage(enemyAttack);
         ApplyKnockback(enemyAttack, attackerPos);
         //鈴木
@@ -234,4 +232,10 @@ public class BaseCharacter : MonoBehaviour
         UpdateFinalStats();
     }
 
+    public void Deads()
+    {
+        data.Dead();
+        transform.position = Vector3.zero;
+        characterMove.VectorToZero();
+    }
 }

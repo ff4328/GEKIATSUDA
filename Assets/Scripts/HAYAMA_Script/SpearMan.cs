@@ -7,8 +7,12 @@ public class SpearMan : BaseCharacter
     public bool isKnockback = false;
 
     private Rigidbody rb;
-    [SerializeField] Vector3 attackOffset;
 
+    private void Awake()
+    {
+        attackOffset = new Vector3(1, 1, 0);
+        strongAttackOffset = new Vector3(3, 1, 0);
+    }
     protected override void Start()
     {
         // ★職業ごとの最低値

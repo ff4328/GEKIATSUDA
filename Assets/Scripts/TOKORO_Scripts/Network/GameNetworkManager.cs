@@ -100,6 +100,15 @@ public class GameNetworkManager : RelayNetworkManager
     [Server]
     private void SpawnBattlePlayers()
     {
+        BattleSpawnPoints spawnPoints =
+            FindFirstObjectByType<BattleSpawnPoints>();
+
+        if (spawnPoints == null)
+        {
+            Debug.LogError("BattleSpawnPointsが見つかりません");
+            return;
+        }
+
         foreach (BattlePlayerData data in _battlePlayerData)
         {
             if (data.connection == null)
@@ -115,8 +124,21 @@ public class GameNetworkManager : RelayNetworkManager
                 continue;
             }
 
-            GameObject newPlayer =
-                Instantiate(_characterPrefabs[data.characterID]);
+            Transform spawnPoint =
+                spawnPoints.GetSpawnPoint(data.playerNumber);
+
+            if (spawnPoint == null)
+            {
+                Debug.LogError(
+                    $"{data.playerNumber}P のSpawnPointがありません");
+                continue;
+            }
+
+            GameObject newPlayer = Instantiate(
+                _characterPrefabs[data.characterID],
+                spawnPoint.position,
+                spawnPoint.rotation
+            );
 
             ConnectPlayerNumber newPlayerNumber =
                 newPlayer.GetComponent<ConnectPlayerNumber>();

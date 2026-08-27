@@ -106,9 +106,13 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     private bool _isGuardInput;
 
+    [SerializeField]
+    private bool _isGuard;
+
     /// <summary>
     /// 防御時間
     /// </summary>
+    [SerializeField]
     private float _guardTime = GUARD_TIME;
 
     /// <summary>
@@ -126,6 +130,8 @@ public class CharacterMove : MonoBehaviour
     {
         // キャラクターデータ生成
         _characterData = new CharaDataBase();
+        //_baseCharacter = this.GetComponent<BaseCharacter>();
+        //if(_baseCharacter == null)_baseCharacter = new BaseCharacter();
 
         // アタッチしているオブジェクトからリジッドボディ取得
         // なければ付与
@@ -350,19 +356,26 @@ public class CharacterMove : MonoBehaviour
     {
         if (MoveFlagForDebug() || _isDodge) return;
 
-        if (IsValidGuard())
+        if (IsValidGuard() && _guardTime != 0f)
         {
-            //_moveValue = Vector2.zero;
+            _isGuard = true;
             _guardSprite.enabled = true;
             DecreaseGuardTime();
             Dodge();
         }
+        else if (IsValidGuard())
+        {
+            _isGuard = false;
+            Dodge();
+        }
         else if(!IsValidGuard() && _guardSprite.enabled)
         {
+            _isGuard = false;
             _guardSprite.enabled = false;
         }
-        else if(!IsValidGuard()) 
+        else if(!_isGuardInput && !_isDodge) 
         {
+            _isGuard = false;
             IncreaseGuardTime();
         }
     }
@@ -374,10 +387,34 @@ public class CharacterMove : MonoBehaviour
     private bool IsValidGuard()
     {
         bool flag;
-        if(_isGuardInput && _isGround && !_isDodge)flag = true;
+        if(_isGuardInput && _isGround && !_isDodge) flag = true;
         else flag = false;
         return flag;
     }
+
+    //private void GuardEnableProcess()
+    //{
+    //    Debug.Log("aaa : " + _baseCharacter.barrier.enabled);
+    //    if (_baseCharacter.barrier.enabled == false)
+    //    {
+
+    //    Debug.Log("bbb");
+    //    _baseCharacter.isInvincible = true;
+    //    }
+    //    Debug.Log("ccc");
+    //}
+
+    //private void GuardDisenableProcess()
+    //{
+    //    Debug.Log("ddd");
+    //    if (_baseCharacter.barrier.enabled == false)
+    //    {
+
+    //        Debug.Log("eee");
+    //    _baseCharacter.isInvincible = false;
+    //    }
+    //    Debug.Log("fff");
+    //}
 
     private void DecreaseGuardTime()
     {
@@ -395,7 +432,7 @@ public class CharacterMove : MonoBehaviour
     {
         if (_guardTime < GUARD_TIME)
         {
-            _guardTime += Time.deltaTime;
+            _guardTime += Time.deltaTime * 0.75f;
         }
         else
         {
@@ -447,6 +484,7 @@ public class CharacterMove : MonoBehaviour
     {
         if (!_actions[(int)PlayerAction.Move].IsPressed()) return;
 
+        _isGuard = false;
         _isDodge = true;
         _guardSprite.enabled = false;
 
@@ -479,7 +517,7 @@ public class CharacterMove : MonoBehaviour
 
         for (int i = 0; i < 20; i++)
         {
-            x += 0.10f;
+            x += 1f;
             _rb.MovePosition(new Vector3(x, y, 0f));
             yield return new WaitForSeconds(0.01f);
         }
@@ -497,7 +535,7 @@ public class CharacterMove : MonoBehaviour
 
         for (int i = 0; i < 20; i++)
         {
-            x -= 0.10f;
+            x -= 1f;
             _rb.MovePosition(new Vector3(x, y, 0f));
             yield return new WaitForSeconds(0.01f);
         }
@@ -534,6 +572,9 @@ public class CharacterMove : MonoBehaviour
         _rb.linearVelocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
     }
+
+    public bool GetIsGuard() { return _isGuard; }
+    
 }
 
 /// <summary>

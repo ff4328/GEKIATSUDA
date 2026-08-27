@@ -1875,7 +1875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99586bb0a254ba340b967e224c23d7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackHitBox
-  owner: {fileID: 2063778158}
   isPowerUp: 0
   character: {fileID: 2063778158}
   attackPower: 0
@@ -2273,6 +2272,8 @@ MonoBehaviour:
   baseSpeed: 1
   baseSize: 1
   finalStrongAttackPower: 0
+  attackOffset: {x: 0, y: 0, z: 0}
+  strongAttackOffset: {x: 0, y: 0, z: 0}
   characterMove: {fileID: 0}
   attackHitBox: {fileID: 0}
   barrier: {fileID: 0}
@@ -2729,7 +2730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99586bb0a254ba340b967e224c23d7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackHitBox
-  owner: {fileID: 0}
   isPowerUp: 0
   character: {fileID: 0}
   attackPower: 0
@@ -3135,6 +3135,8 @@ MonoBehaviour:
   baseSpeed: 1
   baseSize: 1
   finalStrongAttackPower: 0
+  attackOffset: {x: 0, y: 0, z: 0}
+  strongAttackOffset: {x: 0, y: 0, z: 0}
   characterMove: {fileID: 2063778157}
   attackHitBox: {fileID: 1264297325}
   barrier: {fileID: 0}
