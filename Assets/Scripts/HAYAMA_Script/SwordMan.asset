@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc86f9b1e6d9cf9478f4d809c6901b97, type: 3}
   m_Name: SwordMan
   m_EditorClassIdentifier: Assembly-CSharp::RankParameter
-  attackRank: 1
+  attackRank: 5
   speedRank: 5
   sizeRank: 5
