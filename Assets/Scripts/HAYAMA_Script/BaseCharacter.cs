@@ -114,7 +114,7 @@ public class BaseCharacter : MonoBehaviour
 
     public virtual void OnHit(int enemyAttack, Vector3 attackerPos)
     {
-        if (isInvincible) return;
+        if (isInvincible || characterMove.GetIsGuard()) return;
         data.TakeDamage(enemyAttack);
         ApplyKnockback(enemyAttack, attackerPos);
         //鈴木

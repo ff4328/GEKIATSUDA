@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterMove : MonoBehaviour
+public class CharacterMove : NetworkBehaviour
 {
     /// <summary>
     /// ジャンプ力の定数
@@ -106,9 +107,14 @@ public class CharacterMove : MonoBehaviour
     /// </summary>
     private bool _isGuardInput;
 
+    [SerializeField]
+    [SyncVar(hook = nameof(OnGuardChanged))]
+    private bool _isGuard;
+
     /// <summary>
     /// 防御時間
     /// </summary>
+    [SerializeField]
     private float _guardTime = GUARD_TIME;
 
     /// <summary>
@@ -126,6 +132,8 @@ public class CharacterMove : MonoBehaviour
     {
         // キャラクターデータ生成
         _characterData = new CharaDataBase();
+        //_baseCharacter = this.GetComponent<BaseCharacter>();
+        //if(_baseCharacter == null)_baseCharacter = new BaseCharacter();
 
         // アタッチしているオブジェクトからリジッドボディ取得
         // なければ付与
@@ -161,6 +169,8 @@ public class CharacterMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer) return;
+
         // アクション状況の更新
         _moveValue = _actions[(int)PlayerAction.Move].ReadValue<Vector2>();
         _isJumpInput = _actions[(int)PlayerAction.Jump].WasPressedThisFrame();
@@ -179,6 +189,8 @@ public class CharacterMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isLocalPlayer) return;
+        
         // 実際の移動処理
         Move(_moveValue);
     }
@@ -343,6 +355,16 @@ public class CharacterMove : MonoBehaviour
         return flag;
     }
 
+    [Command]
+    private void CmdSetGuard(bool flag)
+    {
+        _isGuard = flag;
+    }
+
+    private void OnGuardChanged(bool prevFlag, bool currentFlag)
+    {
+        _guardSprite.enabled = currentFlag;
+    }
     /// <summary>
     /// 防御アクション
     /// </summary>
@@ -350,19 +372,26 @@ public class CharacterMove : MonoBehaviour
     {
         if (MoveFlagForDebug() || _isDodge) return;
 
-        if (IsValidGuard())
+        if (IsValidGuard() && _guardTime != 0f)
         {
-            //_moveValue = Vector2.zero;
+            CmdSetGuard(true);
             _guardSprite.enabled = true;
             DecreaseGuardTime();
             Dodge();
         }
+        else if (IsValidGuard())
+        {
+            CmdSetGuard(false);
+            Dodge();
+        }
         else if(!IsValidGuard() && _guardSprite.enabled)
         {
+            CmdSetGuard(false);
             _guardSprite.enabled = false;
         }
-        else if(!IsValidGuard()) 
+        else if(!_isGuardInput && !_isDodge) 
         {
+            CmdSetGuard(false);
             IncreaseGuardTime();
         }
     }
@@ -374,10 +403,34 @@ public class CharacterMove : MonoBehaviour
     private bool IsValidGuard()
     {
         bool flag;
-        if(_isGuardInput && _isGround && !_isDodge)flag = true;
+        if(_isGuardInput && _isGround && !_isDodge) flag = true;
         else flag = false;
         return flag;
     }
+
+    //private void GuardEnableProcess()
+    //{
+    //    Debug.Log("aaa : " + _baseCharacter.barrier.enabled);
+    //    if (_baseCharacter.barrier.enabled == false)
+    //    {
+
+    //    Debug.Log("bbb");
+    //    _baseCharacter.isInvincible = true;
+    //    }
+    //    Debug.Log("ccc");
+    //}
+
+    //private void GuardDisenableProcess()
+    //{
+    //    Debug.Log("ddd");
+    //    if (_baseCharacter.barrier.enabled == false)
+    //    {
+
+    //        Debug.Log("eee");
+    //    _baseCharacter.isInvincible = false;
+    //    }
+    //    Debug.Log("fff");
+    //}
 
     private void DecreaseGuardTime()
     {
@@ -395,7 +448,7 @@ public class CharacterMove : MonoBehaviour
     {
         if (_guardTime < GUARD_TIME)
         {
-            _guardTime += Time.deltaTime;
+            _guardTime += Time.deltaTime * 0.75f;
         }
         else
         {
@@ -447,6 +500,7 @@ public class CharacterMove : MonoBehaviour
     {
         if (!_actions[(int)PlayerAction.Move].IsPressed()) return;
 
+        CmdSetGuard(false);
         _isDodge = true;
         _guardSprite.enabled = false;
 
@@ -479,7 +533,7 @@ public class CharacterMove : MonoBehaviour
 
         for (int i = 0; i < 20; i++)
         {
-            x += 0.10f;
+            x += 1f;
             _rb.MovePosition(new Vector3(x, y, 0f));
             yield return new WaitForSeconds(0.01f);
         }
@@ -497,7 +551,7 @@ public class CharacterMove : MonoBehaviour
 
         for (int i = 0; i < 20; i++)
         {
-            x -= 0.10f;
+            x -= 1f;
             _rb.MovePosition(new Vector3(x, y, 0f));
             yield return new WaitForSeconds(0.01f);
         }
@@ -534,6 +588,9 @@ public class CharacterMove : MonoBehaviour
         _rb.linearVelocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
     }
+
+    public bool GetIsGuard() { return _isGuard; }
+    
 }
 
 /// <summary>
