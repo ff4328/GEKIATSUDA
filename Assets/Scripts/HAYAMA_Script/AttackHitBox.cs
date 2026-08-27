@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AttackHitBox : MonoBehaviour
 {
-    public SwordMan owner;
     private Collider col;
     public bool isPowerUp = false;
     public BaseCharacter character;

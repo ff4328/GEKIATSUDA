@@ -27,9 +27,9 @@ Transform:
   m_GameObject: {fileID: 646742677374776312}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.016, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0.07, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8665060380185261567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,7 +52,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.05, z: 0.25}
+  m_Size: {x: 0.6, y: 0.2, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3114484419263722974
 MonoBehaviour:
@@ -171,11 +171,11 @@ GameObject:
   - component: {fileID: 314523966579916709}
   - component: {fileID: -1801337342860348660}
   - component: {fileID: -7222537417663555864}
-  - component: {fileID: 1292923867081294183}
   - component: {fileID: -3006105180928890164}
   - component: {fileID: 2636907909991867255}
   - component: {fileID: -9105537952638194825}
   - component: {fileID: -5950679798268849050}
+  - component: {fileID: 5933799511268612400}
   m_Layer: 0
   m_Name: SpearMan
   m_TagString: Untagged
@@ -273,29 +273,6 @@ MonoBehaviour:
   _moveFlagForDebug: 0
   _guardSprite: {fileID: 8390775008804883956}
   moveSpeed: 0.1
---- !u!114 &1292923867081294183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2848750835474259134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01766200d7d936a438928d60bc714c94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SwordMan
-  rank: {fileID: 11400000, guid: efdb008f8316e164cb2146ac6d0a69ad, type: 2}
-  baseAttack: 3
-  baseSpeed: 1
-  baseSize: 1
-  finalStrongAttackPower: 0
-  characterMove: {fileID: -7222537417663555864}
-  attackHitBox: {fileID: 2152369312253487139}
-  barrier: {fileID: 8390775008804883956}
-  isInvincible: 0
-  isStunned: 0
-  isKnockback: 0
 --- !u!114 &-3006105180928890164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +355,29 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   num: {fileID: 9026447089126655058}
+--- !u!114 &5933799511268612400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848750835474259134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a668fabc812f924c95559f70334e9b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpearMan
+  rank: {fileID: 11400000, guid: 7246b764166cf1a4397b6e0654a780e3, type: 2}
+  baseAttack: 3
+  baseSpeed: 1
+  baseSize: 1
+  finalStrongAttackPower: 0
+  characterMove: {fileID: -7222537417663555864}
+  attackHitBox: {fileID: 2152369312253487139}
+  barrier: {fileID: 8390775008804883956}
+  isInvincible: 0
+  isStunned: 0
+  isKnockback: 0
 --- !u!1 &5289889983129494240
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,13 +957,9 @@ PrefabInstance:
       value: AttackArea
       objectReference: {fileID: 0}
     - target: {fileID: 5262662760688096291, guid: b7d65eb18e637f743967c384827544f0, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 1292923867081294183}
-    - target: {fileID: 5262662760688096291, guid: b7d65eb18e637f743967c384827544f0, type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1292923867081294183}
+      objectReference: {fileID: 5933799511268612400}
     - target: {fileID: 9139975197972547039, guid: b7d65eb18e637f743967c384827544f0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
