@@ -43,6 +43,8 @@ public class EffectManager : MonoBehaviour
     {
      
         EffectPos = chara.GetPos();
+
+        Debug.Log(PlayerEffectPos());
     }
 
     public Vector3 PlayerEffectPos()

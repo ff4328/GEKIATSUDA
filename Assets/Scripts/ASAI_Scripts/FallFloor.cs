@@ -117,6 +117,12 @@ public class FallFloor : StageGimmickBase
         //落下していない状態でなければ
         if (_state != State.None) return;
 
+        Collider col = hitCharacter.GetComponent<Collider>();
+        Vector3 characterMin = hitCharacter.GetComponent<Collider>().bounds.min;
+        Vector3 myCenter = collider.bounds.center;
+
+        if (characterMin.y <= myCenter.y) return;
+
         //落下待機状態に変更
         _state = State.StayFall;
 
