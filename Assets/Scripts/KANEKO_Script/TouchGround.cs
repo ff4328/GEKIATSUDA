@@ -65,6 +65,10 @@ public class TouchGround : MonoBehaviour
 
     public Collider GetFootStepCollider() => this.gameObject.GetComponent<Collider>();
 
-    public Vector3 GetFootStepPos()=> this.transform.position;
+    public Vector3 GetFootStepPos()
+    {
+        Transform transform = this.gameObject.GetComponentInParent<Transform>();
+        return transform.position;
+    }
     
 }
