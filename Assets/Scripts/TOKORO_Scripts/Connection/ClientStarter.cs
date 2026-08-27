@@ -13,6 +13,12 @@ public class ClientStarter : MonoBehaviour
 
     public void StartClient()
     {
+        if (inputField.text == "")
+        {
+            Debug.Log("Join code must be 6 characters long.");
+            return;
+        }
+
         relay.relayJoinCode = inputField.text;
 
         relay.JoinRelayServer();

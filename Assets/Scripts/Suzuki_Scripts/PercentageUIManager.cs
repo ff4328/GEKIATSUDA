@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
+
 using TMPro;
-using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 public class PercentageUIManager : MonoBehaviour
