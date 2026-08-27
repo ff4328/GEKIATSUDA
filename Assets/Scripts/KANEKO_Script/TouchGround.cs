@@ -17,12 +17,18 @@ public class TouchGround : MonoBehaviour
     private void Awake()
     {
         EffectManager manager =
-              FindFirstObjectByType<EffectManager>();
+              GetComponentInParent<EffectManager>();
 
+        if (manager == null)
+        {
+            Debug.LogError(
+                $"{name}: 親にEffectManagerがありません",
+                this
+            );
+            return;
+        }
+    
         effect = new TouchGround_Effect(manager);
-
-
-
     }
 
     /// <summary>
@@ -37,6 +43,12 @@ public class TouchGround : MonoBehaviour
         {
             isGround = true;
             isDoubleJump = true;
+            if (effect == null)
+            {
+                Debug.LogWarning($"{name}: TouchGround_Effect がありません");
+                return;
+            }
+
             effect.TouchGround(effect.PlayerPos());
         }
         if (other.gameObject.tag == "StageGimmick")

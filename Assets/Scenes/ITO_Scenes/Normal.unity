@@ -882,6 +882,10 @@ PrefabInstance:
       propertyPath: textPrefab
       value: 
       objectReference: {fileID: 5431009052962854814, guid: e69e175d31dd15b43ac30d3781372cb8, type: 3}
+    - target: {fileID: 4972488089600623268, guid: 32ecc0a0fc76b2245b8b5f49d0d4d55c, type: 3}
+      propertyPath: sceneId
+      value: 3478706847
+      objectReference: {fileID: 0}
     - target: {fileID: 8623357536168194819, guid: 32ecc0a0fc76b2245b8b5f49d0d4d55c, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -889,33 +893,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8623357536168194819, guid: 32ecc0a0fc76b2245b8b5f49d0d4d55c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1623373102}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ecc0a0fc76b2245b8b5f49d0d4d55c, type: 3}
---- !u!1 &1623373101 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8623357536168194819, guid: 32ecc0a0fc76b2245b8b5f49d0d4d55c, type: 3}
-  m_PrefabInstance: {fileID: 1623373100}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1623373102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623373101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Mirror::Mirror.NetworkIdentity
-  sceneId: 3478706847
-  _assetId: 2504155997
-  serverOnly: 0
-  visibility: 0
-  hasSpawned: 0
 --- !u!1001 &1873743617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -987,6 +966,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6610903867615609929, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
+    - {fileID: 4612161988684751157, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e03f2a1b11d2841b439341ba14697f, type: 3}

@@ -374,7 +374,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 9172519141529614129}
+  m_Father: {fileID: 7627411901926628906}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2301051466541626815
 BoxCollider:
@@ -450,7 +450,6 @@ Transform:
   m_Children:
   - {fileID: 5365358736355748648}
   - {fileID: 8937728818300038893}
-  - {fileID: 1143809539369808025}
   - {fileID: 8446490791183670710}
   - {fileID: 1683645050412504453}
   - {fileID: 2011304933664723942}
@@ -528,6 +527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd572fa399a27e47bbf04098dfbf727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _moveFlagForDebug: 0
   _guardSprite: {fileID: 3954882881298622983}
   moveSpeed: 0.1
@@ -850,7 +852,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9054518748988142691, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1143809539369808025}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
 --- !u!4 &7627411901926628906 stripped

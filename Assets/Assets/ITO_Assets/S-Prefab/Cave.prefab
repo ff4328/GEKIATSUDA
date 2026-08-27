@@ -2433,6 +2433,7 @@ GameObject:
   - component: {fileID: 7469400005995253763}
   - component: {fileID: 2701735380437964322}
   - component: {fileID: 3086607711014774172}
+  - component: {fileID: 3015194938246682977}
   m_Layer: 0
   m_Name: Cube
   m_TagString: StageGimmick
@@ -2582,6 +2583,23 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &3015194938246682977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338661399459221433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror::Mirror.NetworkIdentity
+  sceneId: 0
+  _assetId: 1039991836
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &2398896858471546846
 GameObject:
   m_ObjectHideFlags: 0
@@ -5508,6 +5526,7 @@ GameObject:
   - component: {fileID: 7419144754514239369}
   - component: {fileID: 3091574098191634549}
   - component: {fileID: 1259900534236599950}
+  - component: {fileID: 8545160495285025104}
   m_Layer: 0
   m_Name: Cube
   m_TagString: StageGimmick
@@ -5657,6 +5676,23 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &8545160495285025104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823544010642833797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror::Mirror.NetworkIdentity
+  sceneId: 0
+  _assetId: 1039991836
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &4830951570360183530
 GameObject:
   m_ObjectHideFlags: 0
@@ -9315,6 +9351,7 @@ GameObject:
   - component: {fileID: 6078221229045703630}
   - component: {fileID: 6032796918949286301}
   - component: {fileID: 3210616141766318248}
+  - component: {fileID: 6773717290276436116}
   m_Layer: 0
   m_Name: Cube
   m_TagString: StageGimmick
@@ -9464,6 +9501,23 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &6773717290276436116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7737573597258573395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Mirror::Mirror.NetworkIdentity
+  sceneId: 0
+  _assetId: 1039991836
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &7793376088884707319
 GameObject:
   m_ObjectHideFlags: 0

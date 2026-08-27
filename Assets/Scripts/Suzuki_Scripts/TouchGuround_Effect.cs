@@ -16,6 +16,12 @@ public class TouchGround_Effect
 
     public Vector3 PlayerPos()
     {
+        if (effect == null)
+        {
+            Debug.LogError("TouchGround_Effect: EffectManager が null");
+            return Vector3.zero;
+        }
+
         vec = effect.PlayerEffectPos();
         return vec;
     }

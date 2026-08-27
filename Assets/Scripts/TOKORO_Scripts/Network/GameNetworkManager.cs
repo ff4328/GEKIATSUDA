@@ -14,9 +14,9 @@ public class GameNetworkManager : RelayNetworkManager
 
     private readonly List<BattlePlayerData> _battlePlayerData = new();
 
-    private readonly List<ConnectPlayerNumber> players = new();
+    private readonly List<NetworkConnectionToClient> players = new();
 
-    [SerializeField] private List<GameObject> _characterPrefabs=new();
+    [SerializeField] private List<GameObject> _characterPrefabs = new();
 
 
 
@@ -25,24 +25,31 @@ public class GameNetworkManager : RelayNetworkManager
     {
         base.OnServerAddPlayer(conn);
 
-        ConnectPlayerNumber player =
-            conn.identity.GetComponent<ConnectPlayerNumber>();
-
-        if (player != null && !players.Contains(player))
+        if (!players.Contains(conn))
         {
-            players.Add(player);
-            ReassignPlayerNumbers();
+            players.Add(conn);
         }
-    }
-    private void ReassignPlayerNumbers()
-    {
-        Debug.Log($"番号振り直し players.Count = {players.Count}");
-        players.RemoveAll(player => player == null);
 
+        ApplyPlayerNumbers();
+    }
+
+    [Server]
+    private void ApplyPlayerNumbers()
+    {
         for (int i = 0; i < players.Count; i++)
         {
-            Debug.Log($"{players[i].name} → {i + 1}P");
-            players[i].SetPlayerNumber(i + 1);
+            NetworkConnectionToClient conn = players[i];
+
+            if (conn == null || conn.identity == null)
+                continue;
+
+            ConnectPlayerNumber playerNumber =
+                conn.identity.GetComponent<ConnectPlayerNumber>();
+
+            if (playerNumber != null)
+            {
+                playerNumber.SetPlayerNumber(i + 1);
+            }
         }
     }
 
@@ -56,15 +63,22 @@ public class GameNetworkManager : RelayNetworkManager
     [Server]
     public void CheckAllReady()
     {
-        players.RemoveAll(player => player == null);
+        players.RemoveAll(conn => conn == null);
 
         if (players.Count == 0)
             return;
 
-        foreach (ConnectPlayerNumber player in players)
+        // 全員Readyか確認
+        foreach (NetworkConnectionToClient conn in players)
         {
+            if (conn.identity == null)
+                return;
+
             CharacterSelectPlayer selectPlayer =
-                player.GetComponent<CharacterSelectPlayer>();
+                conn.identity.GetComponent<CharacterSelectPlayer>();
+
+            ConnectPlayerNumber playerNumber =
+                conn.identity.GetComponent<ConnectPlayerNumber>();
 
             if (selectPlayer == null)
             {
@@ -74,25 +88,36 @@ public class GameNetworkManager : RelayNetworkManager
 
             if (!selectPlayer.IsReady)
             {
-                Debug.Log($"{player.PlayerNumber}P はまだReadyしていません");
+                Debug.Log(
+                    $"{playerNumber.PlayerNumber}P はまだReadyしていません"
+                );
                 return;
             }
         }
 
         Debug.Log("全員Ready！");
 
-        // ★ シーン変更前にデータを保存
+        // 戦闘シーンへ持っていく情報を保存
         _battlePlayerData.Clear();
 
-        foreach (ConnectPlayerNumber player in players)
+        foreach (NetworkConnectionToClient conn in players)
         {
+            if (conn.identity == null)
+                continue;
+
+            ConnectPlayerNumber playerNumber =
+                conn.identity.GetComponent<ConnectPlayerNumber>();
+
             CharacterSelectPlayer select =
-                player.GetComponent<CharacterSelectPlayer>();
+                conn.identity.GetComponent<CharacterSelectPlayer>();
+
+            if (playerNumber == null || select == null)
+                continue;
 
             _battlePlayerData.Add(new BattlePlayerData
             {
-                connection = player.connectionToClient,
-                playerNumber = player.PlayerNumber,
+                connection = conn,
+                playerNumber = playerNumber.PlayerNumber,
                 characterID = select.CharacterID
             });
         }
@@ -174,5 +199,14 @@ public class GameNetworkManager : RelayNetworkManager
         {
             SpawnBattlePlayers();
         }
+    }
+
+    public override void OnServerDisconnect(NetworkConnectionToClient conn)
+    {
+        players.Remove(conn);
+
+        base.OnServerDisconnect(conn);
+
+        ApplyPlayerNumbers();
     }
 }

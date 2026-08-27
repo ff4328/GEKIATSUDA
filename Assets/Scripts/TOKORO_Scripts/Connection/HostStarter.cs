@@ -10,6 +10,7 @@ public class HostStarter : MonoBehaviour
     [SerializeField] private GameObject client;
     [SerializeField] private GameObject cutting;
     [SerializeField] private GameObject host;
+     [SerializeField] private GameObject start;
     [SerializeField] private GameObject input;
 
     public void StartHost()
@@ -20,6 +21,7 @@ public class HostStarter : MonoBehaviour
         client.SetActive(false);
         host.SetActive(false);
         input.SetActive(false);
+        start.SetActive(true);
     }
 
     private void FixedUpdate()

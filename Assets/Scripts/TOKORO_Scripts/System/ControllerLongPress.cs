@@ -9,7 +9,7 @@ public class ControllerLongPress : MonoBehaviour
 
     [SerializeField] private float longPressTime = 2.0f;
     [SerializeField] private DisconnectButton disconnect;
-    [SerializeField] private Image _coolTimeImage;
+    [SerializeField] private Image[] _coolTimeImage;
 
     private void Update()
     {
@@ -21,13 +21,13 @@ public class ControllerLongPress : MonoBehaviour
         {
             pressTime += Time.deltaTime;
 
-            _coolTimeImage.fillAmount = pressTime / 1;
+            _coolTimeImage[1].fillAmount = pressTime / 1;
 
             if (pressTime >= longPressTime && !longPressed)
             {
                 longPressed = true;
 
-                _coolTimeImage.fillAmount = 0;
+                _coolTimeImage[1].fillAmount = 0;
 
                 GetComponent<LobbyUI>().StartCharacterSelect();
 
@@ -38,13 +38,13 @@ public class ControllerLongPress : MonoBehaviour
         {
             pressTime += Time.deltaTime;
 
-            _coolTimeImage.fillAmount = pressTime / 1;
+            _coolTimeImage[0].fillAmount = pressTime / 1;
 
             if (pressTime >= longPressTime && !longPressed)
             {
                 longPressed = true;
 
-                _coolTimeImage.fillAmount = 0;
+                _coolTimeImage[0].fillAmount = 0;
 
                 disconnect.Disconnect();
 
@@ -55,7 +55,8 @@ public class ControllerLongPress : MonoBehaviour
         {
             pressTime = 0f;
             longPressed = false;
-            _coolTimeImage.fillAmount = 0;
+            _coolTimeImage[0].fillAmount = 0;
+            _coolTimeImage[1].fillAmount = 0;
         }
     }
 }

@@ -3,7 +3,7 @@ using Mirror;
 using TMPro;
 using UnityEngine;
 
-public class PercentageUIManager : NetworkBehaviour
+public class PercentageUIManager : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI textPrefab;   // ★HP表示用のプレハブ
@@ -13,24 +13,25 @@ public class PercentageUIManager : NetworkBehaviour
     TextMeshProUGUI[] texts;
 
 
-    private void Start()
-    {
-        // ★シーン内の BaseCharacter を全部自動取得
-        characters = FindObjectsByType<BaseCharacter>(FindObjectsSortMode.None);
+    // private void Start()
+    // {
+    //     // ★シーン内の BaseCharacter を全部自動取得
+    //     characters = FindObjectsByType<BaseCharacter>(FindObjectsSortMode.None);
 
-        // ★キャラ数に応じて UI を自動生成
-        texts = new TextMeshProUGUI[characters.Length];
+    //     // ★キャラ数に応じて UI を自動生成
+    //     texts = new TextMeshProUGUI[characters.Length];
 
-        for (int i = 0; i < characters.Length; i++)
-        {
-            // Text を生成して Horizontal の子にする
-            var t = Instantiate(textPrefab, parent);
-            t.text = "0.0"; // 初期値
-            texts[i] = t;
-        }
-    }
+    //     for (int i = 0; i < characters.Length; i++)
+    //     {
+    //         // Text を生成して Horizontal の子にする
+    //         var t = Instantiate(textPrefab, parent);
+    //         t.text = "0.0"; // 初期値
+    //         texts[i] = t;
+    //     }
 
-    [ClientRpc]
+        
+    // }
+
     public void RpcSetInitialPlayerUI()
     {
         StartUI();
@@ -38,25 +39,54 @@ public class PercentageUIManager : NetworkBehaviour
 
     private void StartUI()
     {
-        // ★シーン内の BaseCharacter を全部自動取得
-        characters = FindObjectsByType<BaseCharacter>(FindObjectsSortMode.None);
+        // BattlePlayerを取得
+        characters = FindObjectsByType<BaseCharacter>(
+            FindObjectsSortMode.None
+        );
 
-        // ★キャラ数に応じて UI を自動生成
+        // P番号順に並べる
+        System.Array.Sort(characters, (a, b) =>
+        {
+            var aNumber = a.GetComponent<ConnectPlayerNumber>();
+            var bNumber = b.GetComponent<ConnectPlayerNumber>();
+
+            return aNumber.PlayerNumber.CompareTo(bNumber.PlayerNumber);
+        });
+
+        // Text配列を作る
         texts = new TextMeshProUGUI[characters.Length];
 
+        // 各Player用UIを生成
         for (int i = 0; i < characters.Length; i++)
         {
-            // Text を生成して Horizontal の子にする
             var t = Instantiate(textPrefab, parent);
-            t.text = "0.0"; // 初期値
+
+            t.text = "0.0";
+
             texts[i] = t;
         }
     }
-
     private void Update()
     {
+        if (characters == null || texts == null)
+            return;
+
         for (int i = 0; i < characters.Length; i++)
         {
+            if (characters[i] == null)
+                continue;
+
+            if (characters[i].data == null)
+            {
+                Debug.LogWarning(
+                    $"{characters[i].name} の data がまだnullです"
+                );
+                continue;
+            }
+
+            if (i >= texts.Length || texts[i] == null)
+                continue;
+
             float p = characters[i].data.Percentage;
 
             // HP表示
