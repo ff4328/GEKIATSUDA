@@ -3,10 +3,11 @@ using Mirror;
 using TMPro;
 using UnityEngine;
 
-public class PercentageUIManager : MonoBehaviour
+public class PercentageUIManager : NetworkBehaviour
 {
 
     [SerializeField] TextMeshProUGUI textPrefab;   // ★HP表示用のプレハブ
+
     [SerializeField] Transform parent;             // ★Horizontal Layout Group の親
 
     BaseCharacter[] characters;
@@ -29,43 +30,60 @@ public class PercentageUIManager : MonoBehaviour
     //         texts[i] = t;
     //     }
 
-        
+
     // }
 
-    public void RpcSetInitialPlayerUI()
-    {
-        StartUI();
-    }
+public void RefreshUI()
+{
+    StartUI();
+}
+
+    [ClientRpc]
+public void RpcSetInitialPlayerUI()
+{
+    Debug.Log("⑤ ClientRpc 到着");
+    StartUI();
+}
 
     private void StartUI()
     {
-        // BattlePlayerを取得
+        if (texts != null)
+        {
+            foreach (var text in texts)
+            {
+                if (text != null)
+                {
+                    Destroy(text.gameObject);
+                }
+            }
+        }
+
         characters = FindObjectsByType<BaseCharacter>(
             FindObjectsSortMode.None
         );
 
-        // P番号順に並べる
+        Debug.Log($"UI更新 Character数 = {characters.Length}");
+
         System.Array.Sort(characters, (a, b) =>
         {
             var aNumber = a.GetComponent<ConnectPlayerNumber>();
             var bNumber = b.GetComponent<ConnectPlayerNumber>();
 
-            return aNumber.PlayerNumber.CompareTo(bNumber.PlayerNumber);
+            return aNumber.PlayerNumber.CompareTo(
+                bNumber.PlayerNumber
+            );
         });
 
-        // Text配列を作る
         texts = new TextMeshProUGUI[characters.Length];
 
-        // 各Player用UIを生成
         for (int i = 0; i < characters.Length; i++)
         {
             var t = Instantiate(textPrefab, parent);
-
             t.text = "0.0";
-
             texts[i] = t;
         }
     }
+
     private void Update()
     {
         if (characters == null || texts == null)
@@ -87,7 +105,7 @@ public class PercentageUIManager : MonoBehaviour
             if (i >= texts.Length || texts[i] == null)
                 continue;
 
-            float p = characters[i].data.Percentage;
+            float p = characters[i].Percentage;
 
             // HP表示
             texts[i].text = p.ToString("F1");

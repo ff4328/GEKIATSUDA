@@ -13,6 +13,24 @@ public class ConnectPlayerNumber : NetworkBehaviour
 
     public int PlayerNumber => _playerNumber;
 
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        Debug.Log(
+            $"BattlePlayer Spawn完了 " +
+            $"PlayerNumber={_playerNumber} name={name}"
+        );
+
+        PercentageUIManager ui =
+            FindFirstObjectByType<PercentageUIManager>();
+
+        if (ui != null)
+        {
+            ui.RefreshUI();
+        }
+    }
+
     private void OnPlayerNumberChange(int oldNumber, int newNumber)
     {
         if (num != null)

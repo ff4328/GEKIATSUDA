@@ -128,6 +128,8 @@ public class GameNetworkManager : RelayNetworkManager
     [Server]
     private void SpawnBattlePlayers()
     {
+        Debug.Log("SpawnBattlePlayers開始");
+         
         BattleSpawnPoints spawnPoints =
             FindFirstObjectByType<BattleSpawnPoints>();
 
@@ -181,25 +183,32 @@ public class GameNetworkManager : RelayNetworkManager
                 newPlayer,
                 ReplacePlayerOptions.KeepAuthority
             );
+
+            Debug.Log("① SpawnBattlePlayers 最後まで来た");
+
+            Debug.Log("④ RpcSetInitialPlayerUI 呼び出し完了");
         }
 
-        PercentageUIManager percentageUIMgr =
-    FindFirstObjectByType<PercentageUIManager>();
+    //     PercentageUIManager percentageUIMgr =
+    // FindFirstObjectByType<PercentageUIManager>();
 
-        percentageUIMgr.RpcSetInitialPlayerUI();
+    //     percentageUIMgr.SetInitialPlayerUI();
 
         _battlePlayerData.Clear();
     }
 
-    public override void OnServerSceneChanged(string sceneName)
-    {
-        base.OnServerSceneChanged(sceneName);
+public override void OnServerSceneChanged(string sceneName)
+{
+    Debug.Log($"OnServerSceneChanged: {sceneName}");
 
-        if (sceneName == "Normal")
-        {
-            SpawnBattlePlayers();
-        }
+    base.OnServerSceneChanged(sceneName);
+
+    if (sceneName == "Normal")
+    {
+        Debug.Log("Normal判定に入った");
+        SpawnBattlePlayers();
     }
+}
 
     public override void OnServerDisconnect(NetworkConnectionToClient conn)
     {
