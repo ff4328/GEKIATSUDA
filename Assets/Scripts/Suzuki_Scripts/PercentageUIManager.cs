@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
@@ -7,44 +8,52 @@ public class PercentageUIManager : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI[] textPercentages;
-    [SerializeField] public CharaDataBase characters;
-    float percentages;
+    BaseCharacter[] characters;
 
 
-    private void Awake()
+    private void Start()
     {
-     
+        characters = FindObjectsByType<BaseCharacter>(FindObjectsSortMode.None);
 
-
-        characters = new CharaDataBase();
-
-
-
-
-
+        if (textPercentages.Length < characters.Length)
+        {
+            Debug.LogError("UIの数がキャラ数より少ないよ！");
+        }
     }
     private void Update()
     {
-
-        percentages = characters.Percentage;
-
-        //percentages = characters.Percentage;
-        //debug用
-        if (Input.GetKeyDown(KeyCode.S))
+        for (int i = 0; i < characters.Length; i++)
         {
-            characters.TakeDamage(1);
-            Debug.Log(characters.Percentage);
+            float p = characters[i].data.Percentage;
+
+            // UI更新
+            textPercentages[i].text = p.ToString("F1");
+
+            // 色変化
+            if (p <= 50)
+            {
+                float t = (p - 20.0f) / 50.0f;
+                textPercentages[i].color = Color.Lerp(Color.white, Color.yellow, t);
+            }
+            else
+            {
+                float t = (p - 50.0f) / 50.0f;
+                textPercentages[i].color = Color.Lerp(Color.yellow, Color.red, t);
+            }
         }
+
+        /*
+        float percentages = characters.Percentage;
         for (int i = 0; i < textPercentages.Length; i++)
         {
             textPercentages[i].text = percentages.ToString("F1");
 
 
-            /*
+            
              １５から黄色に代わっていって
               ５０まで黄色からオレンジに変わっていって
                 １００まで赤に川廷ってる
-             */
+             
 
 
             if (percentages <= 50)
@@ -61,7 +70,6 @@ public class PercentageUIManager : MonoBehaviour
             }
 
 
-        }
-
+        }*/
     }
 }

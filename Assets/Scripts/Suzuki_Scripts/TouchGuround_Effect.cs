@@ -17,13 +17,11 @@ public class TouchGround_Effect
     public Vector3 PlayerPos()
     {
         vec = effect.PlayerEffectPos();
-        Debug.Log(vec);
         return vec;
     }
 
     public void TouchGround(Vector3 pos)
     {
-        Debug.Log("Grounded");
 
         if (effect == null) return;
         if (effect.TouchGuroundparticle == null) return;

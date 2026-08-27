@@ -77,6 +77,7 @@ public class BaseCharacter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             StartStrongAttack();
+            data.SmashDead();
         }
     }
 
@@ -175,4 +176,57 @@ public class BaseCharacter : MonoBehaviour
             other.GetComponent<StageGimmickBase>().HitToCharacter(this);
         }
     }
+
+    public void AddRank(int attackUp, int speedUp, int sizeUp)
+    {
+        // ランクを増減
+        rank.attackRank += attackUp;
+        rank.speedRank += speedUp;
+        rank.sizeRank += sizeUp;
+
+        // ランクの範囲を制限（1〜5）
+        rank.attackRank = Mathf.Clamp(rank.attackRank, 1, 5);
+        rank.speedRank = Mathf.Clamp(rank.speedRank, 1, 5);
+        rank.sizeRank = Mathf.Clamp(rank.sizeRank, 1, 5);
+
+        // 再計算
+        UpdateFinalStats();
+    }
+    public void UpdateFinalStats()
+    {
+        finalAttackPower = rank.GetAttack(baseAttack);
+
+        float finalSpeed = rank.GetSpeed(baseSpeed);
+        int finalSize = rank.GetSize(baseSize);
+
+        characterMove.moveSpeed = finalSpeed * 0.1f;
+        transform.localScale = Vector3.one * finalSize;
+    }
+    public void AddAttackRank(int value)
+    {
+        rank.attackRank += value;
+        rank.attackRank = Mathf.Clamp(rank.attackRank, 1, 5);
+        UpdateFinalStats();
+    }
+    public void AddSpeedRank(int value)
+    {
+        rank.speedRank += value;
+        rank.speedRank = Mathf.Clamp(rank.speedRank, 1, 5);
+        UpdateFinalStats();
+    }
+
+    public void AddSizeRank(int value)
+    {
+        rank.sizeRank += value;
+        rank.sizeRank = Mathf.Clamp(rank.sizeRank, 1, 5);
+        UpdateFinalStats();
+    }
+    public void ResetRank()
+    {
+        rank.attackRank = 1;
+        rank.speedRank = 1;
+        rank.sizeRank = 1;
+        UpdateFinalStats();
+    }
+
 }

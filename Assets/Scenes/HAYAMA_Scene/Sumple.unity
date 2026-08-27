@@ -597,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865870650986747900, guid: 32ecc0a0fc76b2245b8b5f49d0d4d55c, type: 3}
       propertyPath: textPercentages.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2865870650986747900, guid: 32ecc0a0fc76b2245b8b5f49d0d4d55c, type: 3}
       propertyPath: 'textPercentages.Array.data[0]'
@@ -664,6 +664,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackHitBox
   owner: {fileID: 1144732731}
+  isPowerUp: 0
+  character: {fileID: 0}
   attackPower: 0
 --- !u!65 &1072407069
 BoxCollider:
@@ -896,9 +898,11 @@ MonoBehaviour:
   baseAttack: 3
   baseSpeed: 1
   baseSize: 1
+  finalStrongAttackPower: 0
   characterMove: {fileID: 1144732732}
   attackHitBox: {fileID: 1072407068}
-  finalAttackPower: 0
+  barrier: {fileID: 0}
+  isInvincible: 0
   isStunned: 0
   isKnockback: 0
 --- !u!114 &1144732732 stripped
@@ -927,7 +931,7 @@ GameObject:
   - component: {fileID: 1264297325}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: AttackArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -945,6 +949,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackHitBox
   owner: {fileID: 2063778158}
+  isPowerUp: 0
+  character: {fileID: 2063778158}
   attackPower: 0
 --- !u!65 &1264297326
 BoxCollider:
@@ -1034,7 +1040,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2063778163}
@@ -1312,9 +1318,11 @@ MonoBehaviour:
   baseAttack: 3
   baseSpeed: 1
   baseSize: 1
+  finalStrongAttackPower: 0
   characterMove: {fileID: 1382683051}
   attackHitBox: {fileID: 1593219941}
-  finalAttackPower: 0
+  barrier: {fileID: 0}
+  isInvincible: 0
   isStunned: 0
   isKnockback: 0
 --- !u!114 &1382683051
@@ -1380,6 +1388,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackHitBox
   owner: {fileID: 0}
+  isPowerUp: 0
+  character: {fileID: 0}
   attackPower: 0
 --- !u!65 &1593219942
 BoxCollider:
@@ -1523,9 +1533,11 @@ MonoBehaviour:
   baseAttack: 3
   baseSpeed: 1
   baseSize: 1
+  finalStrongAttackPower: 0
   characterMove: {fileID: 2063778157}
   attackHitBox: {fileID: 1264297325}
-  finalAttackPower: 0
+  barrier: {fileID: 0}
+  isInvincible: 0
   isStunned: 0
   isKnockback: 0
 --- !u!54 &2063778159
