@@ -32,8 +32,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.73563, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8641238012538105237}
   - {fileID: 1223650911304182204}
@@ -176,9 +176,11 @@ MonoBehaviour:
   baseAttack: 3
   baseSpeed: 1
   baseSize: 1
+  finalStrongAttackPower: 0
   characterMove: {fileID: 3584263750959732939}
   attackHitBox: {fileID: 2820455016931473472}
-  finalAttackPower: 0
+  barrier: {fileID: 0}
+  isInvincible: 0
   isStunned: 0
   isKnockback: 0
 --- !u!1 &4934037019783807512
@@ -299,7 +301,7 @@ Transform:
   m_GameObject: {fileID: 7833048668702491188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -324,7 +326,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.05, z: 0.25}
+  m_Size: {x: 0.6, y: 0.2, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3151384399123773391
 MonoBehaviour:

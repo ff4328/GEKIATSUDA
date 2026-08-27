@@ -7,10 +7,11 @@ public class FallFloor : StageGimmickBase
 {
     //移動方向
     private readonly Vector3 _MOVE_DIRECTION = new Vector3(0.0f, -1.0f, 0.0f);
-    //落下速度の加算量
-    private const float _ADDITIONAL_FALL_SPEED = 10.0f;
+    //落下速度の加算
+    [SerializeField]
+    private float _additionalFallSpeed = 20.0f;
     //落下の最大速度
-    private const float _MAX_FALL_SPEED = 20.0f;
+    private readonly float _MAX_FALL_SPEED = 5000;
     //落下速度
     private float _fallSpeed = 0;
 
@@ -61,7 +62,7 @@ public class FallFloor : StageGimmickBase
             _fallStayTimerSec += deltaTime;
 
             //待機時間終了でなければ処理しない
-            if (_fallStayTimerSec > _FALL_STAY_TIME_SEC_)
+            if (_fallStayTimerSec >= _FALL_STAY_TIME_SEC_)
             {
                 //状態を変更
                 _state = State.Fall;
@@ -77,7 +78,7 @@ public class FallFloor : StageGimmickBase
         {
 
             //落下速度を加算
-            _fallSpeed += _ADDITIONAL_FALL_SPEED * deltaTime;
+            _fallSpeed += _additionalFallSpeed * deltaTime;
             //落下速度の上限対策
             _fallSpeed = Mathf.Min(_fallSpeed, _MAX_FALL_SPEED);
 
@@ -85,7 +86,7 @@ public class FallFloor : StageGimmickBase
             _resurrectionTimer += deltaTime;
 
             //復活時間になったら
-            if (_resurrectionTimer > _RESURRECTION_TIME)
+            if (_resurrectionTimer >= _RESURRECTION_TIME)
             {
                 //状態を変更
                 _state = State.None;
@@ -108,7 +109,7 @@ public class FallFloor : StageGimmickBase
         //落下状態でなければ処理しない
         if (_state != State.Fall) return;
         //落下
-        transform.position += _MOVE_DIRECTION * Time.deltaTime * _fallSpeed;
+        transform.position += _MOVE_DIRECTION * Time.fixedDeltaTime * _fallSpeed;
     }
 
     public override void HitToCharacter(BaseCharacter hitCharacter)
