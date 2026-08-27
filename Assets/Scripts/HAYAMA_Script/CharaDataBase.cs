@@ -81,7 +81,7 @@ public class CharaDataBase
     {
         if (Percentage >= 200)
         {
-            LaunchRate += LaunchRate * LaunchRate;
+            LaunchRate += LaunchRate * 10;
             UpdateLaunchRate();
             effect.Shotdown(effect.PlayerPos());
         }

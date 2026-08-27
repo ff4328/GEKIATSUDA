@@ -5,6 +5,9 @@ using UnityEngine.TextCore.Text;
 
 public class EffectManager : MonoBehaviour
 {
+    public static EffectManager Instance { get; private set; }
+
+
 
 
     public CharacterMove chara;
@@ -15,6 +18,17 @@ public class EffectManager : MonoBehaviour
     private void Awake()
     {
         chara = FindFirstObjectByType<CharacterMove>();
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+
     }
 
     [SerializeField] public ParticleSystem Smokeparticle;
@@ -29,7 +43,6 @@ public class EffectManager : MonoBehaviour
     {
      
         EffectPos = chara.GetPos();
-        Debug.Log(EffectPos);
     }
 
     public Vector3 PlayerEffectPos()
