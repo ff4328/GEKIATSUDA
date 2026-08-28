@@ -84,10 +84,10 @@ private float _percentage;
         {
             Deads();
         }
-
+        if (data == null)return;
         if (data.PlayerHP <= 0)
         {
-        transform.position = new Vector3(500, 500, 0);
+            NetworkServer.Destroy(gameObject);
         }
 
         Debug.Log(data.PlayerHP);
