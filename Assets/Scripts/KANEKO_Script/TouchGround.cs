@@ -53,7 +53,6 @@ public class TouchGround : MonoBehaviour
         }
         if (other.gameObject.tag == "StageGimmick")
         {
-            if (other.GetComponent<StageGimmickBase>().IsDamageGimmick()) return;
             isGround = true;
             isDoubleJump = true;
             effect.TouchGround(effect.PlayerPos());

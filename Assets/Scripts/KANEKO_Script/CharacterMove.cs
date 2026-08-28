@@ -77,6 +77,8 @@ public class CharacterMove : NetworkBehaviour
     /// </summary>
     private bool _isJumpInput;
 
+    private bool _isWaitJump;
+
     /// <summary>
     /// ダブルジャンプ可能か
     /// </summary>
@@ -169,30 +171,49 @@ public class CharacterMove : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!isLocalPlayer) return;
 
         // アクション状況の更新
         _moveValue = _actions[(int)PlayerAction.Move].ReadValue<Vector2>();
         _isJumpInput = _actions[(int)PlayerAction.Jump].WasPressedThisFrame();
+        Debug.Log("_isJumpInput : " + _isJumpInput);
         _isAttackInput = _actions[(int)PlayerAction.Attack].WasPressedThisFrame();
+        Debug.Log("_isAttackInput : " + _isAttackInput);
         _isPowerAttackInput = _actions[(int)PlayerAction.PowerAttack].WasPressedThisFrame();
+        Debug.Log("_isPowerAttackInput : " + _isPowerAttackInput);
         _isGuardInput = _actions[(int)PlayerAction.Guard].IsPressed();
-       
+        Debug.Log("_isGuardInput : " + _isGuardInput);
+
+        CmdUpdate();
+
+    }
+
+    private void FixedUpdate()
+    {
+        CmdFixedUpdate();
+    }
+
+    [Command]
+    void CmdUpdate()
+    {
         IsTouchGround();
+        IsWaitJump(_isJumpInput);
         GuardSpriteMove(_dir);
         GuardSpriteScaleChange();
 
         //Attack();
-        Jump();
-        Guard();
     }
 
-    private void FixedUpdate()
+    [Command]
+    void CmdFixedUpdate()
     {
         if (!isLocalPlayer) return;
 
         // 実際の移動処理
         Move(_moveValue);
+        Jump();
+        Guard();
     }
 
     /// <summary>
@@ -297,6 +318,12 @@ public class CharacterMove : NetworkBehaviour
         _isDoubleJump = _isTouchGround.isDoubleJump;
     }
 
+    private void IsWaitJump(bool jumpInput)
+    {
+        if (jumpInput) _isWaitJump = true;
+        Debug.Log("_isWaitJump : " + _isWaitJump);
+    }
+
     /// <summary>
     /// ジャンプアクション
     /// </summary>
@@ -304,9 +331,10 @@ public class CharacterMove : NetworkBehaviour
     {
         if (MoveFlagForDebug() || _isDodge) return;
 
-        if (_isJumpInput && _isGround)
+        if (_isWaitJump && _isGround)
         {
             _rb.AddForce(new Vector3(0f, JUMP_FORCE, 0f), ForceMode.Impulse);
+            _isWaitJump = false;
         }
 
         DoubleJump();
@@ -317,7 +345,7 @@ public class CharacterMove : NetworkBehaviour
     /// </summary>
     private void DoubleJump()
     {
-        if (_isJumpInput && !_isGround && _isDoubleJump)
+        if (_isWaitJump && !_isGround && _isDoubleJump)
         {
             VectorToZero();
             _rb.AddForce(new Vector3(0f, JUMP_FORCE, 0f), ForceMode.Impulse);
@@ -436,7 +464,7 @@ public class CharacterMove : NetworkBehaviour
     {
         if(_guardTime > 0f)
         {
-            _guardTime -= Time.deltaTime;
+            _guardTime -= Time.fixedDeltaTime;
         }
         else
         {
@@ -448,7 +476,7 @@ public class CharacterMove : NetworkBehaviour
     {
         if (_guardTime < GUARD_TIME)
         {
-            _guardTime += Time.deltaTime * 0.75f;
+            _guardTime += Time.fixedDeltaTime * 0.75f;
         }
         else
         {

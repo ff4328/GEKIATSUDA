@@ -322,6 +322,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3015194938246682977, guid: c584a229b69a779498c0f70337d01a8c, type: 3}
+      propertyPath: sceneId
+      value: 1855437831
+      objectReference: {fileID: 0}
     - target: {fileID: 5529385269878701854, guid: c584a229b69a779498c0f70337d01a8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -362,6 +366,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6773717290276436116, guid: c584a229b69a779498c0f70337d01a8c, type: 3}
+      propertyPath: sceneId
+      value: 4109388312
+      objectReference: {fileID: 0}
     - target: {fileID: 7276950092716093603, guid: c584a229b69a779498c0f70337d01a8c, type: 3}
       propertyPath: m_Name
       value: Cave
@@ -369,6 +377,10 @@ PrefabInstance:
     - target: {fileID: 7276950092716093603, guid: c584a229b69a779498c0f70337d01a8c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545160495285025104, guid: c584a229b69a779498c0f70337d01a8c, type: 3}
+      propertyPath: sceneId
+      value: 3091489355
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
