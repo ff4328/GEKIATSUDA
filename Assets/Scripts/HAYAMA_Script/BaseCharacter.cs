@@ -84,28 +84,23 @@ private float _percentage;
         {
             Deads();
         }
-        if (data == null)return;
-        if (data.PlayerHP <= 0)
+        if (data.PlayerHP != 0)
         {
-            NetworkServer.Destroy(gameObject);
-        }
-
-        Debug.Log(data.PlayerHP);
-
-        if (characterMove.IsValidAttack())
-        {
-            StartAttack();
-            if (attackHitBox.isPowerUp == true)
+            if (characterMove.IsValidAttack())
             {
-                attackHitBox.TemporaryPowerDown(20);
-                attackHitBox.isPowerUp = false;
+                StartAttack();
+                if (attackHitBox.isPowerUp == true)
+                {
+                    attackHitBox.TemporaryPowerDown(20);
+                    attackHitBox.isPowerUp = false;
+                }
             }
-        }
 
-        if (characterMove.IsValidPowerAttack())
-        {
-            StartStrongAttack();
-            data.SmashDead();
+            if (characterMove.IsValidPowerAttack())
+            {
+                StartStrongAttack();
+                data.SmashDead();
+            }
         }
     }
 
