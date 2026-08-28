@@ -20,6 +20,8 @@ public class LavaGimmick : DamageGimmickBase
         Vector3 closestPoint = collider.ClosestPoint(hitCollider.bounds.center);
         hitCharacter.ApplyKnockback(damage, closestPoint);
 
+        Debug.Log("HIT");
+
     }
 
 
