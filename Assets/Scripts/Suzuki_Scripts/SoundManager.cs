@@ -21,9 +21,7 @@ public class SoundManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        audioSource = Camera.main.GetComponent<AudioSource>();
-
-
+       audioSource = GetComponent<AudioSource>();
 
     }
 

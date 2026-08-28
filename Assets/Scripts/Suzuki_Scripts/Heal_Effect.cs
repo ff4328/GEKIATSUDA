@@ -6,11 +6,17 @@ public class Heal_Effect
 {
 
     private EffectManager effect;
+    private SoundManager sound;
     Vector3 vec;
    
     public Heal_Effect(EffectManager effect)
     {
         this.effect = effect;
+
+    }
+    public Heal_Effect(SoundManager sound)
+    {
+        this.sound = sound;
 
     }
 
@@ -40,7 +46,7 @@ public class Heal_Effect
         heal.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
         heal.Play();
-
+        sound.audioSource.PlayOneShot(sound.HealClip);
         UnityEngine.Object.Destroy(heal.gameObject, 0.5f);
     }
 }

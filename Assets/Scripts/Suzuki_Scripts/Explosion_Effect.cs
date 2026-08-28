@@ -7,9 +7,14 @@ public class Explosion_Effect
 
     private SoundManager sound;
 
-    public Explosion_Effect(EffectManager effect, SoundManager sound)
+    public Explosion_Effect(EffectManager effect)
     {
         this.effect = effect;
+       
+    }
+    public Explosion_Effect( SoundManager sound)
+    {
+     
         this.sound = sound;
     }
 
@@ -55,6 +60,8 @@ public class Explosion_Effect
         );
 
         UnityEngine.Object.Destroy(explosionFirst.gameObject, totalFirstTime);
+
+        sound.audioSource.PlayOneShot(sound.ExplosionClip);
         explosionFirst.Play();
         
 
