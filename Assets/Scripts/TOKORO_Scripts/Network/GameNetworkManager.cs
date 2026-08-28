@@ -59,6 +59,11 @@ public class GameNetworkManager : RelayNetworkManager
         ServerChangeScene("CharacterSelectScene");
         //ServerChangeScene("Cave");
     }
+    [Server]
+    public void Setting()
+    {
+        ServerChangeScene("Scene_Setting");
+    }
 
     [Server]
     public void CheckAllReady()
