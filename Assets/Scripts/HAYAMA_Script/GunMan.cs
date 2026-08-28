@@ -12,6 +12,11 @@ public class GunMan : BaseCharacter
     {
         attackOffset = new Vector3(1, 1, 0);
         strongAttackOffset = new Vector3(2, 1, 0);
+
+        var col = attackHitBox.GetComponent<CapsuleCollider>();
+        col.direction = 0;   // X軸に伸ばす
+        col.radius = 1.5f;
+        col.height = 2f;
     }
     protected override void Start()
     {
