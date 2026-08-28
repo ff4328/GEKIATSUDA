@@ -177,14 +177,11 @@ public class CharacterMove : NetworkBehaviour
         // アクション状況の更新
         _moveValue = _actions[(int)PlayerAction.Move].ReadValue<Vector2>();
         _isJumpInput = _actions[(int)PlayerAction.Jump].WasPressedThisFrame();
-        Debug.Log("_isJumpInput : " + _isJumpInput);
         _isAttackInput = _actions[(int)PlayerAction.Attack].WasPressedThisFrame();
-        Debug.Log("_isAttackInput : " + _isAttackInput);
         _isPowerAttackInput = _actions[(int)PlayerAction.PowerAttack].WasPressedThisFrame();
-        Debug.Log("_isPowerAttackInput : " + _isPowerAttackInput);
         _isGuardInput = _actions[(int)PlayerAction.Guard].IsPressed();
-        Debug.Log("_isGuardInput : " + _isGuardInput);
 
+        IsWaitJump(_isJumpInput);
         CmdUpdate();
 
     }
@@ -198,7 +195,6 @@ public class CharacterMove : NetworkBehaviour
     void CmdUpdate()
     {
         IsTouchGround();
-        IsWaitJump(_isJumpInput);
         GuardSpriteMove(_dir);
         GuardSpriteScaleChange();
 
@@ -320,8 +316,8 @@ public class CharacterMove : NetworkBehaviour
 
     private void IsWaitJump(bool jumpInput)
     {
+        if (!_isGround && !_isDoubleJump) return;
         if (jumpInput) _isWaitJump = true;
-        Debug.Log("_isWaitJump : " + _isWaitJump);
     }
 
     /// <summary>
@@ -350,6 +346,7 @@ public class CharacterMove : NetworkBehaviour
             VectorToZero();
             _rb.AddForce(new Vector3(0f, JUMP_FORCE, 0f), ForceMode.Impulse);
             _isTouchGround.isDoubleJump = false;
+            _isWaitJump = false;
         }
     }
 
@@ -435,30 +432,6 @@ public class CharacterMove : NetworkBehaviour
         else flag = false;
         return flag;
     }
-
-    //private void GuardEnableProcess()
-    //{
-    //    Debug.Log("aaa : " + _baseCharacter.barrier.enabled);
-    //    if (_baseCharacter.barrier.enabled == false)
-    //    {
-
-    //    Debug.Log("bbb");
-    //    _baseCharacter.isInvincible = true;
-    //    }
-    //    Debug.Log("ccc");
-    //}
-
-    //private void GuardDisenableProcess()
-    //{
-    //    Debug.Log("ddd");
-    //    if (_baseCharacter.barrier.enabled == false)
-    //    {
-
-    //        Debug.Log("eee");
-    //    _baseCharacter.isInvincible = false;
-    //    }
-    //    Debug.Log("fff");
-    //}
 
     private void DecreaseGuardTime()
     {
