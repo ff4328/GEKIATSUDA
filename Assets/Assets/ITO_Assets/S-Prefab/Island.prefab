@@ -2328,6 +2328,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 136171909058099949}
     m_Modifications:
+    - target: {fileID: 2570174194948822646, guid: e65f44136c6305649812d0a1082d092e, type: 3}
+      propertyPath: _isUnder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2678402717998660966, guid: e65f44136c6305649812d0a1082d092e, type: 3}
       propertyPath: m_Name
       value: LavaGimmick
@@ -2686,6 +2690,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 682828364011837575}
     m_Modifications:
+    - target: {fileID: 2570174194948822646, guid: e65f44136c6305649812d0a1082d092e, type: 3}
+      propertyPath: _isUnder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2678402717998660966, guid: e65f44136c6305649812d0a1082d092e, type: 3}
       propertyPath: m_Name
       value: LavaGimmick
