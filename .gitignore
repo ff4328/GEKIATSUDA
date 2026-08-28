@@ -80,3 +80,6 @@ git lfs track "*.apk"
 git add .gitattributes
 git commit -m "Track large binary files with LFS"
 git push
+
+# Unity IL2CPP build backup
+*_BackUpThisFolder_ButDontShipItWithYourGame/

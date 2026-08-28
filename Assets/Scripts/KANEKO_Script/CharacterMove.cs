@@ -169,9 +169,7 @@ public class CharacterMove : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Update before return isLocalPlayer : " + isLocalPlayer);
         if (!isLocalPlayer) return;
-        Debug.Log("Update after return isLocalPlayer : " + isLocalPlayer);
 
         // アクション状況の更新
         _moveValue = _actions[(int)PlayerAction.Move].ReadValue<Vector2>();
@@ -191,9 +189,7 @@ public class CharacterMove : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("FixedUpdate before return isLocalPlayer : " + isLocalPlayer);
         if (!isLocalPlayer) return;
-        Debug.Log("FixedUpdate after return isLocalPlayer : " + isLocalPlayer);
 
         // 実際の移動処理
         Move(_moveValue);

@@ -13,6 +13,24 @@ public class ConnectPlayerNumber : NetworkBehaviour
 
     public int PlayerNumber => _playerNumber;
 
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        Debug.Log(
+            $"BattlePlayer Spawn完了 " +
+            $"PlayerNumber={_playerNumber} name={name}"
+        );
+
+        PercentageUIManager ui =
+            FindFirstObjectByType<PercentageUIManager>();
+
+        if (ui != null)
+        {
+            ui.RefreshUI();
+        }
+    }
+
     private void OnPlayerNumberChange(int oldNumber, int newNumber)
     {
         if (num != null)
@@ -39,6 +57,34 @@ public class ConnectPlayerNumber : NetworkBehaviour
         if (_spawned)
             return;
 
+        BattleSpawnPoints spawnPoints =
+            FindFirstObjectByType<BattleSpawnPoints>();
+
+        if (spawnPoints == null)
+        {
+            Debug.LogWarning("BattleSpawnPointsがありません");
+            return;
+        }
+
+        Transform point = spawnPoints.GetSpawnPoint(_playerNumber);
+
+        if (point == null)
+        {
+            Debug.LogWarning($"{_playerNumber}PのSpawnPointがありません");
+            return;
+        }
+
+        transform.SetPositionAndRotation(
+            point.position,
+            point.rotation
+        );
+
+        _spawned = true;
+    }
+
+    [Server]
+    private void SetInitialPlayerUI()
+    {
         BattleSpawnPoints spawnPoints =
             FindFirstObjectByType<BattleSpawnPoints>();
 

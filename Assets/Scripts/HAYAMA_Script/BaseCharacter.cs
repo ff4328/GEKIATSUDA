@@ -1,9 +1,9 @@
-using System.Threading;
+using Mirror;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Timeline;
 
-public class BaseCharacter : MonoBehaviour
+public class BaseCharacter : NetworkBehaviour
 {
     public RankParameter rank;
 
@@ -26,7 +26,12 @@ public class BaseCharacter : MonoBehaviour
     public int finalAttackPower { get; set; }
 
     //鈴木
-    private Hit_Effect  effect;
+    private Hit_Effect effect;
+
+[SyncVar]
+private float _percentage;
+
+    public float Percentage => _percentage;
 
     protected virtual void Start()
     {
@@ -66,7 +71,7 @@ public class BaseCharacter : MonoBehaviour
     }
     protected virtual void Update()
     {
-        Debug.Log(data.LaunchRate);
+        // Debug.Log(data.LaunchRate);
 
         if (transform.position.x >= 280 || transform.position.x <= -280 || transform.position.y >= 140 || transform.position.y <= -140)
         {
@@ -122,6 +127,12 @@ public class BaseCharacter : MonoBehaviour
     {
         if (isInvincible || characterMove.GetIsGuard()) return;
         data.TakeDamage(enemyAttack);
+
+        if (!isServer)
+            return;
+
+        _percentage = data.Percentage;
+
         ApplyKnockback(enemyAttack, attackerPos);
         //鈴木
         effect.Hit(attackerPos);
@@ -129,7 +140,13 @@ public class BaseCharacter : MonoBehaviour
 
     public virtual void OnEnvironmentDamage(int damage)
     {
+        if (!isServer)
+            return;
+
         data.TakeDamage(damage);
+
+        _percentage = data.Percentage;
+
         ApplyKnockback(damage, -transform.position);
     }
     public virtual void ApplyKnockback(int power, Vector3 attackerPos)
@@ -169,20 +186,20 @@ public class BaseCharacter : MonoBehaviour
             barrier.enabled = false;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "StageGimmick")
         {
-            other.gameObject.GetComponent<StageGimmickBase>().HitToCharacter(this);
+            other.GetComponent<StageGimmickBase>().HitToCharacter(this);
         }
     }
 
-    private void OnCollisionStay(Collision other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "StageGimmick")
         {
-            if (other.gameObject.GetComponent<StageGimmickBase>().IsDamageGimmick()) return;
-            other.gameObject.GetComponent<StageGimmickBase>().HitToCharacter(this);
+            if (other.GetComponent<StageGimmickBase>().IsDamageGimmick()) return;
+            other.GetComponent<StageGimmickBase>().HitToCharacter(this);
         }
     }
 
@@ -243,5 +260,12 @@ public class BaseCharacter : MonoBehaviour
         data.Dead();
         transform.position = Vector3.zero;
         characterMove.VectorToZero();
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        Debug.Log($"BattlePlayer Spawn完了: {name}");
     }
 }

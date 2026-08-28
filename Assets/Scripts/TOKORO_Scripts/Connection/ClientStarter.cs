@@ -9,6 +9,7 @@ public class ClientStarter : MonoBehaviour
     [SerializeField] private GameObject cutting;
     [SerializeField] private GameObject host;
     [SerializeField] private GameObject client;
+     [SerializeField] private GameObject start;
     [SerializeField] private GameObject input;
 
     public void StartClient()
@@ -27,5 +28,6 @@ public class ClientStarter : MonoBehaviour
         host.SetActive(false);
         client.SetActive(false);
         input.SetActive(false);
+        start.SetActive(true);
     }
 }
