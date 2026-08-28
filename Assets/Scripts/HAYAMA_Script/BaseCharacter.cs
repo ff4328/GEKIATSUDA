@@ -61,6 +61,8 @@ private float _percentage;
         float finalSpeed = rank.GetSpeed(baseSpeed);
         int finalSize = rank.GetSize(baseSize);
 
+        data.SetHP(3);
+
         characterMove.moveSpeed = finalSpeed * 0.1f;
         transform.localScale = Vector3.one * finalSize;
         data.SetSize(finalSize);
@@ -77,6 +79,13 @@ private float _percentage;
         {
             Deads();
         }
+
+        if (data.PlayerHP <= 0)
+        {
+        transform.position = new Vector3(500, 500, 0);
+        }
+
+        Debug.Log(data.PlayerHP);
 
         if (characterMove.IsValidAttack())
         {
@@ -97,11 +106,12 @@ private float _percentage;
 
     void StartAttack()
     {
-        attackHitBox.SetAttackPower(finalAttackPower); // ★攻撃力を渡す
+        attackHitBox.SetAttackPower(finalAttackPower);
         attackHitBox.transform.localPosition = attackOffset;
         attackHitBox.SetActiveHitBox(true);
         Invoke(nameof(EndAttack), 0.2f);
     }
+
     void EndAttack()
     {
         attackHitBox.SetActiveHitBox(false);
@@ -109,13 +119,8 @@ private float _percentage;
     void StartStrongAttack()
     {
         attackHitBox.SetAttackPower(finalStrongAttackPower);
-
-        // 強攻撃はリーチ長めにするなど
         attackHitBox.transform.localPosition = strongAttackOffset;
-
         attackHitBox.SetActiveHitBox(true);
-
-        // 強攻撃は持続長め
         Invoke(nameof(EndStrongAttack), 0.4f);
     }
     void EndStrongAttack()
@@ -260,6 +265,7 @@ private float _percentage;
         data.Dead();
         transform.position = Vector3.zero;
         characterMove.VectorToZero();
+        BattleManager.Instance.OnCharacterDead(this);
     }
 
     public override void OnStartClient()
@@ -268,4 +274,11 @@ private float _percentage;
 
         Debug.Log($"BattlePlayer Spawn完了: {name}");
     }
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        BattleManager.Instance.RegisterCharacter(this);
+    }
+
 }
