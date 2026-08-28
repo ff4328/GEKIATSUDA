@@ -22,6 +22,7 @@ public class CharaDataBase
     public int JumpPower { get; private set; }
     public float LaunchRate { get; private set; }
     public bool IsTakeDamage { get; private set; }
+    public  int PlayerHP { get; private set; }
 
    
     public void SetPercentage(float percentage)
@@ -61,13 +62,18 @@ public class CharaDataBase
         UpdateLaunchRate();
         IsTakeDamage = true;
     }
+    public void SetHP(int hp)
+    {
+        PlayerHP = hp;
+    }
 
     public void Dead()
     {
         Percentage = 0;
         LaunchRate = 0;
+        PlayerHP -= 1;
         UpdateLaunchRate();
-        Debug.Log("Character is dead.");
+        if(PlayerHP <= 0)PlayerHP = 0;
     }
     public void Heal(int heal)
     {

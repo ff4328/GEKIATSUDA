@@ -19,12 +19,13 @@ public class Spawner : MonoBehaviour
     }
     private IEnumerator SpawnItem()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 10; i++)
         {
-            Vector2 position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+            Vector3 position = new Vector3(Random.Range(minX, maxX),Random.Range(minY, maxY),0f);
+
             GameObject enemy = ItemPrefabs[Random.Range(0, ItemPrefabs.Length)];
             Instantiate(enemy, position, Quaternion.identity, transform);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(10f);
         }
     }
 }
