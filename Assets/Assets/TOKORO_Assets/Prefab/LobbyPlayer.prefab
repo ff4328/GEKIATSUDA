@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 396804427128524579}
   - component: {fileID: 41568616130804656}
   - component: {fileID: -4110545937067709431}
+  - component: {fileID: 380622101146538343}
   m_Layer: 0
   m_Name: LobbyPlayer
   m_TagString: Player
@@ -509,6 +510,25 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   num: {fileID: 1006525722233432301}
+--- !u!114 &380622101146538343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395440408720859938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1108fe21e44085b4ab92d8d29b2da0f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConnectPlayerNumbers
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  PlayerNumber: 0
+  selectedAttack: 0
+  selectedSpeed: 0
+  selectedSize: 0
 --- !u!1 &7833048668702491188
 GameObject:
   m_ObjectHideFlags: 0

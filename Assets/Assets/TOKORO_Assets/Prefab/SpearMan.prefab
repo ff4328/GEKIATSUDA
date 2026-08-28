@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: -9105537952638194825}
   - component: {fileID: -5950679798268849050}
   - component: {fileID: 5933799511268612400}
+  - component: {fileID: 4876720032162571040}
   m_Layer: 0
   m_Name: SpearMan
   m_TagString: Untagged
@@ -269,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd572fa399a27e47bbf04098dfbf727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMove
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   _moveFlagForDebug: 0
@@ -307,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Mirror.Components::Mirror.NetworkTransformReliable
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   target: {fileID: 8665060380185261567}
@@ -341,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3899fccd911a3d844b9866be1f5daa91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectPlayer
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
 --- !u!114 &-5950679798268849050
@@ -356,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc79d89732f55f544a0867e64fa327a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConnectPlayerNumber
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   num: {fileID: 9026447089126655058}
@@ -388,6 +389,25 @@ MonoBehaviour:
   isInvincible: 0
   isStunned: 0
   isKnockback: 0
+--- !u!114 &4876720032162571040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848750835474259134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1108fe21e44085b4ab92d8d29b2da0f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConnectPlayerNumbers
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  PlayerNumber: 0
+  selectedAttack: 0
+  selectedSpeed: 0
+  selectedSize: 0
 --- !u!1 &5289889983129494240
 GameObject:
   m_ObjectHideFlags: 0

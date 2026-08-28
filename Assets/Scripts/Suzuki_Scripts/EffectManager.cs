@@ -29,7 +29,7 @@ public class EffectManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+
 
 
     }
