@@ -281,8 +281,13 @@ private float _percentage;
 
     public override void OnStartServer()
     {
-        base.OnStartServer();
+        // BattleManager が存在しないシーン（Setting）では何もしない
+        if (BattleManager.Instance == null)
+        {
+            Debug.Log("BattleManager が無いので RegisterCharacter をスキップ");
+            return;
+        }
+
         BattleManager.Instance.RegisterCharacter(this);
     }
-
-}
+    }
