@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Mirror.Components::Mirror.NetworkTransformReliable
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 9172519141529614129}
@@ -630,6 +630,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261511afee79f4b4da050a2e8f5c1e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunMan
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   rank: {fileID: 11400000, guid: 74a367d15473770448fee3ddcf0caf55, type: 2}
   baseAttack: 3
   baseSpeed: 1

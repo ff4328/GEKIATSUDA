@@ -411,6 +411,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01766200d7d936a438928d60bc714c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordMan
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   rank: {fileID: 11400000, guid: efdb008f8316e164cb2146ac6d0a69ad, type: 2}
   baseAttack: 3
   baseSpeed: 1
@@ -453,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Mirror.Components::Mirror.NetworkTransformReliable
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 653772068239964458}
