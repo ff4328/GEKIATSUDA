@@ -10,7 +10,7 @@ public class Bomb : MonoBehaviour
         EffectManager manager =
               FindFirstObjectByType<EffectManager>();
 
-        effect = new Explosion_Effect(manager);
+       // effect = new Explosion_Effect(manager);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -5,10 +5,12 @@ public class Explosion_Effect
 {
     private EffectManager effect;
 
-    public Explosion_Effect(EffectManager effect)
+    private SoundManager sound;
+
+    public Explosion_Effect(EffectManager effect, SoundManager sound)
     {
         this.effect = effect;
-
+        this.sound = sound;
     }
 
     public async Task Explosion(Vector3 pos)
@@ -54,6 +56,8 @@ public class Explosion_Effect
 
         UnityEngine.Object.Destroy(explosionFirst.gameObject, totalFirstTime);
         explosionFirst.Play();
+        
+
 
         //1つ目の再生間ってから２個目の再生
 

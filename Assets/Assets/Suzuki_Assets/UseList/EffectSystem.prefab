@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c00867b9be76894992519d3eaf2b0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectManager
+  sound: {fileID: 1399461534769943741, guid: 37ecadb6d168bab47b99a8a659f5739c, type: 3}
   chara: {fileID: 0}
   Smokeparticle: {fileID: 3302369515627654214, guid: 0a0789b29d0af7f4d8545ed5b2400ec6, type: 3}
   Healparticle: {fileID: 3851853913326536341, guid: 277969f98fc7ea24a8a37dcd31c3af16, type: 3}
