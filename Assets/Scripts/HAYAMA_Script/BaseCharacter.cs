@@ -47,6 +47,10 @@ private float _percentage;
 
         //＝＝＝＝＝＝＝＝＝＝
 
+        if (BattleManager.Instance != null)
+        {
+            BattleManager.Instance.RegisterCharacter(this);
+        }
         data = new CharaDataBase();
 
         var info = GetComponent<ConnectPlayerNumbers>();
