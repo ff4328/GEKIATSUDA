@@ -227,6 +227,22 @@ private float _percentage;
         // 再計算
         UpdateFinalStats();
     }
+
+    public void SetRank(int attackUp, int speedUp, int sizeUp)
+    {
+        // ランクを設定
+        rank.attackRank = attackUp;
+        rank.speedRank = speedUp;
+        rank.sizeRank = sizeUp;
+
+        // ランクの範囲を制限（1〜5）
+        rank.attackRank = Mathf.Clamp(rank.attackRank, 1, 5);
+        rank.speedRank = Mathf.Clamp(rank.speedRank, 1, 5);
+        rank.sizeRank = Mathf.Clamp(rank.sizeRank, 1, 5);
+
+        // 再計算
+        UpdateFinalStats();
+    }
     public void UpdateFinalStats()
     {
         finalAttackPower = rank.GetAttack(baseAttack);

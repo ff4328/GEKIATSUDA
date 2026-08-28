@@ -10,6 +10,9 @@ public class GameNetworkManager : RelayNetworkManager
         public NetworkConnectionToClient connection;
         public int playerNumber;
         public int characterID;
+        public int attackRank;
+        public int speedRank;
+        public int sizeRank;
     }
 
     private readonly List<BattlePlayerData> _battlePlayerData = new();
@@ -116,14 +119,20 @@ public class GameNetworkManager : RelayNetworkManager
             CharacterSelectPlayer select =
                 conn.identity.GetComponent<CharacterSelectPlayer>();
 
-            if (playerNumber == null || select == null)
+            StatusRankChangePlayer status =
+                conn.identity.GetComponent<StatusRankChangePlayer>();
+
+            if (playerNumber == null || select == null || status)
                 continue;
 
             _battlePlayerData.Add(new BattlePlayerData
             {
                 connection = conn,
                 playerNumber = playerNumber.PlayerNumber,
-                characterID = select.CharacterID
+                characterID = select.CharacterID,
+                attackRank = status.AttackRank,
+                speedRank = status.SpeedRank,
+                sizeRank = status.SizeRank
             });
         }
 
@@ -159,6 +168,27 @@ public class GameNetworkManager : RelayNetworkManager
                 continue;
             }
 
+            if (data.attackRank < 0 ||
+                data.attackRank > 5)
+            {
+                Debug.LogError($"不正なAttackRank: {data.attackRank}");
+                continue;
+            }
+
+            if (data.speedRank < 0 ||
+               data.speedRank > 5)
+            {
+                Debug.LogError($"不正なSpeedRank: {data.speedRank}");
+                continue;
+            }
+
+            if (data.speedRank < 0 ||
+               data.speedRank > 5)
+            {
+                Debug.LogError($"不正なSpeedRank: {data.speedRank}");
+                continue;
+            }
+
             Transform spawnPoint =
                 spawnPoints.GetSpawnPoint(data.playerNumber);
 
@@ -174,6 +204,17 @@ public class GameNetworkManager : RelayNetworkManager
                 spawnPoint.position,
                 spawnPoint.rotation
             );
+
+            BaseCharacter baseCharacter = newPlayer.GetComponent<BaseCharacter>();
+            if (baseCharacter == null)
+            {
+                Debug.LogError("BaseCharacterがありません");
+                continue;
+            }
+            else
+            {
+                baseCharacter.SetRank(data.attackRank, data.speedRank, data.sizeRank);
+            }
 
             ConnectPlayerNumber newPlayerNumber =
                 newPlayer.GetComponent<ConnectPlayerNumber>();

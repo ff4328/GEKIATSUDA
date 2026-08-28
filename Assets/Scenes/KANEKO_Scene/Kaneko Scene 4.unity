@@ -403,6 +403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EffectSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 5557526653558376471, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9054518748988142691, guid: eba558b3603c1394c962b7b25b526a99, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

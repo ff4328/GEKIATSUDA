@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -7061952061058699560}
   - component: {fileID: -2306809088188007595}
   - component: {fileID: -5659652322493506413}
+  - component: {fileID: 5925293816693937987}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Player
@@ -182,6 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01766200d7d936a438928d60bc714c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordMan
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   rank: {fileID: 11400000, guid: efdb008f8316e164cb2146ac6d0a69ad, type: 2}
   baseAttack: 3
   baseSpeed: 1
@@ -277,6 +281,21 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   num: {fileID: 2960582587109859437, guid: e60bae8310d3d3a47b1ed676e11fb588, type: 3}
+--- !u!114 &5925293816693937987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395440408720859938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04afe3efcb3fdac4f87d1d0bea82fd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusRankChangePlayer
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &4934037019783807512
 GameObject:
   m_ObjectHideFlags: 0

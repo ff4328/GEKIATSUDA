@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: -5950679798268849050}
   - component: {fileID: 5933799511268612400}
   - component: {fileID: 4876720032162571040}
+  - component: {fileID: 5876389554997353551}
   m_Layer: 0
   m_Name: SpearMan
   m_TagString: Untagged
@@ -408,6 +409,21 @@ MonoBehaviour:
   selectedAttack: 0
   selectedSpeed: 0
   selectedSize: 0
+--- !u!114 &5876389554997353551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848750835474259134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04afe3efcb3fdac4f87d1d0bea82fd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusRankChangePlayer
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &5289889983129494240
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8497967750323125315}
   - component: {fileID: 1565857153192109547}
   - component: {fileID: 2046732692179528968}
+  - component: {fileID: 539753341845815195}
   m_Layer: 0
   m_Name: SwordMan
   m_TagString: Player
@@ -229,6 +230,21 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   num: {fileID: 2960582587109859437}
+--- !u!114 &539753341845815195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142755718922643781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04afe3efcb3fdac4f87d1d0bea82fd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusRankChangePlayer
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &423432757232429812
 GameObject:
   m_ObjectHideFlags: 0
