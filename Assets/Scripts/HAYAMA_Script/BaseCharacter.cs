@@ -49,6 +49,11 @@ private float _percentage;
 
         data = new CharaDataBase();
 
+        var info = GetComponent<ConnectPlayerNumbers>();
+        baseAttack = info.selectedAttack;
+        baseSpeed = info.selectedSpeed;
+        baseSize = info.selectedSize;
+
         // ★ SwordMan の Inspector の値を BaseCharacter に反映
         if (characterMove == null)
             characterMove = GetComponent<CharacterMove>();
