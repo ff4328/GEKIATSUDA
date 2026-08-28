@@ -7,7 +7,7 @@ public class EffectManager : MonoBehaviour
 {
     public static EffectManager Instance { get; private set; }
 
-
+    public SoundManager sound;
 
 
     public CharacterMove chara;
@@ -17,6 +17,9 @@ public class EffectManager : MonoBehaviour
 
     private void Awake()
     {
+
+
+        sound = FindFirstObjectByType<SoundManager>();
         chara = FindFirstObjectByType<CharacterMove>();
 
         if (Instance != null && Instance != this)

@@ -7,6 +7,7 @@ public class Bomb : MonoBehaviour
 
     private void Awake()
     {
+
         EffectManager manager =
               FindFirstObjectByType<EffectManager>();
 
@@ -18,8 +19,9 @@ public class Bomb : MonoBehaviour
         // 攻撃判定
         if (other.gameObject.tag == "AttackArea")
         {
-             effect.Explosion(transform.position);
+            effect.Explosion(transform.position);
 
+          
             Destroy(gameObject);
         }
     }

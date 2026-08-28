@@ -3,11 +3,17 @@ using UnityEngine;
 public class Hit_Effect
 {
     private EffectManager effect;
+    private SoundManager sound;
     Vector3 vec;
 
     public Hit_Effect(EffectManager effect)
     {
         this.effect = effect;
+
+    }
+    public Hit_Effect(SoundManager sound)
+    {
+        this.sound = sound;
 
     }
 
@@ -39,6 +45,7 @@ public class Hit_Effect
         main.simulationSpeed = 6.0f;
 
         hit.Play();
+        sound.audioSource.PlayOneShot(sound.HitClip);
 
         UnityEngine.Object.Destroy(hit.gameObject, 0.5f);
     }

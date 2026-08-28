@@ -4,11 +4,17 @@ public class Shotdown_Effect
 {
 
     private EffectManager effect;
+    private SoundManager sound;
     Vector3 vec;
 
     public Shotdown_Effect(EffectManager effect)
     {
         this.effect = effect;
+
+    }
+    public Shotdown_Effect(SoundManager sound)
+    {
+        this.sound = sound;
 
     }
 
@@ -38,6 +44,7 @@ public class Shotdown_Effect
         //shotdown.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
         shotdown.Play();
+        sound.audioSource.PlayOneShot(sound.ShotdownClip);
 
     }
 }

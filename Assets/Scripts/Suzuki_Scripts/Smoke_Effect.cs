@@ -1,12 +1,19 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Smoke_Effect
 {
     private EffectManager effect;
+    private SoundManager sound;
 
     public Smoke_Effect(EffectManager effect)
     {
         this.effect = effect;
+
+    }
+    public Smoke_Effect(SoundManager sound)
+    {
+        this.sound = sound;
 
     }
 
@@ -33,5 +40,8 @@ public class Smoke_Effect
             Quaternion.identity
         );
         smoke.Play();
+        sound.audioSource.PlayOneShot(sound.SmokeClip);
+   
+    
     }
 }
